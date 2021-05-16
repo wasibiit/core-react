@@ -9,7 +9,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
 import SessionStyles from '../../styles/Session';
 
 const Signin = (props) => {
@@ -51,13 +50,8 @@ const Signin = (props) => {
                 />
                 <Button variant="raised" color="primary" fullWidth type="submit">Login</Button>
                 <div className="pt-1 text-md-center">
-                  <Link to="/forgot">
                     <Button>Forgot password?</Button>
-                  </Link>
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <Link to="/signup">
                     <Button>Create new account.</Button>
-                  </Link>
                 </div>
               </form>
             </CardContent>
