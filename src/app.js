@@ -23,6 +23,7 @@ const App = () => {
                            <PasswordReset/>
                        </Route>
                    </Switch>
+
                 </Router>
             </div>
 
