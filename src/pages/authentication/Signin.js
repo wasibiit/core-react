@@ -10,7 +10,8 @@ import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
 
-import SessionStyles from '../../styles/Session';
+import SessionStyles from '../../styles/session';
+import {Link} from "react-router-dom";
 
 const Signin = (props) => {
   const { classes } = props;
@@ -50,6 +51,7 @@ const Signin = (props) => {
                   className={classes.fullWidth}
                 />
                 <Button variant="raised" color="primary" fullWidth type="submit">Login</Button>
+                <Link to={"/signup"}>Go To SignUp</Link>
                 <div className="pt-1 text-md-center">
 
                 </div>

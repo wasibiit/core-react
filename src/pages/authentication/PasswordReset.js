@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 
-import SessionStyles from '../../styles/Session';
+import SessionStyles from '../../styles/session';
 
 const PasswordReset = (props) => {
   const { classes } = props;

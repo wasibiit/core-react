@@ -1,4 +1,4 @@
-import { drawerWidth } from '../variables';
+import { drawerWidth } from '../utils/variables';
 
 const SidebarStyles = theme => ({
     drawerPaper: {

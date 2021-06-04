@@ -10,7 +10,8 @@ import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
 
-import SessionStyles from '../../styles/Session';
+import SessionStyles from '../../styles/session';
+import {Link} from "react-router-dom";
 
 const Signup = (props) => {
   const { classes } = props;
@@ -22,7 +23,7 @@ const Signup = (props) => {
             <CardContent>
               <form>
                 <div className="text-xs-center pb-xs">
-                  <img src="/static/images/logo-dark.svg" alt=""/>
+                  <img src="../../../public/static/images/ls.jpg"  alt={"nothing"}/>
                   <Typography variant="caption">Create an app id to continue.</Typography>
                 </div>
                 <TextField
@@ -58,6 +59,7 @@ const Signup = (props) => {
                   className={classes.fullWidth}
                 />
                 <Button variant="raised" color="primary" fullWidth type="submit">Create your account</Button>
+                <Link to={"/signin"}>Go To SignIN</Link>
                 <div className="pt-1 text-xs-center">
                 </div>
               </form>
