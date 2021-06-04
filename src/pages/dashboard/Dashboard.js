@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { Workspace, Header, Sidebar } from '../components';
+import Sidebar from '../../components/sidebar/Sidebar';
 import DashboardStyles from '../../styles/dashboard';
-import routes from '../routes';
+import routes from '../../routes';
+import Workspace from "../../components/Workspace/Workspace";
 
 function resizeDispatch () {
   if (typeof(Event) === 'function') {
@@ -73,12 +74,12 @@ class Dashboard extends Component {
 
     return (
       <Fragment>
-        <Header
-          logoAltText="Shared Deals Logo"
-          logo={`/static/images/logo.png`}
-          toggleDrawer={this.handleDrawerToggle}
-          toggleFullscreen={this.handleFullscreenToggle}
-        />
+        {/*<Header*/}
+        {/*  logoAltText="Shared Deals Logo"*/}
+        {/*  logo={`/static/images/logo.png`}*/}
+        {/*  toggleDrawer={this.handleDrawerToggle}*/}
+        {/*  toggleFullscreen={this.handleFullscreenToggle}*/}
+        {/*/>*/}
         <div className={classNames(classes.panel, 'theme-dark')}>
           <Sidebar
             routes={routes.items}

@@ -10,8 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
-import SidebarItemStyles from '../../styles/SidebarItem';
-import { capitalize } from '../../helpers';
+import SidebarItemStyles from '../../styles/sidebarItem';
+import { capitalize } from '../../utils/helpers';
 
 class SidebarItem extends Component {
 
