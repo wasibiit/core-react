@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import Sidebar from '../../components/sidebar/Sidebar';
+import { Workspace, Header, Sidebar } from '../../components/index';
 import DashboardStyles from '../../styles/dashboard';
 import routes from '../../routes';
-import Workspace from "../../components/Workspace/Workspace";
 
 function resizeDispatch () {
   if (typeof(Event) === 'function') {
@@ -62,35 +61,35 @@ class Dashboard extends Component {
     const { opened, openSpeedDial } = this.state;
 
     const getRoutes = (
-      <Switch>
-        { routes.items.map((item, index) => (
-          item.type === 'external' ? <Route exact path={item.path} component={item.component} name={item.name} key={index} />:
-          item.type === 'submenu' ? item.children.map(subItem => <Route exact path={`${item.path}${subItem.path}`} component={subItem.component} name={subItem.name} />):
-          <Route exact path={item.path} component={item.component} name={item.name} key={index} />
-        ))}
-        <Redirect to="/404" />
-      </Switch>
+        <Switch>
+          { routes.items.map((item, index) => (
+              item.type === 'external' ? <Route exact path={item.path} component={item.component} name={item.name} key={index} />:
+                  item.type === 'submenu' ? item.children.map(subItem => <Route exact path={`${item.path}${subItem.path}`} component={subItem.component} name={subItem.name} />):
+                      <Route exact path={item.path} component={item.component} name={item.name} key={index} />
+          ))}
+          <Redirect to="/404" />
+        </Switch>
     )
 
     return (
-      <Fragment>
-        {/*<Header*/}
-        {/*  logoAltText="Shared Deals Logo"*/}
-        {/*  logo={`/static/images/logo.png`}*/}
-        {/*  toggleDrawer={this.handleDrawerToggle}*/}
-        {/*  toggleFullscreen={this.handleFullscreenToggle}*/}
-        {/*/>*/}
-        <div className={classNames(classes.panel, 'theme-dark')}>
-          <Sidebar
-            routes={routes.items}
-            opened={opened}
-            toggleDrawer={this.handleDrawerToggle}
+        <Fragment>
+          <Header
+              logoAltText="Shared Deals Logo"
+              logo={`/static/images/logo.png`}
+              toggleDrawer={this.handleDrawerToggle}
+              toggleFullscreen={this.handleFullscreenToggle}
           />
-          <Workspace opened={opened}>
-            {getRoutes}
-          </Workspace>
-        </div>
-      </Fragment>
+          <div className={classNames(classes.panel, 'theme-dark')}>
+            <Sidebar
+                routes={routes.items}
+                opened={opened}
+                toggleDrawer={this.handleDrawerToggle}
+            />
+            <Workspace opened={opened}>
+              {getRoutes}
+            </Workspace>
+          </div>
+        </Fragment>
     )
   }
 }

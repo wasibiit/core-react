@@ -1,5 +1,5 @@
 import React from 'react';
-import Wrapper from "../../styles/Wrapper";
+import Wrapper from "../../styles/wrapper";
 
 const Blank = () => (
     <Wrapper>
