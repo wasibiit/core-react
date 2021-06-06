@@ -2,19 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import './styles/app.css';
-
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from "react-router-dom";
 import {
     NotFound,
     Dashboard,
     BackendError
-} from './pages/pages';
+} from './Pages/pages';
+import Signin from "./Pages/authentication/Signin";
 
 ReactDOM.render(
   <React.StrictMode>
       <Router>
           <Switch>
-              {/*<Route exact path="/Signin" component={Signin} />*/}
+              <Route exact path="/Signin" component={Signin} />
               <Route exact path="/404" component={NotFound} />
               <Route exact path="/500" component={BackendError} />
               <Route path="/" component={Dashboard}/>

@@ -17,8 +17,7 @@ import {
     ActiveFilters,
     Emojis,
     Setting,
-    // Signin
-} from './pages/pages';
+} from './Pages/pages';
 
 export default {
     items: [
@@ -86,15 +85,6 @@ export default {
             icon: Settings,
             component: Setting
         },
-        // {
-        //     name: 'Authentication',
-        //     type: 'submenu',
-        //     icon: Person,
-        //     children: [{
-        //         path: '/Signin',
-        //         name: 'Signin',
-        //         component: Signin
-        //     }]
-        // }
+
     ]
 };

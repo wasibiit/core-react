@@ -10,7 +10,7 @@ const SessionStyles = theme => ({
     flexDirection: 'column'
   },
   background: {
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: "lightBlue"
   },
   content: {
     padding: `40px ${theme.spacing.unit}px`,

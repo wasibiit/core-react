@@ -3,10 +3,11 @@ import { create } from 'jss';
 import rtl from 'jss-rtl';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { MuiThemeProvider, createMuiTheme, createGenerateClassName, jssPreset } from '@material-ui/core/styles';
-import indigo from '@material-ui/core/colors/indigo';
+import lightBlue from '@material-ui/core/colors/lightBlue';
 import red from '@material-ui/core/colors/red';
 
 import AppContext from './AppContext';
+
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 const generateClassName = createGenerateClassName();
@@ -22,10 +23,7 @@ class AppProvider extends Component {
     const theme = createMuiTheme({
       direction,
       palette: {
-        type,
-        primary: indigo,
-        secondary: red,
-        error: red
+       primary: {main: red}
       },
       typography: {
         fontFamily: 'Roboto,"Helvetica Neue",Arial,sans-serif',

@@ -18,6 +18,9 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MenuIcon from '@material-ui/icons/Menu';
 import HeaderStyles from '../../styles/Header';
 import "./header.css"
+import LetterAvatars from "../Avatar/LetterAvatars";
+import ImageAvatars from "../Avatar/ImageAvatars";
+import {Option} from "react-select";
 
 class Header extends Component {
   state = {
@@ -52,7 +55,7 @@ class Header extends Component {
     return (
       <AppBar
         position="static"
-        style={{ background: 'linear-gradient(to right bottom, #71B280, #134E5E)' }}
+        style={{ background: 'linear-gradient(to right bottom, #71B180, #0000FF)' }}
         className={classes.appBar}>
         <Toolbar className={classes.toolBar}>
           <IconButton
@@ -70,12 +73,12 @@ class Header extends Component {
           <Hidden xsDown>
             <div className={classes.searchWrapper}>
               <form className={classes.searchForm}>
-                <IconButton
-                  aria-label="Search"
-                  className={classes.searchIcon}
-                >
-                  {/*<SearchIcon />*/}
-                </IconButton>
+                {/*<IconButton*/}
+                {/*  aria-label="Search"*/}
+                {/*  className={classes.searchIcon}*/}
+                {/*>*/}
+                {/*  /!*<SearchIcon />*!/*/}
+                {/*</IconButton>*/}
                 {/*<input className={classes.searchInput} type="text" placeholder="Search" autoFocus="true" />*/}
               </form>
             </div>
@@ -85,11 +88,11 @@ class Header extends Component {
             <span className="flexSpacer" />
           </Hidden>
 
-          <Hidden xsDown>
-            <IconButton color="inherit" onClick={toggleFullscreen}>
-              <FullscreenIcon />
-            </IconButton>
-          </Hidden>
+          {/*<Hidden xsDown>*/}
+          {/*  <IconButton color="inherit" onClick={toggleFullscreen}>*/}
+          {/*    /!*<FullscreenIcon />*!/*/}
+          {/*  </IconButton>*/}
+          {/*</Hidden>*/}
 
           <IconButton
             aria-label="User Settings"
@@ -98,20 +101,23 @@ class Header extends Component {
             color="inherit"
             onClick={this.handleSettingdToggle}
           >
-            <MoreVertIcon />
-          </IconButton>
 
+            <ImageAvatars/>
+          </IconButton>
+            <MoreVertIcon/>
           <Menu
             id="user-menu"
             anchorEl={anchorEl}
             open={Boolean(anchorEl)}
             onClose={this.handleCloseMenu}
           >
+
             <MenuItem onClick={this.handleCloseMenu}>
-              <ListItemIcon>
-                <ExitToAppIcon />
-              </ListItemIcon>
-              <ListItemText inset primary="Sign out" />
+
+              {/*<ListItemIcon>*/}
+              {/*  <ExitToAppIcon />*/}
+              {/*</ListItemIcon>*/}
+              <ListItemText inset primary={"Profile"}/>
             </MenuItem>
           </Menu>
         </Toolbar>

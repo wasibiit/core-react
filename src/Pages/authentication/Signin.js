@@ -23,7 +23,7 @@ const Signin = (props) => {
             <CardContent>
               <form>
                 <div className="text-xs-center pb-xs">
-                  <img src="/static/images/logo-dark.svg" alt=""/>
+                  <img src="/static/images/" alt="sign in page"/>
                   <Typography variant="caption">Sign in with your app id to continue.</Typography>
                 </div>
                 <TextField
@@ -44,16 +44,17 @@ const Signin = (props) => {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      value="checkedA"
+                      value="checked"
                     />
                   }
                   label="Stayed logged in"
                   className={classes.fullWidth}
                 />
                 <Button variant="raised" color="primary" fullWidth type="submit">Login</Button>
-                <Link to={"/signup"}>Go To SignUp</Link>
+                <Link to={"/signup"}>
+                  <Button>Go To SignUp</Button>
+                  </Link>
                 <div className="pt-1 text-md-center">
-
                 </div>
               </form>
             </CardContent>

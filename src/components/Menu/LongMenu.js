@@ -5,13 +5,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const options = [
- 'hi',
-    'am',
-    'user'
+ "Profile",
+ "SignOut"
 ];
 
 const ITEM_HEIGHT = 48;
-
 class LongMenu extends React.Component {
   state = {
     anchorEl: null,

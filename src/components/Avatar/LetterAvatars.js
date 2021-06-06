@@ -30,7 +30,8 @@ function LetterAvatars(props) {
   return (
     <div className={classes.row}>
 
-      <Avatar className={classes.purpleAvatar}>OP</Avatar>
+      <Avatar style={{backgroundColor:"black"}}
+          className={classes.purpleAvatar}>A</Avatar>
     </div>
   );
 }
