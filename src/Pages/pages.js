@@ -6,7 +6,7 @@ import BlockedUsers from './Users/BlockedUsers';
 import UsersList from './Users/UsersList';
 
 //Authntication
-// import Signin from './Authntication/Signin'
+import Signin from './authentication/Signin'
 
 //Rooms
 import HotRooms from './Rooms/HotRooms';
@@ -31,7 +31,7 @@ import Dashboard from "./dashboard/Dashboard";
 export {
     Home,
     BlockedUsers,
-    // Signin,
+    Signin,
     UsersList,
     HotRooms,
     AllRooms,

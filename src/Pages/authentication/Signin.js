@@ -10,10 +10,10 @@ import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
 
-import SessionStyles from '../../styles/session';
+import SessionStyles from '../../styles/Session';
 import {Link} from "react-router-dom";
 
-const Signup = (props) => {
+const Signin = (props) => {
   const { classes } = props;
   return (
     <div className={classNames(classes.session, classes.background)}>
@@ -23,12 +23,12 @@ const Signup = (props) => {
             <CardContent>
               <form>
                 <div className="text-xs-center pb-xs">
-                  <img src="../../../public/static/images/ls.jpg"  alt={"nothing"}/>
-                  <Typography variant="caption">Create an app id to continue.</Typography>
+                  <img src="/static/images/logo-dark.svg" alt=""/>
+                  <Typography variant="caption">Sign in with your app id to continue.</Typography>
                 </div>
                 <TextField
-                  id="email"
-                  label="Email address"
+                  id="username"
+                  label="Username"
                   className={classes.textField}
                   fullWidth
                   margin="normal"
@@ -41,26 +41,19 @@ const Signup = (props) => {
                   fullWidth
                   margin="normal"
                 />
-                <TextField
-                  id="cpassword"
-                  label="Confirm Password"
-                  className={classes.textField}
-                  type="password"
-                  fullWidth
-                  margin="normal"
-                />
                 <FormControlLabel
                   control={
                     <Checkbox
                       value="checkedA"
                     />
                   }
-                  label="I have read and agree to the terms of service."
+                  label="Stayed logged in"
                   className={classes.fullWidth}
                 />
-                <Button variant="raised" color="primary" fullWidth type="submit">Create your account</Button>
-                <Link to={"/signin"}>Go To SignIN</Link>
-                <div className="pt-1 text-xs-center">
+                <Button variant="raised" color="primary" fullWidth type="submit">Login</Button>
+                <Link to={"/signup"}>Go To SignUp</Link>
+                <div className="pt-1 text-md-center">
+
                 </div>
               </form>
             </CardContent>
@@ -71,8 +64,8 @@ const Signup = (props) => {
   );
 }
 
-Signup.propTypes = {
+Signin.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(SessionStyles)(Signup);
+export default withStyles(SessionStyles)(Signin);
