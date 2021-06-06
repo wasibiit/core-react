@@ -21,16 +21,20 @@ import "./header.css"
 import LetterAvatars from "../Avatar/LetterAvatars";
 import ImageAvatars from "../Avatar/ImageAvatars";
 import {Option} from "react-select";
+import {AccountCircle} from "@material-ui/icons";
 
 class Header extends Component {
   state = {
+    auth: true,
     anchorEl: null,
-    searchExpanded: false
   };
 
-  handleSettingdToggle = event => {
-    console.log("--------------Settings Toggled!!!")
+  handleMenu = event => {
     this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
   };
 
   handleCloseMenu = () => {
@@ -51,7 +55,8 @@ class Header extends Component {
 
   render() {
     const { classes, logo, logoAltText, toggleFullscreen } = this.props;
-    const { anchorEl, searchExpanded } = this.state;
+    const { auth, anchorEl } = this.state;
+    const open = Boolean(anchorEl);
     return (
       <AppBar
         position="static"
@@ -87,57 +92,37 @@ class Header extends Component {
           <Hidden smUp>
             <span className="flexSpacer" />
           </Hidden>
-
-          {/*<Hidden xsDown>*/}
-          {/*  <IconButton color="inherit" onClick={toggleFullscreen}>*/}
-          {/*    /!*<FullscreenIcon />*!/*/}
-          {/*  </IconButton>*/}
-          {/*</Hidden>*/}
-
-          <IconButton
-            aria-label="User Settings"
-            aria-owns={anchorEl ? 'user-menu' : null}
-            aria-haspopup="true"
-            color="inherit"
-            onClick={this.handleSettingdToggle}
-          >
-
-            <ImageAvatars/>
-          </IconButton>
-            <MoreVertIcon/>
-          <Menu
-            id="user-menu"
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={this.handleCloseMenu}
-          >
-
-            <MenuItem onClick={this.handleCloseMenu}>
-
-              {/*<ListItemIcon>*/}
-              {/*  <ExitToAppIcon />*/}
-              {/*</ListItemIcon>*/}
-              <ListItemText inset primary={"Profile"}/>
-            </MenuItem>
-          </Menu>
-        </Toolbar>
-        <Hidden smUp>
-          <Collapse in={searchExpanded} timeout="auto" unmountOnExit>
-            <Toolbar className={classes.toolBar}>
-              <div className={classes.searchWrapper}>
-                <form className={classNames(classes.searchForm, 'mr-0')}>
-                  <IconButton
-                    aria-label="Search"
-                    className={classes.searchIcon}
-                  >
-                    {/*<SearchIcon />*/}
-                  </IconButton>
-                  {/*<input className={classes.searchInput} type="text" placeholder="Search" autoFocus="true" />*/}
-                </form>
+          {auth && (
+              <div>
+                <IconButton
+                    aria-owns={open ? 'menu-appbar' : null}
+                    aria-haspopup="true"
+                    onClick={this.handleMenu}
+                    color="inherit"
+                >
+                  <AccountCircle />
+                </IconButton>
+                <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                      vertical: 'left',
+                      horizontal: 'right',
+                    }}
+                    open={open}
+                    onClose={this.handleClose}
+                >
+                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
+                  <MenuItem onClick={this.handleClose}>Shoonoo</MenuItem>
+                </Menu>
               </div>
-            </Toolbar>
-          </Collapse>
-        </Hidden>
+          )}
+        </Toolbar>
       </AppBar>
     )
   }
