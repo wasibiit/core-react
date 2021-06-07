@@ -75,7 +75,7 @@ class Dashboard extends Component {
         <Fragment>
           <Header
               logoAltText="Learning Squad"
-              logo={`/static/images/Learning Squad.png`}
+              logo={`/static/images/LS.png`}
               toggleDrawer={this.handleDrawerToggle}
               toggleFullscreen={this.handleFullscreenToggle}
           />

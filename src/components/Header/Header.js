@@ -60,7 +60,7 @@ class Header extends Component {
     return (
       <AppBar
         position="static"
-        style={{ background: 'linear-gradient(to right bottom, #71B180, #0000FF)' }}
+        style={{ background: 'linear-gradient( lightgrey, grey)' }}
         className={classes.appBar}>
         <Toolbar className={classes.toolBar}>
           <IconButton
@@ -100,7 +100,8 @@ class Header extends Component {
                     onClick={this.handleMenu}
                     color="inherit"
                 >
-                  <AccountCircle />
+                  {/*<AccountCircle />*/}
+                  <ImageAvatars/>
                 </IconButton>
                 <Menu
                     id="menu-appbar"
@@ -118,7 +119,7 @@ class Header extends Component {
                 >
                   <MenuItem onClick={this.handleClose}>Profile</MenuItem>
                   <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                  <MenuItem onClick={this.handleClose}>Shoonoo</MenuItem>
+                  <MenuItem onClick={this.handleClose}>Sign Out</MenuItem>
                 </Menu>
               </div>
           )}

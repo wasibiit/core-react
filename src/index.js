@@ -9,6 +9,7 @@ import {
     BackendError
 } from './Pages/pages';
 import Signin from "./Pages/authentication/Signin";
+import {Widgets} from "./components";
 
 ReactDOM.render(
   <React.StrictMode>
