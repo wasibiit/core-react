@@ -3,9 +3,10 @@ import ExploreIcon from '@material-ui/icons/Explore';
 import People from '@material-ui/icons/People';
 import Room from '@material-ui/icons/Room';
 import FilterList from '@material-ui/icons/FilterList';
-import InsertEmoticon from '@material-ui/icons/InsertEmoticon';
 import Settings from '@material-ui/icons/Settings';
-import Person from '@material-ui/icons/Person'
+import Social from "./Pages/Social/Social";
+import MessageIcon from '@material-ui/icons/Message';
+import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 
 // Pages
 import {
@@ -15,15 +16,16 @@ import {
     HotRooms,
     AllRooms,
     ActiveFilters,
-    Emojis,
+    Quiz,
     Setting,
 } from './Pages/pages';
+
 
 export default {
     items: [
         {
             path: '/',
-            name: 'Home',
+            name: 'Dashboard',
             type: 'link',
             icon: ExploreIcon,
             component: Home
@@ -46,6 +48,22 @@ export default {
                 }
             ]
         },
+
+        {
+            path: '/social',
+            name: 'Social',
+            type: 'submenu',
+            icon : MessageIcon,
+            children: [
+                {
+                    path: '/Social',
+                    name: 'Message',
+                    component: Social,
+                },
+
+            ]
+        },
+
         {
             path: '/rooms',
             name: 'Rooms',
@@ -54,12 +72,12 @@ export default {
             children: [
                 {
                     path: '/hot',
-                    name: 'Hot Rooms',
+                    name: 'ClassRoom',
                     component: HotRooms
                 },
                 {
                     path: '/allrooms',
-                    name: 'All Rooms',
+                    name: 'VirtualRoom',
                     component: AllRooms
                 }
             ]
@@ -72,11 +90,11 @@ export default {
             component: ActiveFilters
         },
         {
-            path: '/emojis',
-            name: 'Emojis',
+            path: '/quiz',
+            name: ' Quiz',
             type: 'link',
-            icon: InsertEmoticon,
-            component: Emojis
+            icon: QueryBuilderIcon,
+            component: Quiz
         },
         {
             path: '/settings',
@@ -85,6 +103,7 @@ export default {
             icon: Settings,
             component: Setting
         },
+
 
     ]
 };

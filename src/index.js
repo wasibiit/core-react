@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
-import './styles/app.css';
+import './Styles/app.css';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from "react-router-dom";
 import {
     NotFound,
     Dashboard,
     BackendError
 } from './Pages/pages';
-import Signin from "./Pages/authentication/Signin";
+import Signin from "./Pages/Authentication/Signin";
 ReactDOM.render(
   <React.StrictMode>
       <Router>

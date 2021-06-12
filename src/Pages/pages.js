@@ -6,7 +6,7 @@ import BlockedUsers from './Users/BlockedUsers';
 import UsersList from './Users/UsersList';
 
 //Authntication
-import Signin from './authentication/Signin'
+import Signin from './Authentication/Signin'
 
 //Rooms
 import HotRooms from './Rooms/HotRooms';
@@ -14,19 +14,19 @@ import AllRooms from './Rooms/AllRooms';
 
 //Filters
 import ActiveFilters from "./Filters/ActiveFilters";
-
-//Emojis
-import Emojis from "./Emojis/Emojis";
+//
+//Quiz
+import Quiz from '../Components/Quiz/Quiz';
 
 //Settings
 import Setting from "./Settings/Settings";
 
 //Errors
-import NotFound from "./errors/NotFound";
-import BackendError from "./errors/BackendError";
+import NotFound from "./Errors/NotFound";
+import BackendError from "./Errors/BackendError";
 
 //dashboard
-import Dashboard from "./dashboard/Dashboard";
+import Dashboard from "./Dashboard/Dashboard";
 
 export {
     Home,
@@ -36,7 +36,7 @@ export {
     HotRooms,
     AllRooms,
     ActiveFilters,
-    Emojis,
+    Quiz,
     Setting,
     NotFound,
     BackendError,
