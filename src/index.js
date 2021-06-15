@@ -1,14 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+=======
+=======
+>>>>>>> 9d57973dba1de7f0600ac94209516f237ca46e98
+>>>>>>> Stashed changes
 import './Styles/app.css';
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from "react-router-dom";
+>>>>>>> 9d57973dba1de7f0600ac94209516f237ca46e98
 import {
     NotFound,
     Dashboard,
-    BackendError
+    BackendError,
+    Signin
 } from './Pages/pages';
+<<<<<<< Updated upstream
 import Signin from "./Pages/Authentication/Signin";
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+import Signin from "./Pages/Authentication/Signin";
+>>>>>>> 9d57973dba1de7f0600ac94209516f237ca46e98
+=======
+import Signin from "./Pages/Authentication/Signin";
+>>>>>>> 9d57973dba1de7f0600ac94209516f237ca46e98
+>>>>>>> Stashed changes
 ReactDOM.render(
   <React.StrictMode>
       <Router>

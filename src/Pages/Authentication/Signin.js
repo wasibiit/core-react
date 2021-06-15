@@ -2,8 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {withStyles} from '@material-ui/core/styles';
+import {Formik} from 'formik';
+
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+
+import {getCookie, setCookie} from "../../Utils/common";
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
@@ -14,48 +20,123 @@ import {Link} from "react-router-dom";
 
 const Signin = (props) => {
     const {classes} = props;
+
+    const getReqOptions = (values) => {
+        console.log("------------start------------");
+        console.log(getQuery(values));
+        console.log("----------end----------------");
+        return  {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Origin': '*'},
+            body: JSON.stringify({query: getQuery(values)})
+        };
+    }
+
+    const getQuery = (values) => {
+        return `
+        mutation {
+  userSignin(
+    input: {
+      email: "${values.email}",
+      password: "${values.password}"
+    }
+  )
+  {
+    firstName,
+    lastName,
+    dob,
+    email,
+    role {
+      id
+    },
+    token
+  }
+}`
+    }
+
+
     return (
         <div className={classNames(classes.session, classes.background)}>
             <div className={classes.content}>
                 <div className={classes.wrapper}>
                     <Card>
                         <CardContent>
-                            <form>
-                                <div className="text-xs-center pb-xs">
-                                    <img src="/static/images/" alt="sign in page"/>
-                                    <Typography variant="caption">Sign in with your app id to continue.</Typography>
-                                </div>
-                                <TextField
-                                    id="username"
-                                    label="Username"
-                                    className={classes.textField}
-                                    fullWidth
-                                    margin="normal"
-                                />
-                                <TextField
-                                    id="password"
-                                    label="Password"
-                                    className={classes.textField}
-                                    type="password"
-                                    fullWidth
-                                    margin="normal"
-                                />
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            value="checked"
-                                        />
+                            <Formik
+                                initialValues={{email: '', password: ''}}
+                                validate={values => {
+                                    const errors = {};
+                                    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+                                        errors.email = 'Invalid email address';
                                     }
-                                    label="Stayed logged in"
-                                    className={classes.fullWidth}
-                                />
-                                <Button variant="raised" color="primary" fullWidth type="submit">Login</Button>
-                                <Link to={"/signup"}>
-                                    <Button>Go To SignUp</Button>
-                                </Link>
-                                <div className="pt-1 text-md-center">
-                                </div>
-                            </form>
+                                    if(values.password.length < 3) {
+                                        errors.password = 'Password Must Be 6 letters';
+                                    }
+                                    return errors;
+                                }}
+                                onSubmit={(values, {setSubmitting}) => {
+                                    setTimeout(() => {
+                                        setSubmitting(false);
+                                    }, 600);
+                                    fetch(`http://localhost:4002/graphiql`, getReqOptions(values))
+                                        .then(res => res.json())
+                                        .then(
+                                            (result) => {
+                                                setCookie("user", result.data.token)
+                                                let token = getCookie("user")
+                                                console.log("------------start------------");
+                                                console.log(token);
+                                                console.log("----------end----------------");
+                                            },
+                                            (error) => {
+                                                console.log("------------start------------");
+                                                console.log(error);
+                                                console.log("----------end----------------");
+                                            }
+                                        )
+                                }}
+                            >
+                                {({
+                                      values,
+                                      errors,
+                                      handleChange,
+                                      handleSubmit,
+                                      isSubmitting,
+                                  }) => (
+                                    <form onSubmit={handleSubmit}>
+                                        <TextField
+                                            helperText={errors.email}
+                                            id={"email"}
+                                            label="Email"
+                                            placeholder={"example@.com"}
+                                            className={classes.textField}
+                                            fullWidth
+                                            onChange={handleChange}
+                                            value={values.email}
+                                            margin="normal"
+                                        />
+                                        <TextField
+                                            helperText={errors.password}
+                                            id={"password"}
+                                            label="Password"
+                                            className={classes.textField}
+                                            onChange={handleChange}
+                                            value={values.password}
+                                            type="password"
+                                            fullWidth
+                                            margin="normal"
+                                        />
+                                        <Button
+                                            variant="raised"
+                                            color="primary" f
+                                            ullWidth type="submit"
+                                            disabled={isSubmitting}
+                                        >
+                                            SignIn
+                                        </Button>
+                                        <div className="pt-1 text-xs-center"/>
+                                    </form>
+                                )}
+                            </Formik>
                         </CardContent>
                     </Card>
                 </div>
