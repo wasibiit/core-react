@@ -18,13 +18,16 @@ import {
     ActiveFilters,
     Quiz,
     Setting,
+    Programs,
+    Semester
 } from './Pages/pages';
+
 
 
 export default {
     items: [
         {
-            path: '/',
+            path: '/Dashboard',
             name: 'Dashboard',
             type: 'link',
             icon: ExploreIcon,
@@ -79,6 +82,16 @@ export default {
                     path: '/allrooms',
                     name: 'VirtualRoom',
                     component: AllRooms
+                },
+                {
+                    path: '/Programs',
+                    name: 'Programs',
+                    component: Programs
+                },
+                {
+                    path: '/Semester',
+                    name: 'Semester',
+                    component: Semester
                 }
             ]
         },

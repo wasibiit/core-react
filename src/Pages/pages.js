@@ -11,7 +11,8 @@ import Signin from './Authentication/Signin'
 //Rooms
 import HotRooms from './Rooms/HotRooms';
 import AllRooms from './Rooms/AllRooms';
-
+import Programs from './Rooms/Programs';
+import Semester from './Rooms/Semester';
 //Filters
 import ActiveFilters from "./Filters/ActiveFilters";
 //
@@ -40,5 +41,7 @@ export {
     Setting,
     NotFound,
     BackendError,
-    Dashboard
+    Dashboard,
+    Programs,
+    Semester
 }

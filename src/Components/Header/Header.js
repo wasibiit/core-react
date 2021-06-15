@@ -60,7 +60,7 @@ class Header extends Component {
     return (
       <AppBar
         position="static"
-        style={{ background: 'linear-gradient( lightgrey, grey)' }}
+        style={{ background:"grey" }}
         className={classes.appBar}>
         <Toolbar className={classes.toolBar}>
           <IconButton

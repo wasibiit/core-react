@@ -1,17 +1,15 @@
 import Card from '@material-ui/core/Card';
 import TextField from '@material-ui/core/TextField';
 import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import MenuItem from "@material-ui/core/MenuItem";
 import {NativeSelect} from "@material-ui/core";
 import {InputLabel} from "@material-ui/core";
 
 import React from "react";
 
-const Programs = () => {
+const Forms = () => {
     return (
-        <div className={"Programs"}>
+        <div className={"Forms"}>
             <form>
                 <Card>
                     <CardContent>
@@ -64,4 +62,4 @@ const Programs = () => {
         </div>
     );
 }
-export default Programs
+export default Forms;

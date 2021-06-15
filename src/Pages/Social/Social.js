@@ -16,7 +16,7 @@ import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
 import InsertLinkIcon from '@material-ui/icons/InsertLink';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { Wrapper} from '../../Components';
-import SocialStyles from './/Social';
+import SocialStyles from '../Social/';
 
 const TabContainer = (props) => (
   <Typography component="div" className="pa-0">
