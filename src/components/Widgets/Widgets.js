@@ -9,7 +9,7 @@ import StatCard from "../../styles/statCard";
 
 const Widgets = () =>{
     return (
-      <Wrapper>
+      <div>
         <Grid container spacing={8}>
 
           <Grid item xs={12} sm={6} md={3}>
@@ -45,7 +45,7 @@ const Widgets = () =>{
                 />
             </Grid>
         </Grid>
-      </Wrapper>
+      </div>
     )
 }
 export default Widgets;

@@ -8,7 +8,7 @@ import { Wrapper } from '../Wrapper/Wrapper';
 import { mockChart } from '../../styles/chart';
 
 const Charts = () => (
-  <Wrapper>
+  <div>
     <Grid container spacing={8}>
       { mockChart.map((chart, index) => (
         <Grid item xs={12} sm={2} md={6} lg={4} key={index}>
@@ -46,7 +46,7 @@ const Charts = () => (
         </Grid>
       ))}
     </Grid>
-  </Wrapper>
+  </div>
 );
 
 export default Charts;

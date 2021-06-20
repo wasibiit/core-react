@@ -11,7 +11,7 @@ import Charts from "../../components/Charts/Charts";
 const Home = () => {
     return (
       <div className={"main"}>
-          <Wrapper>
+          <div>
               <Grid container spacing={8}>
 
                   <Grid item xs={12} sm={6} md={3}>
@@ -47,7 +47,7 @@ const Home = () => {
                       />
                   </Grid>
               </Grid>
-          </Wrapper>
+          </div>
           <div>
 
               <Charts/>

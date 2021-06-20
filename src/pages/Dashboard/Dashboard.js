@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import {Route, Switch, Redirect, withRouter} from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { Workspace, Header, Sidebar } from '../../components/index';
 import DashboardStyles from '../../styles/dashboard';
-import routes from '../../routes';
+import routes from '../../routes/routes';
 
 function resizeDispatch () {
   if (typeof(Event) === 'function') {
@@ -50,11 +50,6 @@ class Dashboard extends Component {
     console.log("--------------speedDial Closing!!!")
     this.setState({ openSpeedDial: false });
   };
-
-  // componentDidMount() {}
-
-  // componentWillUnmount() {}
-
 
   render() {
     const { classes } = this.props;

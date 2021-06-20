@@ -2,9 +2,9 @@ import React from 'react';
 import Wrapper from "../../styles/wrapper";
 
 const Blank = () => (
-    <Wrapper>
+    <div>
         <p> Blank </p>
-    </Wrapper>
+    </div>
 
 );
 

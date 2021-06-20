@@ -12,12 +12,12 @@ class Editor extends Component {
 
   render() {
     return (
-      <Wrapper>
+      <div>
         <Card className="overflow-visible">
           <ReactQuill value={this.state.text} onChange={this.handleChange} placeholder={"Write something"} />
 
         </Card>
-      </Wrapper>
+      </div>
     );
   }
 }

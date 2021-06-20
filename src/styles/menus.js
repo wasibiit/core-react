@@ -12,7 +12,7 @@ const demos = [
 ]
 
 const Menus = () => (
-  <Wrapper>
+  <div>
     {demos.map((demo, index) => (
       <Example
         key={index}
@@ -22,7 +22,7 @@ const Menus = () => (
         docs={demo.docs}
       />
     ))}
-  </Wrapper>
+  </div>
 );
 
 export default Menus;

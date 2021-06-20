@@ -4,7 +4,7 @@ import People from '@material-ui/icons/People';
 import Room from '@material-ui/icons/Room';
 import FilterList from '@material-ui/icons/FilterList';
 import Settings from '@material-ui/icons/Settings';
-import Social from "./pages/Social/Social";
+import Social from "../pages/Social/Social";
 import MessageIcon from '@material-ui/icons/Message';
 import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 
@@ -20,7 +20,7 @@ import {
     Setting,
     Programs,
     Semester
-} from './pages/pages';
+} from '../pages/pages';
 
 
 

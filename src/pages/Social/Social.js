@@ -17,6 +17,7 @@ import InsertLinkIcon from '@material-ui/icons/InsertLink';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { Wrapper} from '../../components';
 import SocialStyles from '../../styles/social';
+import {withRouter} from "react-router-dom";
 
 const TabContainer = (props) => (
   <Typography component="div" className="pa-0">
@@ -38,7 +39,7 @@ class Social extends Component {
     const { tab } = this.state;
 
     return (
-      <Wrapper>
+      <div>
         <Grid container spacing={8}>
           <Grid item xs={12} sm={12} md={6} lg={5}>
             <Card>
@@ -215,7 +216,7 @@ class Social extends Component {
             {/*</Card>*/}
           </Grid>
         </Grid>
-      </Wrapper>
+      </div>
     )
   }
 }
