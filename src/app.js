@@ -11,9 +11,9 @@ export const App = (props: Props) => {
     return (
         <Router>
             <Switch>
-            <Route path="/404" component={NotFound}/>
-            <Route exact path="/" component={Signin}/>
-            <ProtectedRoutes path={"/dashboard"} component={Dashboard} isAuth={user === null}/>
+                <Route exact path="/" component={Signin}/>
+                <ProtectedRoutes path={"/dashboard"} component={Dashboard} isAuth={user === null}/>
+                <Route component={NotFound}/>
             </Switch>
         </Router>
     );

@@ -91,6 +91,7 @@ const Signin = (props) => {
                                                 }
                                             },
                                             (error) => {
+                                                handleAlert()
                                                 console.log("------------start------------");
                                                 console.log(error);
                                                 console.log("----------end----------------");
