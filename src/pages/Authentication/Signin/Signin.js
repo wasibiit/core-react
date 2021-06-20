@@ -58,7 +58,7 @@ const Signin = (props) => {
                 <div className={classes.wrapper}>
                     <Card>
                         <div className="text-xs-center pb-xs">
-                            <img src="/static/images/ls.jpg" className={classes.media} alt="ls"/>
+                            <img src={"/static/images/ls.jpg"} className={classes.media} alt="ls"/>
                         </div>
                         <CardContent>
                             <Formik
@@ -88,6 +88,7 @@ const Signin = (props) => {
                                                 } else {
                                                     setCookie("user", result.data.token)
                                                     setCurrentUser(result.data.userSignin)
+                                                    props.history.push("/dashboard");
                                                 }
                                             },
                                             (error) => {
@@ -133,7 +134,8 @@ const Signin = (props) => {
                                             variant={"outlined"}
                                             size={"large"}
                                             className={classes.myButton}
-                                            ullWidth type="submit"
+                                            fullWidth
+                                            type="submit"
                                             disabled={isSubmitting}
                                         >
                                             Login

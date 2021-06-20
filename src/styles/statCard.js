@@ -1,9 +1,9 @@
 const StatCardStyles = theme => ({
   content: {
     position: 'relative',
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
     '&:last-child': {
-      paddingBottom: theme.spacing.unit * 2
+      paddingBottom: theme.spacing(2)
     }
   },
   icon: {

@@ -1,3 +1,5 @@
+import {Redirect} from "react-router-dom";
+
 export function getCookie(key) {
     let name = key + "=";
     let decodedCookie = decodeURIComponent(document.cookie);

@@ -3,9 +3,6 @@ import DashboardStyles from "../styles/dashboard";
 
 
 export const ProtectedRoutes = ({isAuth: isAuth, component: Component, ...rest}) => {
-    console.log("------------start------------");
-    console.log(isAuth);
-    console.log("----------end----------------");
     return (
         <Route {...rest} render={(props) => {
             if (isAuth) {

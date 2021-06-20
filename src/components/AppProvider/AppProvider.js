@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import JssProvider from 'react-jss/lib/JssProvider';
+import JssProvider from 'react-jss';
 import { MuiThemeProvider, createMuiTheme, createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import red from '@material-ui/core/colors/red';

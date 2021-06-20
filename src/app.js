@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, withRouter} from "react-router-dom";
 import {NotFound, Dashboard, BackendError, Signin} from './pages/pages';
 import {useSelector} from "react-redux";
 import {getters} from "./redux/selectors/selectors";
@@ -11,8 +11,8 @@ export const App = (props: Props) => {
     return (
         <Router>
             <Switch>
-                <Route exact path="/" component={Signin}/>
-                <ProtectedRoutes path={"/dashboard"} component={Dashboard} isAuth={user === null}/>
+                <ProtectedRoutes path={"/dashboard"} component={withRouter(Dashboard)} isAuth={user === null}/>
+                <Route exact path="/" component={withRouter(Signin)}/>
                 <Route component={NotFound}/>
             </Switch>
         </Router>

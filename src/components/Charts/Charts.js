@@ -3,8 +3,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import Grid from '@material-ui/core/Grid';
-import { Bar, HorizontalBar, Polar } from 'react-chartjs-2';
-import { Wrapper } from '../Wrapper/Wrapper';
+import { Chart, Bar  } from 'react-chartjs-2';
 import { mockChart } from '../../styles/chart';
 
 const Charts = () => (
@@ -23,24 +22,8 @@ const Charts = () => (
                     data={chart.data}
                     height={chart.height}
                     options={chart.options}
-                />
+                 />
                 }
-
-              { chart.type === 'horizontalbar' &&
-                <HorizontalBar
-                  data={chart.data}
-                  height={chart.height}
-                  options={chart.options}
-                />
-              }
-                { chart.type === 'polar' &&
-                <Polar
-                    data={chart.data}
-                    height={chart.height}
-                    options={chart.options}
-                />
-                }
-
             </CardContent>
           </Card>
         </Grid>

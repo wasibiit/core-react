@@ -8,8 +8,8 @@ const HeaderStyles = theme => ({
     },
   },
   toolBar: {
-    paddingLeft: theme.spacing.unit / 2,
-    paddingRight: theme.spacing.unit / 2
+    paddingLeft: theme.spacing(0.5),
+    paddingRight: theme.spacing(0.5)
   },
   branding: {
     display: 'flex',
@@ -34,15 +34,15 @@ const HeaderStyles = theme => ({
     background: 'white',
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    marginRight: theme.spacing.unit * 2,
+    marginRight: theme.spacing(2),
     display: 'block',
     maxWidth: '800px',
   },
   searchInput: {
     fontSize: '1rem',
-    padding: theme.spacing.unit * 1.9,
+    padding: theme.spacing(1.9),
     [theme.breakpoints.down('xs')]: {
-      padding: theme.spacing.unit * 1.2,
+      padding: theme.spacing(1.2),
     },
     cursor: 'text',
     textIndent: '30px',
