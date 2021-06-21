@@ -27,7 +27,7 @@ import {
 export default {
     items: [
         {
-            path: '/Dashboard',
+            path: '/dashboard',
             name: 'Dashboard',
             type: 'link',
             icon: ExploreIcon,

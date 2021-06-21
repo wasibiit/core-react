@@ -1,20 +1,19 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route, withRouter} from "react-router-dom";
-import {NotFound, Dashboard, BackendError, Signin} from './pages/pages';
-import {useSelector} from "react-redux";
-import {getters} from "./redux/selectors/selectors";
-import {ProtectedRoutes} from "./routes/ProtectedRoutes";
+
+import {NotFound, Dashboard, Signin} from './pages/pages';
 
 
-export const App = (props: Props) => {
-    const {user} = useSelector(getters.getCurrentUser);
+export const App = () => {
     return (
         <Router>
-            <Switch>
-                <ProtectedRoutes path={"/dashboard"} component={withRouter(Dashboard)} isAuth={user === null}/>
-                <Route exact path="/" component={withRouter(Signin)}/>
-                <Route component={NotFound}/>
-            </Switch>
+            <div>
+                <Switch>
+                    <Route exact path="/" component={withRouter(Signin)}/>
+                    <Route path="/dashboard" component={Dashboard}/>
+                    <Route component={NotFound}/>
+                </Switch>
+            </div>
         </Router>
     );
 };

@@ -1,11 +1,13 @@
-import React, { Component, Fragment } from 'react';
+import React, {Fragment, useState} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {Route, Switch, Redirect, withRouter} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { Workspace, Header, Sidebar } from '../../components/index';
 import DashboardStyles from '../../styles/dashboard';
 import routes from '../../routes/routes';
+import {useSelector} from "react-redux";
+import {getters} from "../../redux/selectors/selectors";
 
 function resizeDispatch () {
   if (typeof(Event) === 'function') {
@@ -17,43 +19,25 @@ function resizeDispatch () {
   }
 }
 
-class Dashboard extends Component {
-  state = {
-    opened: true,
-    type: 'light',
-    direction: 'ltr',
-    openSpeedDial: false
-  };
+const Dashboard =  (props) => {
+  const { classes } = props;
+  const {isAuthenticated} = useSelector(getters.getIsAuthenticated);
+  const [opened, setOpened] = useState(true);
 
-  handleDrawerToggle = () => {
-    console.log("--------------Drawer Toggeled!!!")
-    this.setState({ opened: !this.state.opened });
-    resizeDispatch()
-  };
+  console.log("------------start------------");
+  console.log(isAuthenticated);
+  console.log("----------end----------------");
 
-  handleFullscreenToggle = () => {
-    console.log("--------------its Full Screen Now!!!")
-    const element = document.querySelector('#root');
-    const isFullscreen = document.webkitIsFullScreen || document.mozFullScreen || false;
-
-    element.requestFullScreen = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || function () { return false; };
-    document.cancelFullScreen = document.cancelFullScreen || document.webkitCancelFullScreen || document.mozCancelFullScreen || function () { return false; };
-    isFullscreen ? document.cancelFullScreen() : element.requestFullScreen();
+  if(!isAuthenticated) {
+      return <Redirect to={"/"} />
   }
 
-  handleSpeedDialOpen = () => {
-    console.log("--------------SpeedDial Opening!!!")
-    this.setState({ openSpeedDial: true });
-  };
 
-  handleSpeedDialClose = () => {
-    console.log("--------------speedDial Closing!!!")
-    this.setState({ openSpeedDial: false });
+  const handleDrawerToggle = () => {
+    console.log("--------------Drawer Toggeled!!!")
+    setOpened(!opened)
+    resizeDispatch()
   };
-
-  render() {
-    const { classes } = this.props;
-    const { opened, openSpeedDial } = this.state;
 
     const getRoutes = (
         <Switch>
@@ -71,14 +55,13 @@ class Dashboard extends Component {
           <Header
               logoAltText="Learning Squad"
               logo={`/static/images/LS.png`}
-              toggleDrawer={this.handleDrawerToggle}
-              toggleFullscreen={this.handleFullscreenToggle}
+              toggleDrawer={handleDrawerToggle}
           />
           <div className={classNames(classes.panel, 'theme-dark')}>
             <Sidebar
                 routes={routes.items}
                 opened={opened}
-                toggleDrawer={this.handleDrawerToggle}
+                toggleDrawer={handleDrawerToggle}
             />
             <Workspace opened={opened}>
               {getRoutes}
@@ -86,7 +69,6 @@ class Dashboard extends Component {
           </div>
         </Fragment>
     )
-  }
 }
 
 Dashboard.propTypes = {

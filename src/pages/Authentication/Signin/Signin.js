@@ -1,6 +1,7 @@
 import {Formik} from 'formik';
 import classNames from 'classnames';
 import React, {useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import MuiAlert from '@material-ui/lab/Alert';
@@ -18,12 +19,14 @@ import {dispatchers} from "../../../redux/dispatchers/dispatchers";
 
 const Signin = (props) => {
     const {classes} = props;
+    const history = useHistory();
     const {email} = useSelector(getters.getEmail);
     const {password} = useSelector(getters.getPassword);
     const [open, setOpen] = useState(false);
     const {setEmail} = dispatchers.signInDispatcher(useDispatch())
     const {setPassword} = dispatchers.signInDispatcher(useDispatch())
     const {setCurrentUser} = dispatchers.currentUserDispatcher(useDispatch())
+    const {setIsAuthenticated} = dispatchers.currentUserDispatcher(useDispatch())
 
     const getReqOptions = () => {
         return {
@@ -88,7 +91,8 @@ const Signin = (props) => {
                                                 } else {
                                                     setCookie("user", result.data.token)
                                                     setCurrentUser(result.data.userSignin)
-                                                    props.history.push("/dashboard");
+                                                    setIsAuthenticated(true)
+                                                    history.push("/dashboard");
                                                 }
                                             },
                                             (error) => {

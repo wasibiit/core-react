@@ -6,7 +6,8 @@ const signInDispatcher = (dispatch) => ({
 })
 
 const currentUserDispatcher = (dispatch) => ({
-    setCurrentUser: (user) => dispatch(actions.setCurrentUser(user))
+    setCurrentUser: (user) => dispatch(actions.setCurrentUser(user)),
+    setIsAuthenticated: (isAuthenticated) => dispatch(actions.setIsAuthenticated(isAuthenticated)),
 })
 
 

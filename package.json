@@ -63,6 +63,7 @@
     ]
   },
   "devDependencies": {
+    "connected-react-router": "^6.9.1",
     "formik": "^2.2.9",
     "prop-types": "^15.7.2",
     "redux-promise-middleware": "^6.1.2",
