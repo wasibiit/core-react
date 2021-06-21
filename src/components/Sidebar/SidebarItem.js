@@ -33,57 +33,57 @@ class SidebarItem extends Component {
 
     if (route.type === 'external') {
       return (
-        <a href={route.path} target="_blank" key={index} className={classes.menuLink}>
-          <ListItem className={classes.menuItem} button>
-            <ListItemIcon>
-              <route.icon className={classes.menuIcon} />
-            </ListItemIcon>
-            <Typography variant="body1" className="flexSpacer">{capitalize(route.name)}</Typography>
-            {badge(route.badge)}
-          </ListItem>
-        </a>
+          <a href={route.path} target="_blank" key={index} className={classes.menuLink}>
+            <ListItem className={classes.menuItem} button>
+              <ListItemIcon>
+                <route.icon className={classes.menuIcon} />
+              </ListItemIcon>
+              <Typography variant="body1" className="flexSpacer">{capitalize(route.name)}</Typography>
+              {badge(route.badge)}
+            </ListItem>
+          </a>
       );
     }
 
     if (route.type === 'submenu') {
       return (
-        <div className={activeRoute === index ? classes.menuCollapsed : classes.menuClosed}>
-          <ListItem className={classes.menuItem} button key={index} onClick={() => toggleMenu(index)}>
+          <div className={activeRoute === index ? classes.menuCollapsed : classes.menuClosed}>
+            <ListItem className={classes.menuItem} button key={index} onClick={() => toggleMenu(index)}>
+              <ListItemIcon>
+                <route.icon className={classes.menuIcon} />
+              </ListItemIcon>
+              <Typography variant="body1" className="flexSpacer">{capitalize(route.name)}</Typography>
+              {badge(route.badge)}
+              <ListItemIcon className={classes.caret}>
+                {activeRoute === index ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
+              </ListItemIcon>
+            </ListItem>
+            <Collapse in={activeRoute === index ? true : false} timeout="auto" unmountOnExit>
+              <List disablePadding>
+                {route.children.map((subitem, index) => (
+                    <NavLink to={`${route.path ? route.path : ''}${subitem.path ? subitem.path : ''}`} exact className={classes.menuLink} activeClassName={classes.menuActive} key={index}>
+                      <ListItem className={classes.menuSubItem} button>
+                        <Typography variant="body1" className="flexSpacer">{capitalize(subitem.name)}</Typography>
+                        {badge(subitem.badge)}
+                      </ListItem>
+                    </NavLink>)
+                )}
+              </List>
+            </Collapse>
+          </div>
+      )
+    }
+
+    return (
+        <NavLink to={route.path} exact className={classes.menuLink} activeClassName={classes.menuActive} key={index}>
+          <ListItem className={classes.menuItem} button onClick={() => toggleMenu(index)}>
             <ListItemIcon>
               <route.icon className={classes.menuIcon} />
             </ListItemIcon>
             <Typography variant="body1" className="flexSpacer">{capitalize(route.name)}</Typography>
             {badge(route.badge)}
-            <ListItemIcon className={classes.caret}>
-              {activeRoute === index ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
-            </ListItemIcon>
           </ListItem>
-          <Collapse in={activeRoute === index} timeout="auto" unmountOnExit>
-            <List disablePadding>
-              {route.children.map((subitem, index) => (
-                  <NavLink to={`${route.path ? route.path : ''}${subitem.path ? subitem.path : ''}`} exact className={classes.menuLink} activeClassName={classes.menuActive} key={index}>
-                    <ListItem className={classes.menuSubItem} button>
-                      <Typography variant="body1" className="flexSpacer">{capitalize(subitem.name)}</Typography>
-                      {badge(subitem.badge)}
-                    </ListItem>
-                  </NavLink>)
-              )}
-            </List>
-          </Collapse>
-        </div>
-      )
-    }
-
-    return (
-      <NavLink to={route.path} exact className={classes.menuLink} activeClassName={classes.menuActive} key={index}>
-        <ListItem className={classes.menuItem} button onClick={() => toggleMenu(index)}>
-          <ListItemIcon>
-            <route.icon className={classes.menuIcon} />
-          </ListItemIcon>
-          <Typography variant="body1" className="flexSpacer">{capitalize(route.name)}</Typography>
-          {badge(route.badge)}
-        </ListItem>
-      </NavLink>
+        </NavLink>
     )
   }
 }
