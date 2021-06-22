@@ -1,5 +1,3 @@
-import {Redirect} from "react-router-dom";
-
 export function getCookie(key) {
     let name = key + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -21,4 +19,9 @@ export function setCookie(key, value) {
     d.setTime(d.getTime() + (7*24*60*60*1000));
     const expires = "expires="+ d.toUTCString();
     document.cookie = key + "=" + value + ";" + expires + ";path=/";
+}
+
+export function checkCookie(key) {
+    let cookie = getCookie(key);
+    return cookie !== "";
 }

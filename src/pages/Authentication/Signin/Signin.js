@@ -12,7 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import {useDispatch, useSelector} from "react-redux";
 import CardContent from '@material-ui/core/CardContent';
 
-import {setCookie} from "../../../utils/common";
+import {getCookie, setCookie} from "../../../utils/common";
 import {signInQuery} from "../../../data/queries";
 import {getters} from "../../../redux/selectors/selectors";
 import {dispatchers} from "../../../redux/dispatchers/dispatchers";
@@ -89,7 +89,7 @@ const Signin = (props) => {
                                                 if (result.data.userSignin === null) {
                                                     handleAlert()
                                                 } else {
-                                                    setCookie("user", result.data.token)
+                                                    setCookie("user", result.data.userSignin.token)
                                                     setCurrentUser(result.data.userSignin)
                                                     setIsAuthenticated(true)
                                                     history.push("/dashboard");

@@ -5,10 +5,10 @@ import {Route, Switch, Redirect} from 'react-router-dom';
 import {withStyles} from '@material-ui/core/styles';
 import {Workspace, Header, Sidebar} from '../../components/index';
 import DashboardStyles from '../../styles/dashboard';
-import SideBarStyles from '../../styles/sidebar';
 import routes from '../../routes/routes';
 import {useSelector} from "react-redux";
 import {getters} from "../../redux/selectors/selectors";
+import {checkCookie} from "../../utils/common";
 
 function resizeDispatch() {
     if (typeof (Event) === 'function') {
@@ -23,8 +23,9 @@ function resizeDispatch() {
 const Dashboard = (props) => {
     const {classes} = props;
     const [opened, setOpened] = useState(true);
+    let check = checkCookie("user")
     const {isAuthenticated} = useSelector(getters.getIsAuthenticated);
-    if (!isAuthenticated) {
+    if (!isAuthenticated && !check) {
         return <Redirect to={"/"}/>
     }
 
