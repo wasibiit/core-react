@@ -10,7 +10,7 @@ const SocialStyles = theme => ({
       width: 64,
       height: 64,
     },
-    marginBottom: theme.spacing.unit
+    marginBottom: theme.spacing(1)
   },
   tabRoot: {
     textTransform: 'initial',
@@ -20,10 +20,10 @@ const SocialStyles = theme => ({
     border: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing.unit * 3,
+      padding: theme.spacing(3),
     },
     [theme.breakpoints.down('xs')]: {
-      padding: theme.spacing.unit * 2,
+      padding: theme.spacing(2),
     },
     fontSize: '13px',
     outline: 0,

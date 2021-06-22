@@ -21,8 +21,8 @@ const SidebarItemStyles = theme => ({
         paddingRight: 0,
     },
     menuIcon: {
-        marginLeft: theme.spacing.unit * 2,
-        marginRight: theme.spacing.unit * 2
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(2)
     },
     menuSubItem: {
         paddingLeft: '55px',
@@ -38,8 +38,8 @@ const SidebarItemStyles = theme => ({
         backgroundColor: 'transparent'
     },
     caret: {
-        marginLeft: theme.spacing.unit * 2,
-        marginRight: theme.spacing.unit * 2
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(2)
     },
     primary: {
         backgroundColor: theme.palette.primary.main,

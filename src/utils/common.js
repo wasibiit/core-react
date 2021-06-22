@@ -20,3 +20,8 @@ export function setCookie(key, value) {
     const expires = "expires="+ d.toUTCString();
     document.cookie = key + "=" + value + ";" + expires + ";path=/";
 }
+
+export function checkCookie(key) {
+    let cookie = getCookie(key);
+    return cookie !== "";
+}

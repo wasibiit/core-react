@@ -1,96 +1,76 @@
-import React, { Component, Fragment } from 'react';
+import React, {Fragment, useState} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {Route, Switch, Redirect, withRouter} from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
-import { Workspace, Header, Sidebar } from '../../components/index';
+import {Route, Switch, Redirect} from 'react-router-dom';
+import {withStyles} from '@material-ui/core/styles';
+import {Workspace, Header, Sidebar} from '../../components/index';
 import DashboardStyles from '../../styles/dashboard';
 import routes from '../../routes/routes';
+import {useSelector} from "react-redux";
+import {getters} from "../../redux/selectors/selectors";
+import {checkCookie} from "../../utils/common";
 
-function resizeDispatch () {
-  if (typeof(Event) === 'function') {
-    window.dispatchEvent(new Event('resize'));
-  } else {
-    const evt = window.document.createEvent('UIEvents');
-    evt.initUIEvent('resize', true, false, window, 0);
-    window.dispatchEvent(evt);
-  }
+function resizeDispatch() {
+    if (typeof (Event) === 'function') {
+        window.dispatchEvent(new Event('resize'));
+    } else {
+        const evt = window.document.createEvent('UIEvents');
+        evt.initUIEvent('resize', true, false, window, 0);
+        window.dispatchEvent(evt);
+    }
 }
 
-class Dashboard extends Component {
-  state = {
-    opened: true,
-    type: 'light',
-    direction: 'ltr',
-    openSpeedDial: false
-  };
+const Dashboard = (props) => {
+    const {classes} = props;
+    const [opened, setOpened] = useState(true);
+    let check = checkCookie("user")
+    const {isAuthenticated} = useSelector(getters.getIsAuthenticated);
+    if (!isAuthenticated && !check) {
+        return <Redirect to={"/"}/>
+    }
 
-  handleDrawerToggle = () => {
-    console.log("--------------Drawer Toggeled!!!")
-    this.setState({ opened: !this.state.opened });
-    resizeDispatch()
-  };
-
-  handleFullscreenToggle = () => {
-    console.log("--------------its Full Screen Now!!!")
-    const element = document.querySelector('#root');
-    const isFullscreen = document.webkitIsFullScreen || document.mozFullScreen || false;
-
-    element.requestFullScreen = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen || function () { return false; };
-    document.cancelFullScreen = document.cancelFullScreen || document.webkitCancelFullScreen || document.mozCancelFullScreen || function () { return false; };
-    isFullscreen ? document.cancelFullScreen() : element.requestFullScreen();
-  }
-
-  handleSpeedDialOpen = () => {
-    console.log("--------------SpeedDial Opening!!!")
-    this.setState({ openSpeedDial: true });
-  };
-
-  handleSpeedDialClose = () => {
-    console.log("--------------speedDial Closing!!!")
-    this.setState({ openSpeedDial: false });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { opened, openSpeedDial } = this.state;
+    const handleDrawerToggle = () => {
+        console.log("--------------Drawer Toggeled!!!")
+        setOpened(!opened)
+        resizeDispatch()
+    };
 
     const getRoutes = (
         <Switch>
-          { routes.items.map((item, index) => (
-              item.type === 'external' ? <Route exact path={item.path} component={item.component} name={item.name} key={index} />:
-                  item.type === 'submenu' ? item.children.map(subItem => <Route exact path={`${item.path}${subItem.path}`} component={subItem.component} name={subItem.name} />):
-                      <Route exact path={item.path} component={item.component} name={item.name} key={index} />
-          ))}
-          <Redirect to="/404" />
+            {routes.items.map((item, index) => (
+                item.type === 'external' ?
+                    <Route exact path={item.path} component={item.component} name={item.name} key={index}/> :
+                    item.type === 'submenu' ? item.children.map(subItem =>
+                            <Route exact path={`${item.path}${subItem.path}`} component={subItem.component} name={subItem.name}/>) :
+                        <Route exact path={item.path} component={item.component} name={item.name} key={index}/>
+            ))}
+            <Redirect to="/404"/>
         </Switch>
     )
 
     return (
         <Fragment>
-          <Header
-              logoAltText="Learning Squad"
-              logo={`/static/images/LS.png`}
-              toggleDrawer={this.handleDrawerToggle}
-              toggleFullscreen={this.handleFullscreenToggle}
-          />
-          <div className={classNames(classes.panel, 'theme-dark')}>
-            <Sidebar
-                routes={routes.items}
-                opened={opened}
-                toggleDrawer={this.handleDrawerToggle}
+            <Header
+                logoAltText="Learning Squad"
+                logo={`/static/images/LS.png`}
+                toggleDrawer={handleDrawerToggle}
             />
-            <Workspace opened={opened}>
-              {getRoutes}
-            </Workspace>
-          </div>
+            <div className={classNames(classes.panel, 'theme-dark')}>
+                <Sidebar
+                    routes={routes.items}
+                    opened={opened}
+                    toggleDrawer={handleDrawerToggle}
+                />
+                <Workspace opened={opened}>
+                    {getRoutes}
+                </Workspace>
+            </div>
         </Fragment>
     )
-  }
 }
 
 Dashboard.propTypes = {
-  classes: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired
 };
 
 export default withStyles(DashboardStyles)(Dashboard);

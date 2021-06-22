@@ -1,6 +1,7 @@
 import {Formik} from 'formik';
 import classNames from 'classnames';
 import React, {useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import MuiAlert from '@material-ui/lab/Alert';
@@ -11,19 +12,21 @@ import TextField from '@material-ui/core/TextField';
 import {useDispatch, useSelector} from "react-redux";
 import CardContent from '@material-ui/core/CardContent';
 
-import {setCookie} from "../../../utils/common";
+import {getCookie, setCookie} from "../../../utils/common";
 import {signInQuery} from "../../../data/queries";
 import {getters} from "../../../redux/selectors/selectors";
 import {dispatchers} from "../../../redux/dispatchers/dispatchers";
 
 const Signin = (props) => {
     const {classes} = props;
+    const history = useHistory();
     const {email} = useSelector(getters.getEmail);
     const {password} = useSelector(getters.getPassword);
     const [open, setOpen] = useState(false);
     const {setEmail} = dispatchers.signInDispatcher(useDispatch())
     const {setPassword} = dispatchers.signInDispatcher(useDispatch())
     const {setCurrentUser} = dispatchers.currentUserDispatcher(useDispatch())
+    const {setIsAuthenticated} = dispatchers.currentUserDispatcher(useDispatch())
 
     const getReqOptions = () => {
         return {
@@ -58,7 +61,7 @@ const Signin = (props) => {
                 <div className={classes.wrapper}>
                     <Card>
                         <div className="text-xs-center pb-xs">
-                            <img src="/static/images/ls.jpg" className={classes.media} alt="ls"/>
+                            <img src={"/static/images/ls.jpg"} className={classes.media} alt="ls"/>
                         </div>
                         <CardContent>
                             <Formik
@@ -86,11 +89,14 @@ const Signin = (props) => {
                                                 if (result.data.userSignin === null) {
                                                     handleAlert()
                                                 } else {
-                                                    setCookie("user", result.data.token)
+                                                    setCookie("user", result.data.userSignin.token)
                                                     setCurrentUser(result.data.userSignin)
+                                                    setIsAuthenticated(true)
+                                                    history.push("/dashboard");
                                                 }
                                             },
                                             (error) => {
+                                                handleAlert()
                                                 console.log("------------start------------");
                                                 console.log(error);
                                                 console.log("----------end----------------");
@@ -132,7 +138,8 @@ const Signin = (props) => {
                                             variant={"outlined"}
                                             size={"large"}
                                             className={classes.myButton}
-                                            ullWidth type="submit"
+                                            fullWidth
+                                            type="submit"
                                             disabled={isSubmitting}
                                         >
                                             Login

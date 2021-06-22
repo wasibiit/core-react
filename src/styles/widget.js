@@ -8,7 +8,7 @@ const WidgetStyles = theme => ({
     display: 'flex'
   },
   content: {
-    paddingBottom: theme.spacing.unit * 2
+    paddingBottom: theme.spacing(2)
   },
   center: {
     textAlign: 'center'
@@ -17,7 +17,7 @@ const WidgetStyles = theme => ({
     width: '100%',
     height: '100%',
     maxWidth: 105,
-    marginBottom: theme.spacing.unit * 2
+    marginBottom: theme.spacing(2)
   },
   flip: {
     transform: 'rotate(-90deg)'

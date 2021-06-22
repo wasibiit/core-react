@@ -13,7 +13,7 @@ const SessionStyles = theme => ({
     backgroundColor: "#1D2228",
   },
   content: {
-    padding: `100px ${theme.spacing.unit}px`,
+    padding: `100px ${theme.spacing(1)}px`,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -48,10 +48,10 @@ const SessionStyles = theme => ({
     position: 'relative',
     background: theme.palette.primary.main,
     color: '#fff',
-    padding: `0 ${theme.spacing.unit * 3}px`,
+    padding: `0 ${theme.spacing(3)}px`,
     borderRadius: '60px',
     cursor: 'pointer',
-    margin: `0 0 ${theme.spacing.unit}px`,
+    margin: `0 0 ${theme.spacing(1)}px`,
     '&:after': {
       top: '100%',
       left: '50%',

@@ -1,6 +1,6 @@
 const StreamStyles = theme => ({
   stream: {
-    padding: theme.spacing.unit,
+    padding: theme.spacing(1),
     position: 'relative',
     '&::before': {
       content: '""',

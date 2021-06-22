@@ -26,66 +26,66 @@ class Sidebar extends Component {
     const { classes, opened, toggleDrawer , routes, location } = this.props;
     const { activeRoute } = this.state;
     const menu = (
-      <List component="div">
-        { routes.map((route, index) => {
-          const isCurrentPath = location.pathname.indexOf(route.path) > -1;
-          return (
-            <SidebarItem
-              key={index}
-              index={index}
-              route={route}
-              activeRoute={activeRoute}
-              toggleMenu={this.toggleMenu}
-              currentPath={isCurrentPath}
-            />
-          )
-        })}
-      </List>
+        <List component="div">
+          { routes.map((route, index) => {
+            const isCurrentPath = location.pathname.indexOf(route.path) > -1;
+            return (
+                <SidebarItem
+                    key={index}
+                    index={index}
+                    route={route}
+                    activeRoute={activeRoute}
+                    toggleMenu={this.toggleMenu}
+                    currentPath={isCurrentPath}
+                />
+            )
+          })}
+        </List>
     )
     return (
-      <Fragment>
-        <Hidden smDown>
-          <Drawer
-            variant="persistent"
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            open={opened}
-            ModalProps={{
-              keepMounted: false,
-              className: classes.modal,
-              BackdropProps: {
-                className: classes.backdrop,
-              },
-              onBackdropClick: toggleDrawer
-            }}
-          >
-            {menu}
-          </Drawer>
-        </Hidden>
-        <Hidden mdUp>
-          <SwipeableDrawer
-            variant="temporary"
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            open={opened}
-            onClose={toggleDrawer}
-            onOpen={toggleDrawer}
-            disableBackdropTransition={!iOS}
-            ModalProps={{
-              keepMounted: false,
-              className: classes.modal,
-              BackdropProps: {
-                className: classes.backdrop,
-              },
-              onBackdropClick: toggleDrawer
-            }}
-          >
-            {menu}
-          </SwipeableDrawer>
-        </Hidden>
-      </Fragment>
+        <Fragment>
+          <Hidden smDown>
+            <Drawer
+                variant="persistent"
+                classes={{
+                  paper: classes.drawerPaper,
+                }}
+                open={opened}
+                ModalProps={{
+                  keepMounted: false,
+                  className: classes.modal,
+                  BackdropProps: {
+                    className: classes.backdrop,
+                  },
+                  onBackdropClick: toggleDrawer
+                }}
+            >
+              {menu}
+            </Drawer>
+          </Hidden>
+          <Hidden mdUp>
+            <SwipeableDrawer
+                variant="temporary"
+                classes={{
+                  paper: classes.drawerPaper,
+                }}
+                open={opened}
+                onClose={toggleDrawer}
+                onOpen={toggleDrawer}
+                disableBackdropTransition={!iOS}
+                ModalProps={{
+                  keepMounted: false,
+                  className: classes.modal,
+                  BackdropProps: {
+                    className: classes.backdrop,
+                  },
+                  onBackdropClick: toggleDrawer
+                }}
+            >
+              {menu}
+            </SwipeableDrawer>
+          </Hidden>
+        </Fragment>
     )
   }
 }
