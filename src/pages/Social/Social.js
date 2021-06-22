@@ -15,9 +15,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
 import InsertLinkIcon from '@material-ui/icons/InsertLink';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-import { Wrapper} from '../../components';
 import SocialStyles from '../../styles/social';
-import {withRouter} from "react-router-dom";
 
 const TabContainer = (props) => (
   <Typography component="div" className="pa-0">
