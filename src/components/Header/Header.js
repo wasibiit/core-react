@@ -1,72 +1,88 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
-import Collapse from '@material-ui/core/Collapse';
-import SearchIcon from '@material-ui/icons/Search';
-import FullscreenIcon from '@material-ui/icons/Fullscreen';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MenuIcon from '@material-ui/icons/Menu';
 import HeaderStyles from '../../styles/header';
 import "./header.css"
-import LetterAvatars from "../Avatar/LetterAvatars";
 import ImageAvatars from "../Avatar/ImageAvatars";
-import {Option} from "react-select";
-import {AccountCircle} from "@material-ui/icons";
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import SendIcon from '@material-ui/icons/Send';
+import {Person} from "@material-ui/icons";
 
-class Header extends Component {
-  state = {
-    auth: true,
-    anchorEl: null,
+
+const StyledMenu = withStyles({
+  paper: {
+    width: '200px',
+    border: '1px solid #d3d4d5',
+  },
+})((props) => (
+    <Menu
+        elevation={0}
+        getContentAnchorEl={null}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        {...props}
+    />
+));
+
+const StyledMenuItem = withStyles((theme) => ({
+  root: {
+    '&:focus': {
+      backgroundColor: theme.palette.primary.main,
+      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+        color: theme.palette.common.white,
+      },
+    },
+  },
+}))(MenuItem);
+
+const Header = (props) => {
+  const { classes, logo, logoAltText } = props;
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [auth, setAuth] = useState(true);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  handleMenu = event => {
-    this.setState({ anchorEl: event.currentTarget });
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
-  handleClose = () => {
-    this.setState({ anchorEl: null });
+  const handleMenu = event => {
+    setAnchorEl(event.currentTarget);
   };
 
-  handleCloseMenu = () => {
+  const handleCloseMenu = () => {
     console.log("--------------Menu Closed!!!")
-    this.setState({ anchorEl: null });
+    setAnchorEl(null);
   };
 
-  handleSearchExpandToggle = () => {
-    console.log("--------------Search is Happening!!!")
-    this.setState({ searchExpanded: !this.state.searchExpanded });
-  };
-
-  handleDrawerToggle = () => {
-    // console.log("-------------Drawer Worked!!")
-    this.props.toggleDrawer();
-    if (this.state.searchExpanded) this.handleSearchExpandToggle();
-  }
-
-  render() {
-    const { classes, logo, logoAltText, toggleFullscreen } = this.props;
-    const { auth, anchorEl } = this.state;
-    const open = Boolean(anchorEl);
     return (
       <AppBar
         position="static"
-        style={{ background:"grey" }}
         className={classes.appBar}>
         <Toolbar className={classes.toolBar}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={this.handleDrawerToggle}
+            onClick={props.toggleDrawer}
           >
             <MenuIcon />
           </IconButton>
@@ -74,21 +90,6 @@ class Header extends Component {
           <div className={classes.branding}>
             <img src={logo} alt={logoAltText} className="resize" />
           </div>
-
-          <Hidden xsDown>
-            <div className={classes.searchWrapper}>
-              <form className={classes.searchForm}>
-                {/*<IconButton*/}
-                {/*  aria-label="Search"*/}
-                {/*  className={classes.searchIcon}*/}
-                {/*>*/}
-                {/*  /!*<SearchIcon />*!/*/}
-                {/*</IconButton>*/}
-                {/*<input className={classes.searchInput} type="text" placeholder="Search" autoFocus="true" />*/}
-              </form>
-            </div>
-          </Hidden>
-
           <Hidden smUp>
             <span className="flexSpacer" />
           </Hidden>
@@ -97,36 +98,31 @@ class Header extends Component {
                 <IconButton
                     aria-owns={open ? 'menu-appbar' : null}
                     aria-haspopup="true"
-                    onClick={this.handleMenu}
+                    onClick={handleMenu}
                     color="inherit"
                 >
                   {/*<AccountCircle />*/}
-                  <ImageAvatars/>
+                  <ImageAvatars />
                 </IconButton>
-                <Menu
-                    id="menu-appbar"
+                <StyledMenu
+                    id="customized-menu"
                     anchorEl={anchorEl}
-                    anchorOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'left',
-                    }}
-                    transformOrigin={{
-                      vertical: 'left',
-                      horizontal: 'right',
-                    }}
-                    open={open}
-                    onClose={this.handleClose}
+                    keepMounted
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
                 >
-                  <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                  <MenuItem onClick={this.handleClose}>Sign Out</MenuItem>
-                </Menu>
+                  <StyledMenuItem>
+                    <ListItemIcon>
+                      <Person fontSize="small" />
+                    </ListItemIcon>
+                    <ListItemText primary="Profile" />
+                  </StyledMenuItem>
+                </StyledMenu>
               </div>
           )}
         </Toolbar>
       </AppBar>
     )
-  }
 }
 
 Header.prototypes = {

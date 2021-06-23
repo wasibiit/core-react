@@ -1,11 +1,13 @@
 const HeaderStyles = theme => ({
   appBar: {
     boxShadow: '0 1px 8px rgba(0,0,0,.3)',
+    backgroundColor: "#1D2228",
     position: 'relative',
     zIndex: theme.zIndex.drawer + 100,
     [theme.breakpoints.down('sm')]: {
       position: 'fixed',
     },
+    height: "70px"
   },
   toolBar: {
     paddingLeft: theme.spacing(0.5),
@@ -23,7 +25,7 @@ const HeaderStyles = theme => ({
   logo: {
     margin: 'auto',
     [theme.breakpoints.down('sm')]: {
-      maxWidth: '80px',
+      maxWidth: '600px',
     },
   },
   searchWrapper: {
