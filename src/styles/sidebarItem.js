@@ -21,6 +21,7 @@ const SidebarItemStyles = theme => ({
         paddingRight: 0,
     },
     menuIcon: {
+        color: "#E1E2E2",
         marginLeft: theme.spacing(2),
         marginRight: theme.spacing(2)
     },
@@ -52,11 +53,7 @@ const SidebarItemStyles = theme => ({
     error: {
         backgroundColor: "#1D2228" ,
         color: "#E1E2E2",
-    },
-    Fragment:
-        {
-            backgroundColor: "#1D2228",
-        }
+    }
 });
 
 export default SidebarItemStyles;

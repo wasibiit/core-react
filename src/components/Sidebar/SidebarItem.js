@@ -58,7 +58,7 @@ class SidebarItem extends Component {
                 {activeRoute === index ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
               </ListItemIcon>
             </ListItem>
-            <Collapse in={activeRoute === index ? true : false} timeout="auto" unmountOnExit>
+            <Collapse in={activeRoute === index} timeout="auto" unmountOnExit>
               <List disablePadding>
                 {route.children.map((subitem, index) => (
                     <NavLink to={`${route.path ? route.path : ''}${subitem.path ? subitem.path : ''}`} exact className={classes.menuLink} activeClassName={classes.menuActive} key={index}>
