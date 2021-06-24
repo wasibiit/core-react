@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -11,55 +11,25 @@ import MenuIcon from '@material-ui/icons/Menu';
 import HeaderStyles from '../../styles/header';
 import "./header.css"
 import ImageAvatars from "../Avatar/ImageAvatars";
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
 import {Person} from "@material-ui/icons";
+import {useSelector} from "react-redux";
+import {getters} from "../../redux/selectors/selectors";
+import HeaderMenu from "../Menu/HeaderMenu";
+import HeaderMenuItems from "../Menu/HeaderMenuItems";
 
-
-const StyledMenu = withStyles({
-  paper: {
-    width: '200px',
-    border: '1px solid #d3d4d5',
-  },
-})((props) => (
-    <Menu
-        elevation={0}
-        getContentAnchorEl={null}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-        {...props}
-    />
-));
-
-const StyledMenuItem = withStyles((theme) => ({
-  root: {
-    '&:focus': {
-      backgroundColor: theme.palette.primary.main,
-      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-        color: theme.palette.common.white,
-      },
-    },
-  },
-}))(MenuItem);
 
 const Header = (props) => {
   const { classes, logo, logoAltText } = props;
+  const [auth] = useState(true);
+  const {user} = useSelector(getters.getCurrentUser);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [auth, setAuth] = useState(true);
   const open = Boolean(anchorEl);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  useEffect(() => {
+    // function handleStatusChange(status) {
+    //   setIsOnline(status.isOnline);
+    })
+
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -67,11 +37,6 @@ const Header = (props) => {
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
-  };
-
-  const handleCloseMenu = () => {
-    console.log("--------------Menu Closed!!!")
-    setAnchorEl(null);
   };
 
     return (
@@ -90,6 +55,7 @@ const Header = (props) => {
           <div className={classes.branding}>
             <img src={logo} alt={logoAltText} className="resize" />
           </div>
+            <div className={classes.searchWrapper} />
           <Hidden smUp>
             <span className="flexSpacer" />
           </Hidden>
@@ -104,20 +70,20 @@ const Header = (props) => {
                   {/*<AccountCircle />*/}
                   <ImageAvatars />
                 </IconButton>
-                <StyledMenu
+                <HeaderMenu
                     id="customized-menu"
                     anchorEl={anchorEl}
                     keepMounted
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
-                  <StyledMenuItem>
+                  <HeaderMenuItems>
                     <ListItemIcon>
                       <Person fontSize="small" />
                     </ListItemIcon>
                     <ListItemText primary="Profile" />
-                  </StyledMenuItem>
-                </StyledMenu>
+                  </HeaderMenuItems>
+                </HeaderMenu>
               </div>
           )}
         </Toolbar>

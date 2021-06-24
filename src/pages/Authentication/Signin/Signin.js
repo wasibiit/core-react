@@ -9,11 +9,13 @@ import {withStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import {useDispatch, useSelector} from "react-redux";
 import CardContent from '@material-ui/core/CardContent';
-import {getCookie, setCookie} from "../../../utils/common";
+
+import {getReqOptions, setCookie} from "../../../utils/common";
 import {signInQuery} from "../../../data/queries";
 import {getters} from "../../../redux/selectors/selectors";
 import {dispatchers} from "../../../redux/dispatchers/dispatchers";
 import {SnackBar} from "../../../components/SnackBar/SnackBar";
+import {constants} from "../../../utils/constants";
 
 const Signin = (props) => {
     const {classes} = props;
@@ -21,27 +23,19 @@ const Signin = (props) => {
     const {email} = useSelector(getters.getEmail);
     const {password} = useSelector(getters.getPassword);
     const [open, setOpen] = useState(false);
+    const [text, setText] = useState("");
+    const [severity, setSeverity] = useState("");
     const {setEmail} = dispatchers.signInDispatcher(useDispatch())
     const {setPassword} = dispatchers.signInDispatcher(useDispatch())
     const {setCurrentUser} = dispatchers.currentUserDispatcher(useDispatch())
     const {setIsAuthenticated} = dispatchers.currentUserDispatcher(useDispatch())
 
-    const getReqOptions = () => {
-        return {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json', 'Origin': '*'},
-            body: JSON.stringify({query: signInQuery(email, password)})
-        };
-    }
-
-    // function Alert(props) {
-    //     return <MuiAlert elevation={6} variant="filled" {...props} />;
-    // }
-    //
-    const handleAlert = () => {
+    const handleAlert = (text, type) => {
+        setText(text)
+        setSeverity(type)
         setOpen(true);
     };
-    //
+
     const handleClose = () => {
         setOpen(false);
     };
@@ -80,12 +74,12 @@ const Signin = (props) => {
                                     setTimeout(() => {
                                         setSubmitting(false);
                                     }, 600);
-                                    fetch(`http://494d0b0523a7.ngrok.io/graphql`, getReqOptions())
+                                    fetch(constants.BASEURL, getReqOptions(signInQuery(email, password)))
                                         .then(res => res.json())
                                         .then(
                                             (result) => {
                                                 if (result.data.userSignin === null) {
-                                                    handleAlert()
+                                                    handleAlert("Invalid Credentials", "warning")
                                                 } else {
                                                     setCookie("user", result.data.userSignin.token)
                                                     setCurrentUser(result.data.userSignin)
@@ -94,7 +88,7 @@ const Signin = (props) => {
                                                 }
                                             },
                                             (error) => {
-                                                handleAlert()
+                                                handleAlert("Connection Failed!", "error")
                                                 console.log("------------start------------");
                                                 console.log(error);
                                                 console.log("----------end----------------");

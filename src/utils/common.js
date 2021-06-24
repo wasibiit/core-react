@@ -25,3 +25,11 @@ export function checkCookie(key) {
     let cookie = getCookie(key);
     return cookie !== "";
 }
+
+export const getReqOptions = (query) => {
+    return {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'Origin': '*'},
+        body: JSON.stringify({query: query})
+    };
+}

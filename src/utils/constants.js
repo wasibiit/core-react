@@ -1,4 +1,6 @@
 
+const BASEURL = `http://494d0b0523a7.ngrok.io/graphql`;
+
 const actionSignInTypes = {EMAIL: "EMAIL", PASSWORD: "PASSWORD"}
 
 const actionCurrentUserTypes = {USER: "USER", IS_AUTHENTICATED: "IS_AUTHENTICATED"}
@@ -6,4 +8,4 @@ const actionCurrentUserTypes = {USER: "USER", IS_AUTHENTICATED: "IS_AUTHENTICATE
 
 
 
-export const constants = {actionCurrentUserTypes, actionSignInTypes};
+export const constants = {actionCurrentUserTypes, actionSignInTypes, BASEURL};

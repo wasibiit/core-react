@@ -18,3 +18,22 @@ export const signInQuery = (email, password) => {
   }
 }`
 }
+
+export const getCurrentUserQuery = (token) => {
+    return `mutation {
+  getUserFromJwt(
+    input: {
+      token: "${token}"
+    }
+  )
+  {
+    firstName,
+    lastName,
+    dob,
+    email,
+    role {
+      id
+    }
+  }
+}`
+}

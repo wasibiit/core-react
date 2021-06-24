@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {Route, Switch, Redirect} from 'react-router-dom';
@@ -6,9 +6,13 @@ import {withStyles} from '@material-ui/core/styles';
 import {Workspace, Header, Sidebar} from '../../components/index';
 import DashboardStyles from '../../styles/dashboard';
 import routes from '../../routes/routes';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getters} from "../../redux/selectors/selectors";
-import {checkCookie} from "../../utils/common";
+import {checkCookie, getCookie, getReqOptions} from "../../utils/common";
+import {constants} from "../../utils/constants";
+import {getCurrentUserQuery} from "../../data/queries";
+import {SnackBar} from "../../components/SnackBar/SnackBar";
+import {dispatchers} from "../../redux/dispatchers/dispatchers";
 
 function resizeDispatch() {
     if (typeof (Event) === 'function') {
@@ -23,11 +27,52 @@ function resizeDispatch() {
 const Dashboard = (props) => {
     const {classes} = props;
     const [opened, setOpened] = useState(true);
+    const [openBar, setOpenBar] = useState(false);
+    const [text, setText] = useState("");
+    const [severity, setSeverity] = useState("");
+    const {setCurrentUser} = dispatchers.currentUserDispatcher(useDispatch())
     let check = checkCookie("user")
     const {isAuthenticated} = useSelector(getters.getIsAuthenticated);
+
+    useEffect(() => {
+        // function handleStatusChange(status) {
+        //   setIsOnline(status.isOnline);
+        // }
+        fetch(constants.BASEURL, getReqOptions(getCurrentUserQuery(getCookie("user"))))
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    if (result.data.getUserFromJwt === null) {
+                        handleAlert("Error!", "error")
+                    } else {
+                        let res = result.data.getUserFromJwt
+                        setCurrentUser(res)
+                        handleAlert('Welcome Back ' + res.firstName + ' ' + res.lastName + '!', "success")
+                    }
+                },
+                (error) => {
+                    handleAlert("Connection Failed!", "error")
+                    console.log("------------start------------");
+                    console.log(error);
+                    console.log("----------end----------------");
+                }
+            )
+
+    }, [])
+
     if (!isAuthenticated && !check) {
         return <Redirect to={"/"}/>
     }
+
+    const handleAlert = (text, type) => {
+        setText(text)
+        setSeverity(type)
+        setOpenBar(true);
+    };
+
+    const handleCloseSnackBar = () => {
+        setOpenBar(false);
+    };
 
     const handleDrawerToggle = () => {
         console.log("--------------Drawer Toggeled!!!")
@@ -50,6 +95,13 @@ const Dashboard = (props) => {
 
     return (
         <Fragment>
+            <div className={classes.root}>
+                <SnackBar text={text}
+                          style={severity}
+                          handleClose={handleCloseSnackBar}
+                          open={openBar}
+                />
+            </div>
             <Header
                 logoAltText="Learning Squad"
                 logo={`/static/images/LS.png`}

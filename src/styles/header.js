@@ -59,6 +59,12 @@ const HeaderStyles = theme => ({
     left: '0',
     marginTop: '-24px',
     color: 'rgba(0,0,0,.87)'
+  },
+  root: {
+    width: '200%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
   }
 });
 
