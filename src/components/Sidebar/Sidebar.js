@@ -47,9 +47,7 @@ class Sidebar extends Component {
           <Hidden smDown>
             <Drawer
                 variant="persistent"
-                classes={{
-                  paper: classes.drawerPaper,
-                }}
+                classes={{paper: classes.drawerPaper}}
                 open={opened}
                 ModalProps={{
                   keepMounted: false,
@@ -63,28 +61,28 @@ class Sidebar extends Component {
               {menu}
             </Drawer>
           </Hidden>
-          <Hidden mdUp>
-            <SwipeableDrawer
-                variant="temporary"
-                classes={{
-                  paper: classes.drawerPaper,
-                }}
-                open={opened}
-                onClose={toggleDrawer}
-                onOpen={toggleDrawer}
-                disableBackdropTransition={!iOS}
-                ModalProps={{
-                  keepMounted: false,
-                  className: classes.modal,
-                  BackdropProps: {
-                    className: classes.backdrop,
-                  },
-                  onBackdropClick: toggleDrawer
-                }}
-            >
-              {menu}
-            </SwipeableDrawer>
-          </Hidden>
+            <Hidden mdUp>
+                <SwipeableDrawer
+                    variant="temporary"
+                    classes={{
+                        paper: classes.drawerPaper,
+                    }}
+                    open={opened}
+                    onClose={toggleDrawer}
+                    onOpen={toggleDrawer}
+                    disableBackdropTransition={!iOS}
+                    ModalProps={{
+                        keepMounted: false,
+                        className: classes.modal,
+                        BackdropProps: {
+                            className: classes.backdrop,
+                        },
+                        onBackdropClick: toggleDrawer
+                    }}
+                >
+                    {menu}
+                </SwipeableDrawer>
+            </Hidden>
         </Fragment>
     )
   }

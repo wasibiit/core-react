@@ -50,7 +50,6 @@ export default {
                 }
             ]
         },
-
         {
             path: '/social',
             name: 'Social',
@@ -65,7 +64,6 @@ export default {
 
             ]
         },
-
         {
             path: '/rooms',
             name: 'Rooms',
@@ -109,11 +107,8 @@ export default {
         {
             path: '/settings',
             name: 'Settings',
-
             icon: Settings,
-            component: Setting
+            component: Setting,
         },
-
-
     ]
 };

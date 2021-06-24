@@ -24,7 +24,7 @@ function resizeDispatch() {
     }
 }
 
-const Dashboard = (props) => {
+const Dashboard = (props) =>  {
     const {classes} = props;
     const [opened, setOpened] = useState(true);
     const [openBar, setOpenBar] = useState(false);
@@ -38,30 +38,31 @@ const Dashboard = (props) => {
         // function handleStatusChange(status) {
         //   setIsOnline(status.isOnline);
         // }
-        fetch(constants.BASEURL, getReqOptions(getCurrentUserQuery(getCookie("user"))))
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    if (result.data.getUserFromJwt === null) {
-                        handleAlert("Error!", "error")
-                    } else {
-                        let res = result.data.getUserFromJwt
-                        setCurrentUser(res)
-                        handleAlert('Welcome Back ' + res.firstName + ' ' + res.lastName + '!', "success")
+        if(isAuthenticated) {
+            fetch(constants.BASEURL, getReqOptions(getCurrentUserQuery(getCookie("user"))))
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        if (result.data.getUserFromJwt === null) {
+                            handleAlert("Error!", "error")
+                        } else {
+                            let res = result.data.getUserFromJwt
+                            setCurrentUser(res)
+                            handleAlert('Welcome Back ' + res.firstName + ' ' + res.lastName + '!', "success")
+                        }
+                    },
+                    (error) => {
+                        handleAlert("Connection Failed!", "error")
+                        console.log("------------start------------");
+                        console.log(error);
+                        console.log("----------end----------------");
                     }
-                },
-                (error) => {
-                    handleAlert("Connection Failed!", "error")
-                    console.log("------------start------------");
-                    console.log(error);
-                    console.log("----------end----------------");
-                }
-            )
-
+                )
+        }
     }, [])
 
     if (!isAuthenticated && !check) {
-        return <Redirect to={"/"}/>
+        return <Redirect to={"/signin"}/>
     }
 
     const handleAlert = (text, type) => {
@@ -82,14 +83,13 @@ const Dashboard = (props) => {
 
     const getRoutes = (
         <Switch>
-            {routes.items.map((item, index) => (
-                item.type === 'external' ?
-                    <Route exact path={item.path} component={item.component} name={item.name} key={index}/> :
-                    item.type === 'submenu' ? item.children.map(subItem =>
-                            <Route exact path={`${item.path}${subItem.path}`} component={subItem.component} name={subItem.name}/>) :
-                        <Route exact path={item.path} component={item.component} name={item.name} key={index}/>
-            ))}
-            <Redirect to="/404"/>
+            { routes.items.map((item, index) => (
+                item.type === 'external' ? <Route exact path={item.path} component={item.component} name={item.name} key={index} />:
+                    item.type === 'submenu' ? item.children.map(subItem => <Route exact path={`${item.path}${subItem.path}`} component={subItem.component} name={subItem.name} />):
+                        <Route exact path={item.path} component={item.component} name={item.name} key={index} />
+            ))
+            }
+            <Redirect to="/404" />
         </Switch>
     )
 
