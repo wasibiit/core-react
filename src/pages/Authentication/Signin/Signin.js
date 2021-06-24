@@ -4,18 +4,16 @@ import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
-import MuiAlert from '@material-ui/lab/Alert';
-import Snackbar from '@material-ui/core/Snackbar';
 import SessionStyles from '../../../styles/session';
 import {withStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import {useDispatch, useSelector} from "react-redux";
 import CardContent from '@material-ui/core/CardContent';
-
 import {getCookie, setCookie} from "../../../utils/common";
 import {signInQuery} from "../../../data/queries";
 import {getters} from "../../../redux/selectors/selectors";
 import {dispatchers} from "../../../redux/dispatchers/dispatchers";
+import {SnackBar} from "../../../components/SnackBar/SnackBar";
 
 const Signin = (props) => {
     const {classes} = props;
@@ -36,14 +34,14 @@ const Signin = (props) => {
         };
     }
 
-    function Alert(props) {
-        return <MuiAlert elevation={6} variant="filled" {...props} />;
-    }
-
+    // function Alert(props) {
+    //     return <MuiAlert elevation={6} variant="filled" {...props} />;
+    // }
+    //
     const handleAlert = () => {
         setOpen(true);
     };
-
+    //
     const handleClose = () => {
         setOpen(false);
     };
@@ -51,11 +49,11 @@ const Signin = (props) => {
     return (
         <div className={classNames(classes.session, classes.background)}>
             <div className={classes.root}>
-                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                    <Alert onClose={handleClose} severity="warning">
-                        Wrong Credentials!
-                    </Alert>
-                </Snackbar>
+                <SnackBar text={"Wrong Credentials!"}
+                          style={"warning"}
+                          handleClose={handleClose}
+                          open={open}
+                />
             </div>
             <div className={classes.content}>
                 <div className={classes.wrapper}>
