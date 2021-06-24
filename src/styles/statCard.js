@@ -1,14 +1,26 @@
+import StatCard from "../components/Cards/StatCard";
+
 const StatCardStyles = theme => ({
+
   content: {
+
     position: 'relative',
-    padding: theme.spacing(2),
+    // padding: theme.spacing(2),
     '&:last-child': {
-      paddingBottom: theme.spacing(2)
+      paddingBottom: theme.spacing(2),
+      width: "60px",
+      height: "100px",
+      padding: "80px",
     }
   },
   icon: {
     boxShadow: 'none',
-    color: 'white'
+    color: '#E1E2E2',
+
+  },
+  title: {
+    color: '#1D2228',
+    textAlign: "center"
   },
   iconFloat: {
     position: 'absolute',
@@ -16,10 +28,14 @@ const StatCardStyles = theme => ({
     top: '50%',
     marginTop: '-20px',
     opacity: '0.2',
-    transform: 'rotate(-5deg)'
+    transform: 'rotate(-5deg)',
+    paddingLeft: "30px"
   },
   lightText: {
-    color: 'white'
+    color: 'white',
+    marginTop: '-20px',
+
+
   }
 });
 

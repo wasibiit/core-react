@@ -7,7 +7,8 @@ const HeaderStyles = theme => ({
     [theme.breakpoints.down('sm')]: {
       position: 'fixed',
     },
-    height: "70px"
+    height: "70px",
+
   },
   toolBar: {
     paddingLeft: theme.spacing(0.5),

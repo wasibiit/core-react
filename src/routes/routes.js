@@ -29,7 +29,6 @@ export default {
         {
             path: '/dashboard',
             name: 'Dashboard',
-            type: 'link',
             icon: ExploreIcon,
             component: Home
         },
@@ -98,21 +97,19 @@ export default {
         {
             path: '/filters',
             name: 'Filters / Restricted Terms',
-            type: 'link',
             icon: FilterList,
             component: ActiveFilters
         },
         {
             path: '/quiz',
             name: ' Quiz',
-            type: 'link',
             icon: QueryBuilderIcon,
             component: Quiz
         },
         {
             path: '/settings',
             name: 'Settings',
-            type: 'link',
+
             icon: Settings,
             component: Setting
         },

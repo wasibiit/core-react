@@ -4,6 +4,7 @@ const DashboardStyles = theme => ({
         overflow: 'hidden',
         width: '100%',
         maxWidth: '100%',
+          background:"#1D2228",
         [theme.breakpoints.down('sm')]: {
             height: 'auto',
             minHeight: 'calc(100vh - 64px)',
@@ -20,12 +21,16 @@ const DashboardStyles = theme => ({
         display: 'flex',
         flexDirection: 'row',
         flexGrow: 1,
+
     },
     speedDial: {
         position: 'absolute',
         bottom: theme.spacing(2),
         right: theme.spacing(3),
     },
+    Fragment:{
+        backgroundColor: "#1D2228"
+    }
 });
 
 export default DashboardStyles;

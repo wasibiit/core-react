@@ -10,7 +10,7 @@ const styles = {
     justifyContent: 'center',
   },
   avatar: {
-    margin: 10,
+    margin: 5,
   },
   bigAvatar: {
     width: 60,

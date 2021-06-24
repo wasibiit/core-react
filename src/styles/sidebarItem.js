@@ -29,30 +29,34 @@ const SidebarItemStyles = theme => ({
         paddingRight: '55px'
     },
     menuCollapsed: {
-        backgroundColor: theme.palette.action.hover,
+        backgroundColor:"#1D2228" ,
     },
     menuActive: {
-        backgroundColor: theme.palette.action.hover,
+        backgroundColor: "#E1E2E2"
     },
     menuClosed: {
-        backgroundColor: 'transparent'
+        backgroundColor: '#1D2228'
     },
     caret: {
         marginLeft: theme.spacing(2),
         marginRight: theme.spacing(2)
     },
     primary: {
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.primary.contrastText,
+        backgroundColor:"#E1E2E2",
+        color: "#E1E2E2",
     },
     secondary: {
-        backgroundColor: theme.palette.secondary.main,
-        color: theme.palette.secondary.contrastText,
+        backgroundColor: "#1D2228",
+        color: "#E1E2E2" ,
     },
     error: {
-        backgroundColor: theme.palette.error.main,
-        color: theme.palette.error.contrastText,
+        backgroundColor: "#1D2228" ,
+        color: "#E1E2E2",
     },
+    Fragment:
+        {
+            backgroundColor: "#1D2228",
+        }
 });
 
 export default SidebarItemStyles;

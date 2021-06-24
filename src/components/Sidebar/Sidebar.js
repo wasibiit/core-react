@@ -7,7 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
-import SidebarItem from './SidebarItem'
+import SidebarItem from './SidebarItem';
 import SidebarStyles from '../../styles/sidebar';
 
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);

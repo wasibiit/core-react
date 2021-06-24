@@ -7,6 +7,7 @@ const SidebarStyles = theme => ({
         maxWidth: drawerWidth,
         height: '100%',
         zIndex: theme.zIndex.drawer + 99,
+        backgroundColor: "#1D2228"
     },
     modal: {
         [theme.breakpoints.down('sm')]: {

@@ -94,7 +94,8 @@ const Dashboard = (props) => {
     )
 
     return (
-        <Fragment>
+
+        <Fragment className={classes.Fragment}>
             <div className={classes.root}>
                 <SnackBar text={text}
                           style={severity}
@@ -104,10 +105,10 @@ const Dashboard = (props) => {
             </div>
             <Header
                 logoAltText="Learning Squad"
-                logo={`/static/images/LS.png`}
+                logo={`/static/images/white.jpg`}
                 toggleDrawer={handleDrawerToggle}
             />
-            <div className={classNames(classes.panel, 'theme-dark')}>
+            <div className={classNames(classes.panel, 'theme-dark')} >
                 <Sidebar
                     routes={routes.items}
                     opened={opened}
@@ -118,6 +119,7 @@ const Dashboard = (props) => {
                 </Workspace>
             </div>
         </Fragment>
+
     )
 }
 

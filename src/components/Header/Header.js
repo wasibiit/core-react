@@ -14,15 +14,20 @@ import ImageAvatars from "../Avatar/ImageAvatars";
 import {Person} from "@material-ui/icons";
 import {useSelector} from "react-redux";
 import {getters} from "../../redux/selectors/selectors";
+
 import HeaderMenu from "../Menu/HeaderMenu";
 import HeaderMenuItems from "../Menu/HeaderMenuItems";
 
+
+import Typography from "@material-ui/core/Typography";
 
 const Header = (props) => {
   const { classes, logo, logoAltText } = props;
   const [auth] = useState(true);
   const {user} = useSelector(getters.getCurrentUser);
   const [anchorEl, setAnchorEl] = useState(null);
+  console.log(user)
+
   const open = Boolean(anchorEl);
 
   useEffect(() => {
@@ -55,7 +60,9 @@ const Header = (props) => {
           <div className={classes.branding}>
             <img src={logo} alt={logoAltText} className="resize" />
           </div>
+
             <div className={classes.searchWrapper} />
+
           <Hidden smUp>
             <span className="flexSpacer" />
           </Hidden>
@@ -69,6 +76,9 @@ const Header = (props) => {
                 >
                   {/*<AccountCircle />*/}
                   <ImageAvatars />
+                  <Typography variant="h6" component="h2">
+                   Nadia
+                  </Typography>
                 </IconButton>
                 <HeaderMenu
                     id="customized-menu"
