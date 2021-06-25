@@ -20,7 +20,7 @@ import ActiveFilters from "./Filters/ActiveFilters";
 import Quiz from '../components/Quiz/Quiz';
 
 //Settings
-import Setting from "./Settings/Settings";
+import Setting from "./Settings/Profile";
 
 //Errors
 import NotFound from "./Errors/NotFound";

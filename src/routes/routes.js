@@ -27,7 +27,7 @@ import {
 export default {
     items: [
         {
-            path: '/dashboard',
+            path: '/',
             name: 'Dashboard',
             icon: ExploreIcon,
             component: Home
@@ -107,8 +107,15 @@ export default {
         {
             path: '/settings',
             name: 'Settings',
+            type: 'submenu',
             icon: Settings,
-            component: Setting,
-        },
+            children: [
+                {
+                    path: '/profile',
+                    name: 'Profile',
+                    component: Profile
+                }
+            ]
+        }
     ]
 };
