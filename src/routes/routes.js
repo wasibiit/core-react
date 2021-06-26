@@ -1,29 +1,20 @@
 // Icons
 import ExploreIcon from '@material-ui/icons/Explore';
-import People from '@material-ui/icons/People';
 import Room from '@material-ui/icons/Room';
-import FilterList from '@material-ui/icons/FilterList';
 import Settings from '@material-ui/icons/Settings';
 import Social from "../pages/Social/Social";
 import MessageIcon from '@material-ui/icons/Message';
 import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
-
+import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
 // Pages
 import {
     Home,
     UsersList,
-    BlockedUsers,
-    HotRooms,
-    AllRooms,
-    ActiveFilters,
     Quiz,
     Setting,
     Programs,
     Semester
 } from '../pages/pages';
-
-
-
 export default {
     items: [
         {
@@ -33,18 +24,14 @@ export default {
             component: Home
         },
         {
-            path: '/users',
+            path: '/PeopleOutlineIcon',
             name: 'Users',
             type: 'submenu',
-            icon: People,
+            icon: PeopleOutlineIcon,
             children: [
+
                 {
-                    path: '/blockedusers',
-                    name: 'Blocked Users',
-                    component: BlockedUsers
-                },
-                {
-                    path: '/userslist',
+                    path: '/usersList',
                     name: 'Users List',
                     component: UsersList
                 }
@@ -66,20 +53,10 @@ export default {
         },
         {
             path: '/rooms',
-            name: 'Rooms',
+            name: 'Admin Role',
             type: 'submenu',
             icon: Room,
             children: [
-                {
-                    path: '/hot',
-                    name: 'ClassRoom',
-                    component: HotRooms
-                },
-                {
-                    path: '/allrooms',
-                    name: 'VirtualRoom',
-                    component: AllRooms
-                },
                 {
                     path: '/Programs',
                     name: 'Programs',
@@ -93,12 +70,6 @@ export default {
             ]
         },
         {
-            path: '/filters',
-            name: 'Filters / Restricted Terms',
-            icon: FilterList,
-            component: ActiveFilters
-        },
-        {
             path: '/quiz',
             name: ' Quiz',
             icon: QueryBuilderIcon,
@@ -109,6 +80,7 @@ export default {
             name: 'Settings',
             icon: Settings,
             component: Setting,
-        },
+        }
+
     ]
 };

@@ -9,7 +9,6 @@ import {withStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import {useDispatch, useSelector} from "react-redux";
 import CardContent from '@material-ui/core/CardContent';
-
 import {getReqOptions, setCookie} from "../../../utils/common";
 import {signInQuery} from "../../../data/queries";
 import {getters} from "../../../redux/selectors/selectors";

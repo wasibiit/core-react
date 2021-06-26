@@ -25,7 +25,7 @@ const SocialStyles = theme => ({
     [theme.breakpoints.down('xs')]: {
       padding: theme.spacing(2),
     },
-    fontSize: '13px',
+    fontSize: '15px',
     outline: 0,
     backgroundColor: theme.palette.background.paper,
   }

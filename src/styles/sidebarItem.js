@@ -51,7 +51,7 @@ const SidebarItemStyles = theme => ({
         color: "#E1E2E2" ,
     },
     error: {
-        backgroundColor: "#1D2228" ,
+        backgroundColor: "#1D2228",
         color: "#E1E2E2",
     }
 });

@@ -11,6 +11,7 @@ const StatCardStyles = theme => ({
       width: "60px",
       height: "100px",
       padding: "80px",
+      backgroundColor: "#E1E2E2"
     }
   },
   icon: {

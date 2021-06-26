@@ -1,21 +1,19 @@
 import React from "react";
 import {CardContent} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import {Paper} from "@material-ui/core/Paper";
-
+import Paper from '@material-ui/core/Paper';
 const Programs = () => {
     {
         return (
-
+            <Paper elevation={6}>
             <form>
-
                 <div className="text-xs-center pb-xs">
                     <div className={"form"} style={{background: 'linear-gradient( lightgrey, white)'}}>
-                        <h2>Form Validation</h2>
+                        <h2 style={{textAlign:"center"}}>Form Validation</h2>
                     </div>
-                    <div style={{margin: "normal", backgroundColor: "", hight: "30px"}}>
+                    <div>
                         <CardContent>
-                            <div style={{display: "flex", justifyContent: "space-evenly"}}>
+                            <div style={{display: "flex", justifyContent: "space-evenly", padding:" 70px"}}>
 
                                 <input type="text"
                                        placeholder="UserName"
@@ -29,14 +27,21 @@ const Programs = () => {
                                        label="Duration"
                                        className="Programs"
                                        margine="normal"/>
-                                <Button variant="raised" type="submit">Delete</Button>
-                                <Button variant="raised" type="submit">Save</Button>
+                                <Button
+                                    style={{color:"#FB8122", backgroundColor:'#E1E2E2'}}
+                                    variant="raised"
+                                    type="submit">Delete</Button>
+                                <Button
+                                    style={{color:"#FB8122", backgroundColor:'#E1E2E2'}}
+                                    variant="raised"
+                                    type="submit">Save</Button>
                             </div>
                         </CardContent>
                     </div>
                 </div>
 
             </form>
+            </Paper>
         )
             ;
     }

@@ -9,6 +9,7 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
 import SidebarItem from './SidebarItem';
 import SidebarStyles from '../../styles/sidebar';
+import {icon} from "leaflet/dist/leaflet-src.esm";
 
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
@@ -55,7 +56,10 @@ class Sidebar extends Component {
                   BackdropProps: {
                     className: classes.backdrop,
                   },
-                  onBackdropClick: toggleDrawer
+                  onBackdropClick: toggleDrawer,
+                    Icon: {
+                      className: classes.icon
+                    }
                 }}
             >
               {menu}

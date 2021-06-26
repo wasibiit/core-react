@@ -18,7 +18,6 @@ const Home = () => {
                           title="Tag"
                           color="#FB8122"
                           icon={<LocalOfferIcon />}
-
                       />
                   </Grid>
                   <Grid item xs={12} sm={6} md={3}>
@@ -63,9 +62,6 @@ const Home = () => {
               </Grid>
           </div>
           <div>
-
-              {/*<Charts/>*/}
-              {/*<Editor/>*/}
 
           </div>
 

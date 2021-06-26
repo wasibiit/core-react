@@ -1,22 +1,23 @@
 import React from 'react';
 import CardContent from "@material-ui/core/CardContent";
-import {NativeSelect} from "@material-ui/core";
+import {NativeSelect, Paper} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import InputLabel from '@material-ui/core/InputLabel';
 
 
 const Semester = () => {
     return (
+        <Paper elevation={6}>
         <div className={" Semester"}>
             <form>
 
                 <div className="text-xs-center pb-xs">
                     <div className={"form"} style={{background: 'linear-gradient( lightgrey, white)'}}>
-                        <h2>Form Validation</h2>
+                        <h2 style={{textAlign:"center"}}>Form Validation</h2>
                     </div>
-                    <div style={{margin: "normal", backgroundColor: "", hight: "30px"}}>
+                    <div>
                         <CardContent>
-                            <div style={{display: "flex", justifyContent: "space-evenly"}}>
+                            <div style={{display: "flex", justifyContent: "space-evenly", padding:"70px"}}>
                                 <input type="text"
                                        placeholder="UserName"
                                        id="UserName"
@@ -52,14 +53,21 @@ const Semester = () => {
                                 {/*        <option value="8">8th</option>*/}
                                 {/*    </NativeSelect>*/}
                                 {/*</div>*/}
-                                <Button variant="raised" type="submit">Delete</Button>
-                                <Button variant="raised" type="submit">Save</Button>
+                                <Button
+                                    style={{color:"#FB8122", backgroundColor:'#E1E2E2'}}
+                                    variant="raised"
+                                    type="submit">Delete</Button>
+                                <Button
+                                    style={{color:"#FB8122", backgroundColor:'#E1E2E2'}}
+                                    variant="raised"
+                                    type="submit">Save</Button>
                             </div>
                         </CardContent>
                     </div>
                 </div>
             </form>
         </div>
+        </Paper>
 
     );
 
