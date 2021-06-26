@@ -4,7 +4,7 @@ import Home from './Home/Home';
 // Users
 import UsersList from './Users/UsersList';
 
-//Authntication
+//Authentication
 import Signin from './Authentication/Signin/Signin'
 
 import Programs from './Rooms/Programs';
@@ -14,7 +14,7 @@ import Semester from './Rooms/Semester';
 import Quiz from '../components/Quiz/Quiz';
 
 //Settings
-import Setting from "./Settings/Profile";
+import Profile  from "./Settings/Profile";
 
 //Errors
 import NotFound from "./Errors/NotFound";
@@ -28,7 +28,7 @@ export {
     Signin,
     UsersList,
     Quiz,
-    Setting,
+    Profile,
     NotFound,
     BackendError,
     Dashboard,

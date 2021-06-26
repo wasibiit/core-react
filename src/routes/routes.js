@@ -2,7 +2,6 @@
 import ExploreIcon from '@material-ui/icons/Explore';
 import People from '@material-ui/icons/People';
 import Room from '@material-ui/icons/Room';
-import FilterList from '@material-ui/icons/FilterList';
 import Settings from '@material-ui/icons/Settings';
 import Social from "../pages/Social/Social";
 import MessageIcon from '@material-ui/icons/Message';
@@ -12,12 +11,8 @@ import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
 import {
     Home,
     UsersList,
-    BlockedUsers,
-    HotRooms,
-    AllRooms,
-    ActiveFilters,
     Quiz,
-    Setting,
+    Profile,
     Programs,
     Semester
 } from '../pages/pages';
@@ -38,11 +33,6 @@ export default {
             type: 'submenu',
             icon: People,
             children: [
-                {
-                    path: '/blockedusers',
-                    name: 'Blocked Users',
-                    component: BlockedUsers
-                },
                 {
                     path: '/userslist',
                     name: 'Users List',
@@ -71,16 +61,6 @@ export default {
             icon: Room,
             children: [
                 {
-                    path: '/hot',
-                    name: 'ClassRoom',
-                    component: HotRooms
-                },
-                {
-                    path: '/allrooms',
-                    name: 'VirtualRoom',
-                    component: AllRooms
-                },
-                {
                     path: '/Programs',
                     name: 'Programs',
                     component: Programs
@@ -91,12 +71,6 @@ export default {
                     component: Semester
                 }
             ]
-        },
-        {
-            path: '/filters',
-            name: 'Filters / Restricted Terms',
-            icon: FilterList,
-            component: ActiveFilters
         },
         {
             path: '/quiz',

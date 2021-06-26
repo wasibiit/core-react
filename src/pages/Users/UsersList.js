@@ -2,7 +2,6 @@ import React from "react"
 import {Card, CardContent} from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
-import PasswordField from 'material-ui-password-field';
 import DatePickers from "../../components/Calender/Dob";
 import {Formik} from "formik";
 export default class UsersList extends React.Component {
@@ -47,7 +46,6 @@ export default class UsersList extends React.Component {
                                                    label="LastName"
                                                    className="Programs"
                                                    margine="normal"/>
-                                            <PasswordField/>
                                             <DatePickers/>
 
                                             <Button

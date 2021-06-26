@@ -10,7 +10,7 @@ const SocialStyles = theme => ({
       width: 64,
       height: 64,
     },
-    marginBottom: theme.spacing(1)
+    marginBottom: theme.spacing(1),
   },
   tabRoot: {
     textTransform: 'initial',
@@ -28,6 +28,9 @@ const SocialStyles = theme => ({
     fontSize: '15px',
     outline: 0,
     backgroundColor: theme.palette.background.paper,
+  },
+  profile: {
+    alignContent: 'center'
   }
 });
 
