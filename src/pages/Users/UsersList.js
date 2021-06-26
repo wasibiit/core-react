@@ -15,7 +15,11 @@ export default class UsersList extends React.Component {
                         </div>
                         <div>
                             <Card>
+<<<<<<< Updated upstream
                                 <div style={{display: "flex",justifyContent: "space-evenly", padding:" 40px"}}>
+=======
+                                <div style={{display: "flex", justifyContent: "space-evenly", padding:" 40px"}}>
+>>>>>>> Stashed changes
                                     <CardContent style={{
                                         display: 'flex',
                                         alignItems: 'center',
@@ -48,7 +52,10 @@ export default class UsersList extends React.Component {
                                             variant="raised"
                                             type="submit">Save</Button>
                                     </CardContent>
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
                                 </div>
                             </Card>
                         </div>
