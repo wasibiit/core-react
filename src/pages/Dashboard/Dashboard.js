@@ -61,7 +61,12 @@ const Dashboard = (props) =>  {
         }
     }, [])
 
-    if (!isAuthenticated && !check) {
+    console.log("------------start------------");
+    console.log("isAuthenticated=" + isAuthenticated);
+    console.log("cookie=" + check);
+    console.log("----------end----------------");
+
+    if (!check) {
         return <Redirect to={"/signin"}/>
     }
 

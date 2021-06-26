@@ -1,37 +1,50 @@
 // Icons
 import ExploreIcon from '@material-ui/icons/Explore';
+import People from '@material-ui/icons/People';
 import Room from '@material-ui/icons/Room';
+import FilterList from '@material-ui/icons/FilterList';
 import Settings from '@material-ui/icons/Settings';
 import Social from "../pages/Social/Social";
 import MessageIcon from '@material-ui/icons/Message';
 import QueryBuilderIcon from '@material-ui/icons/QueryBuilder';
-import PeopleOutlineIcon from '@material-ui/icons/PeopleOutline';
+
 // Pages
 import {
     Home,
     UsersList,
+    BlockedUsers,
+    HotRooms,
+    AllRooms,
+    ActiveFilters,
     Quiz,
     Setting,
     Programs,
     Semester
 } from '../pages/pages';
+
+
+
 export default {
     items: [
         {
-            path: '/dashboard',
+            path: '/',
             name: 'Dashboard',
             icon: ExploreIcon,
             component: Home
         },
         {
-            path: '/PeopleOutlineIcon',
+            path: '/users',
             name: 'Users',
             type: 'submenu',
-            icon: PeopleOutlineIcon,
+            icon: People,
             children: [
-
                 {
-                    path: '/usersList',
+                    path: '/blockedusers',
+                    name: 'Blocked Users',
+                    component: BlockedUsers
+                },
+                {
+                    path: '/userslist',
                     name: 'Users List',
                     component: UsersList
                 }
@@ -53,10 +66,20 @@ export default {
         },
         {
             path: '/rooms',
-            name: 'Admin Role',
+            name: 'Rooms',
             type: 'submenu',
             icon: Room,
             children: [
+                {
+                    path: '/hot',
+                    name: 'ClassRoom',
+                    component: HotRooms
+                },
+                {
+                    path: '/allrooms',
+                    name: 'VirtualRoom',
+                    component: AllRooms
+                },
                 {
                     path: '/Programs',
                     name: 'Programs',
@@ -70,6 +93,12 @@ export default {
             ]
         },
         {
+            path: '/filters',
+            name: 'Filters / Restricted Terms',
+            icon: FilterList,
+            component: ActiveFilters
+        },
+        {
             path: '/quiz',
             name: ' Quiz',
             icon: QueryBuilderIcon,
@@ -78,9 +107,15 @@ export default {
         {
             path: '/settings',
             name: 'Settings',
+            type: 'submenu',
             icon: Settings,
-            component: Setting,
+            children: [
+                {
+                    path: '/profile',
+                    name: 'Profile',
+                    component: Profile
+                }
+            ]
         }
-
     ]
 };
