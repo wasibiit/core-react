@@ -29,9 +29,14 @@ const SocialStyles = theme => ({
     outline: 0,
     backgroundColor: theme.palette.background.paper,
   },
-  profile: {
-    alignContent: 'center'
-  }
+  paper: {
+    maxWidth: "95%",
+    marginTop: "2%",
+    margin: "auto",
+    display: "flex",
+    justifyContent: "center"
+  },
+
 });
 
 export default SocialStyles;

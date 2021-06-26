@@ -8,11 +8,11 @@ import DashboardStyles from '../../styles/dashboard';
 import routes from '../../routes/routes';
 import {useDispatch, useSelector} from "react-redux";
 import {getters} from "../../redux/selectors/selectors";
-import {checkCookie, getCookie, getReqOptions} from "../../utils/common";
-import {constants} from "../../utils/constants";
-import {getCurrentUserQuery} from "../../data/queries";
+import {checkCookie, getCookie} from "../../utils/common";
+// import {getCurrentUserQuery} from "../../data/queries";
 import {SnackBar} from "../../components/SnackBar/SnackBar";
 import {dispatchers} from "../../redux/dispatchers/dispatchers";
+// import {Request} from "../../data/requests";
 
 function resizeDispatch() {
     if (typeof (Event) === 'function') {
@@ -33,31 +33,15 @@ const Dashboard = (props) =>  {
     const {setCurrentUser} = dispatchers.currentUserDispatcher(useDispatch())
     let check = checkCookie("user")
     const {isAuthenticated} = useSelector(getters.getIsAuthenticated);
+    const {user} = useSelector(getters.getCurrentUser);
 
     useEffect(() => {
         // function handleStatusChange(status) {
         //   setIsOnline(status.isOnline);
         // }
         if(isAuthenticated) {
-            fetch(constants.BASEURL, getReqOptions(getCurrentUserQuery(getCookie("user"))))
-                .then(res => res.json())
-                .then(
-                    (result) => {
-                        if (result.data.getUserFromJwt === null) {
-                            handleAlert("Error!", "error")
-                        } else {
-                            let res = result.data.getUserFromJwt
-                            setCurrentUser(res)
-                            handleAlert('Welcome Back ' + res.firstName + ' ' + res.lastName + '!', "success")
-                        }
-                    },
-                    (error) => {
-                        handleAlert("Connection Failed!", "error")
-                        console.log("------------start------------");
-                        console.log(error);
-                        console.log("----------end----------------");
-                    }
-                )
+            // Request(getCurrentUserQuery(getCookie("uer")), setCurrentUser, "getUserFromJwt")
+            handleAlert("Welcome Back " + user["firstName"] + ' ' + user["lastName"] + '!')
         }
     }, [])
 

@@ -9,31 +9,38 @@ import IconButton from '@material-ui/core/IconButton';
 import Hidden from '@material-ui/core/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
 import HeaderStyles from '../../styles/header';
-import "./header.css"
 import ImageAvatars from "../Avatar/ImageAvatars";
 import {Person} from "@material-ui/icons";
-import {useSelector} from "react-redux";
-import {getters} from "../../redux/selectors/selectors";
-
+import {useDispatch, useSelector} from "react-redux";
 import HeaderMenu from "../Menu/HeaderMenu";
 import HeaderMenuItems from "../Menu/HeaderMenuItems";
-
-
 import Typography from "@material-ui/core/Typography";
+
+
+import "./header.css"
+import {Request} from "../../data/requests";
+import {getCookie} from "../../utils/common";
+import {getCurrentUserQuery} from "../../data/queries";
+import {getters} from "../../redux/selectors/selectors";
+import {dispatchers} from "../../redux/dispatchers/dispatchers";
+
 
 const Header = (props) => {
   const { classes, logo, logoAltText } = props;
   const [auth] = useState(true);
   const {user} = useSelector(getters.getCurrentUser);
+  const {setCurrentUser} = dispatchers.currentUserDispatcher(useDispatch())
   const [anchorEl, setAnchorEl] = useState(null);
-  console.log(user)
-
+  console.log("------------start------------");
+  console.log(user);
+  console.log("----------end----------------");
   const open = Boolean(anchorEl);
 
   useEffect(() => {
     // function handleStatusChange(status) {
     //   setIsOnline(status.isOnline);
-    })
+    Request(getCurrentUserQuery(getCookie("user")), setCurrentUser, "getUserFromJwt")
+    }, [])
 
 
   const handleClose = () => {
@@ -77,7 +84,7 @@ const Header = (props) => {
                   {/*<AccountCircle />*/}
                   <ImageAvatars />
                   <Typography variant="h6" component="h2">
-                   Nadia
+                    {user["firstName"] + ' ' + user["lastName"]}
                   </Typography>
                 </IconButton>
                 <HeaderMenu

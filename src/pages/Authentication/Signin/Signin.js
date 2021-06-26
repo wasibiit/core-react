@@ -9,12 +9,13 @@ import {withStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import {useDispatch, useSelector} from "react-redux";
 import CardContent from '@material-ui/core/CardContent';
-import {getReqOptions, setCookie} from "../../../utils/common";
+import {setCookie} from "../../../utils/common";
 import {signInQuery} from "../../../data/queries";
 import {getters} from "../../../redux/selectors/selectors";
 import {dispatchers} from "../../../redux/dispatchers/dispatchers";
 import {SnackBar} from "../../../components/SnackBar/SnackBar";
 import {constants} from "../../../utils/constants";
+import {getReqOptions} from "../../../data/requests";
 
 const Signin = (props) => {
     const {classes} = props;
@@ -83,7 +84,7 @@ const Signin = (props) => {
                                                     setCookie("user", result.data.userSignin.token)
                                                     setCurrentUser(result.data.userSignin)
                                                     setIsAuthenticated(true)
-                                                    history.push("/dashboard");
+                                                    history.push("/");
                                                 }
                                             },
                                             (error) => {
