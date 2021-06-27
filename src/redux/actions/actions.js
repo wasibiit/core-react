@@ -5,6 +5,13 @@ const setEmail = (email) => ({type: constants.actionSignInTypes.EMAIL, payload: 
 const setPassword = (password) => ({type: constants.actionSignInTypes.PASSWORD, payload: password})
 const setCurrentUser = (user) => ({type: constants.actionCurrentUserTypes.USER, payload: user})
 const setIsAuthenticated = (isAuthenticated) => ({type: constants.actionCurrentUserTypes.IS_AUTHENTICATED, payload: isAuthenticated})
+const setUsersList = (list) => ({type: constants.actionUsersListTypes.USERS_LIST, payload: list})
 
 
-export const actions = {setEmail, setPassword, setCurrentUser, setIsAuthenticated};
+export const actions = {
+    setEmail,
+    setPassword,
+    setCurrentUser,
+    setIsAuthenticated,
+    setUsersList
+};

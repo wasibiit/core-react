@@ -31,9 +31,6 @@ const Header = (props) => {
   const {user} = useSelector(getters.getCurrentUser);
   const {setCurrentUser} = dispatchers.currentUserDispatcher(useDispatch())
   const [anchorEl, setAnchorEl] = useState(null);
-  console.log("------------start------------");
-  console.log(user);
-  console.log("----------end----------------");
   const open = Boolean(anchorEl);
 
   useEffect(() => {

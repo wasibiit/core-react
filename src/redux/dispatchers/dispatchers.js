@@ -10,6 +10,14 @@ const currentUserDispatcher = (dispatch) => ({
     setIsAuthenticated: (isAuthenticated) => dispatch(actions.setIsAuthenticated(isAuthenticated)),
 })
 
+const usersListDispatcher = (dispatch) => ({
+    setUsersList: (list) => dispatch(actions.setUsersList(list))
+})
 
 
-export const dispatchers = { currentUserDispatcher, signInDispatcher };
+
+export const dispatchers = {
+    currentUserDispatcher,
+    signInDispatcher,
+    usersListDispatcher
+};

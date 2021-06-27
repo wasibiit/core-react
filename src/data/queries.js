@@ -37,3 +37,17 @@ export const getCurrentUserQuery = (token) => {
   }
 }`
 }
+
+export const getUsersList = () => {
+    return `query{
+  getUsersList{
+    firstName,
+    lastName,
+    dob,
+    email,
+    role {
+      id
+    }
+  }
+}`
+}
