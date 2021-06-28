@@ -60,3 +60,23 @@ export const AuthRequest = (query, setData, reqestedFor, token) => {
             }
         )
 };
+
+export const AuthRequestWithFlag = (query, setData, reqestedFor, token) => {
+    fetch(constants.BASEURL, getAuthReqOptions(query, token))
+        .then(res => res.json())
+        .then(
+            (result) => {
+                if (result.data[`${reqestedFor}`] === null) {
+                    setData(false)
+                } else {
+                    let res = result.data[`${reqestedFor}`]
+                    setData(true)
+                }
+            },
+            (error) => {
+                console.log("------------start------------");
+                console.log(error);
+                console.log("----------end----------------");
+            }
+        )
+};

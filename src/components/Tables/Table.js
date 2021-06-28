@@ -17,7 +17,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getters} from "../../redux/selectors/selectors";
 import {dispatchers} from "../../redux/dispatchers/dispatchers";
 import {AuthRequest, Request} from "../../data/requests";
-import {getUsersList} from "../../data/queries";
+import {getUsersListQuery} from "../../data/queries";
 import {getCookie} from "../../utils/common";
 
 const useRowStyles = makeStyles({
@@ -93,7 +93,7 @@ export default function CollapsibleTable() {
     const {setUsersList} = dispatchers.usersListDispatcher(useDispatch())
 
     useEffect(() => {
-        AuthRequest(getUsersList(), setUsersList, "getUsersList", getCookie("user"))
+        AuthRequest(getUsersListQuery(), setUsersList, "getUsersList", getCookie("user"))
         // handleAlert("Welcome Back " + user["firstName"] + ' ' + user["lastName"] + '!')
     }, [])
     const rows = usersList.map((user) => createData(user.firstName, user.lastName, user.dob, user.email, user["role"]["id"]))

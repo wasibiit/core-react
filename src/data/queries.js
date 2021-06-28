@@ -38,7 +38,7 @@ export const getCurrentUserQuery = (token) => {
 }`
 }
 
-export const getUsersList = () => {
+export const getUsersListQuery = () => {
     return `query{
   getUsersList{
     firstName,
@@ -52,10 +52,34 @@ export const getUsersList = () => {
 }`
 }
 
-export const getRoles = () => {
+export const getRolesQuery = () => {
     return `query{
   getRolesList{
     id
+  }
+}`
+}
+
+export const createUserQuery = (user) => {
+    return `mutation {
+  createUser(
+    input: {
+      firstName: "${user.firstName}",
+      lastName: "${user.lastName}",
+      email: "${user.email}",
+      dob: "${user.dob}",
+      password: "${user.password}",
+      roleId: "${user.role}"
+    }
+  )
+  {
+    firstName,
+    lastName,
+    dob,
+    email,
+    role {
+      id
+    }
   }
 }`
 }
