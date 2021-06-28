@@ -7,22 +7,27 @@ import UserStyles from "../../styles/users";
 import {withStyles} from '@material-ui/core/styles';
 import {useDispatch, useSelector} from "react-redux";
 import {getters} from "../../redux/selectors/selectors";
-import {Request} from "../../data/requests";
-import {getUsersList} from "../../data/queries";
+import {AuthRequest, Request} from "../../data/requests";
+import {getRoles} from "../../data/queries";
 import {dispatchers} from "../../redux/dispatchers/dispatchers";
 import CollapsibleTable from "../../components/Tables/Table";
+import {getCookie} from "../../utils/common";
 
 
 const UsersList = (props) => {
     const {classes} = props;
     const [alert, setAlert] = useState(false);
+    const [roles, setRoles] = useState([]);
 
     useEffect(() => {
         if(alert) {
             // handleAlert("Welcome Back " + user["firstName"] + ' ' + user["lastName"] + '!')
+        } else{
+            AuthRequest(getRoles(), setRoles, "getRolesList", getCookie("user"))
         }
     }, [alert])
 
+    const capitalizeFirstLetter = ([first, ...rest]) => first.toLocaleUpperCase() + rest.join('')
     return (
         <div>
             <Paper elevation={4} className={classes.paper}>
@@ -64,13 +69,13 @@ const UsersList = (props) => {
                                     fullWidth
                                     inputProps={{
                                         name: 'role',
-                                        id: 'outlined-age-native-simple',
+                                        id: 'roles',
                                     }}
                                 >
                                     <option aria-label="None" value="" />
-                                    <option value={10}>Admin</option>
-                                    <option value={20}>Teacher</option>
-                                    <option value={30}>Student</option>
+                                    {roles.map((role) => <option value={role["id"]}>
+                                        {capitalizeFirstLetter(`${role["id"]}`)}
+                                    </option>)}
                                 </Select>
                             </FormControl>
                             <TextField

@@ -51,3 +51,11 @@ export const getUsersList = () => {
   }
 }`
 }
+
+export const getRoles = () => {
+    return `query{
+  getRolesList{
+    id
+  }
+}`
+}
