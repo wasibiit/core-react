@@ -1,20 +1,20 @@
-import React, {useEffect, useState} from "react"
-import {FormControl, InputLabel, Select, TextField} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
+import {Formik} from "formik";
+import {useDispatch} from "react-redux";
 import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import UserStyles from "../../styles/users";
+import Button from "@material-ui/core/Button";
+import React, {useEffect, useState} from "react"
 import {withStyles} from '@material-ui/core/styles';
-import {AuthRequest, AuthRequestWithFlag} from "../../data/requests";
-import {createUserQuery, getRolesQuery, getUsersListQuery} from "../../data/queries";
-import CollapsibleTable from "../../components/Tables/Table";
+import Typography from "@material-ui/core/Typography";
+import {FormControl, InputLabel, Select, TextField} from "@material-ui/core";
+
+import UserStyles from "../../styles/users";
 import {getCookie} from "../../utils/common";
 import {constants} from "../../utils/constants";
-import {Formik} from "formik";
 import {SnackBar} from "../../components/SnackBar/SnackBar";
 import {dispatchers} from "../../redux/dispatchers/dispatchers";
-import {useDispatch} from "react-redux";
-
+import UsersListTable from "../../components/Tables/UsersListTable";
+import {AuthRequest, AuthRequestWithFlag} from "../../data/requests";
+import {createUserQuery, getRolesQuery, getUsersListQuery} from "../../data/queries";
 
 const UsersList = (props) => {
     const {classes} = props;
@@ -24,10 +24,6 @@ const UsersList = (props) => {
     const [text, setText] = useState("");
     const [severity, setSeverity] = useState("");
     const {setUsersList} = dispatchers.usersListDispatcher(useDispatch())
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [dob, setDob] = useState();
-    // const [firstName, setDob] = useState();
 
     useEffect(() => {
         if (alert) {
@@ -193,7 +189,7 @@ const UsersList = (props) => {
                 </div>
             </Paper>
             <Paper elevation={4} className={classes.paper}>
-                <CollapsibleTable/>
+                <UsersListTable />
             </Paper>
         </div>
     )

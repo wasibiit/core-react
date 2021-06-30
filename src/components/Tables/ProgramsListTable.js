@@ -17,7 +17,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getters} from "../../redux/selectors/selectors";
 import {dispatchers} from "../../redux/dispatchers/dispatchers";
 import {AuthRequest, Request} from "../../data/requests";
-import {getUsersListQuery} from "../../data/queries";
+import {getProgramsQuery, getUsersListQuery} from "../../data/queries";
 import {getCookie} from "../../utils/common";
 
 const useRowStyles = makeStyles({
@@ -28,13 +28,10 @@ const useRowStyles = makeStyles({
     },
 });
 
-function createData(firstName, lastName, dob, email, role) {
+function createData(program, duration) {
     return {
-        firstName,
-        lastName,
-        dob,
-        email,
-        role
+        program,
+        duration
     };
 }
 
@@ -51,33 +48,26 @@ function Row(props) {
                         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
                 </TableCell>
-                <TableCell>{row["firstName"] + ' ' + row["lastName"]}</TableCell>
-                <TableCell>{row["email"]}</TableCell>
-                <TableCell>{row["role"]}</TableCell>
+                <TableCell>{row["program"]}</TableCell>
+                <TableCell>{row["duration"]}</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box margin={1}>
                             <Typography variant="h6" gutterBottom component="div">
-                                {row["firstName"] + ' ' + row["lastName"]}
+                                {row["program"]}
                             </Typography>
                             <Table size="small" aria-label="purchases">
                                 <TableHead>
                                     <TableRow>
-                                        <TableCell>FirstName</TableCell>
-                                        <TableCell>LastName</TableCell>
-                                        <TableCell>Email</TableCell>
-                                        <TableCell>Date Of Birth</TableCell>
-                                        <TableCell>Role</TableCell>
+                                        <TableCell>Program</TableCell>
+                                        <TableCell>Duration</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    <TableCell component="th" scope="row">{row["firstName"]}</TableCell>
-                                    <TableCell>{row["lastName"]}</TableCell>
-                                    <TableCell>{row["email"]}</TableCell>
-                                    <TableCell>{row["dob"]}</TableCell>
-                                    <TableCell>{row["role"]}</TableCell>
+                                    <TableCell component="th" scope="row">{row["program"]}</TableCell>
+                                    <TableCell>{row["duration"]}</TableCell>
                                 </TableBody>
                             </Table>
                         </Box>
@@ -88,15 +78,13 @@ function Row(props) {
     );
 }
 
-export default function CollapsibleTable() {
-    const {usersList} = useSelector(getters.getUsersList);
-    const {setUsersList} = dispatchers.usersListDispatcher(useDispatch())
+export default function ProgramsListTable() {
+    const {programsList} = useSelector(getters.getProgramsList);
 
     useEffect(() => {
-        AuthRequest(getUsersListQuery(), setUsersList, "getUsersList", getCookie("user"))
         // handleAlert("Welcome Back " + user["firstName"] + ' ' + user["lastName"] + '!')
     }, [])
-    const rows = usersList.map((user) => createData(user.firstName, user.lastName, user.dob, user.email, user["role"]["id"]))
+    const rows = programsList.map((program) => createData(program.name, program.duration))
 
     return (
         <TableContainer component={Paper}>
@@ -104,9 +92,8 @@ export default function CollapsibleTable() {
                 <TableHead>
                     <TableRow>
                         <TableCell />
-                        <TableCell>Name</TableCell>
-                        <TableCell>Email</TableCell>
-                        <TableCell>Type</TableCell>
+                        <TableCell>Program</TableCell>
+                        <TableCell>Duration</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

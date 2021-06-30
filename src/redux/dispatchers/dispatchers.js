@@ -14,10 +14,15 @@ const usersListDispatcher = (dispatch) => ({
     setUsersList: (list) => dispatch(actions.setUsersList(list))
 })
 
+const programsListDispatcher = (dispatch) => ({
+    setProgramsList: (list) => dispatch(actions.setProgramsList(list))
+})
+
 
 
 export const dispatchers = {
     currentUserDispatcher,
     signInDispatcher,
-    usersListDispatcher
+    usersListDispatcher,
+    programsListDispatcher
 };

@@ -65,7 +65,6 @@ const Dashboard = (props) =>  {
     };
 
     const handleDrawerToggle = () => {
-        console.log("--------------Drawer Toggeled!!!")
         setOpened(!opened)
         resizeDispatch()
     };

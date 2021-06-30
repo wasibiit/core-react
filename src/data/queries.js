@@ -60,6 +60,15 @@ export const getRolesQuery = () => {
 }`
 }
 
+export const getProgramsQuery = () => {
+    return `query{
+  getProgramsList{
+    name,
+    duration
+  }
+}`
+}
+
 export const createUserQuery = (user) => {
     return `mutation {
   createUser(
@@ -80,6 +89,21 @@ export const createUserQuery = (user) => {
     role {
       id
     }
+  }
+}`
+}
+
+export const createProgramQuery = (program) => {
+    return `mutation {
+  createProgram(
+    input: {
+      name: "${program.program}",
+      duration: "${program.duration}"
+    }
+  )
+  {
+    duration,
+    name
   }
 }`
 }
