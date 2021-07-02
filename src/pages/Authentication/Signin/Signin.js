@@ -43,8 +43,8 @@ const Signin = (props) => {
     return (
         <div className={classNames(classes.session, classes.background)}>
             <div className={classes.root}>
-                <SnackBar text={"Wrong Credentials!"}
-                          style={"warning"}
+                <SnackBar text={text}
+                          style={severity}
                           handleClose={handleClose}
                           open={open}
                 />

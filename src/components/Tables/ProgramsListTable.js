@@ -42,7 +42,7 @@ function Row(props) {
 
     return (
         <React.Fragment>
-            <TableRow className={classes.root}>
+            <TableRow className={classes.root} onClick={() => setOpen(!open)}>
                 <TableCell>
                     <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
                         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
