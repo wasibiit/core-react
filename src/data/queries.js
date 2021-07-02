@@ -63,7 +63,7 @@ export const getRolesQuery = () => {
 export const getProgramsQuery = () => {
     return `query{
   getProgramsList{
-    name,
+    id,
     duration
   }
 }`
@@ -97,13 +97,13 @@ export const createProgramQuery = (program) => {
     return `mutation {
   createProgram(
     input: {
-      name: "${program.program}",
+      id: "${program.program}",
       duration: "${program.duration}"
     }
   )
   {
-    duration,
-    name
+    id,
+    duration
   }
 }`
 }
