@@ -28,9 +28,9 @@ const useRowStyles = makeStyles({
     },
 });
 
-function createData(program, duration) {
+function createData(id, duration) {
     return {
-        program,
+        id,
         duration
     };
 }
@@ -48,7 +48,7 @@ function Row(props) {
                         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
                 </TableCell>
-                <TableCell>{row["program"]}</TableCell>
+                <TableCell>{row["id"]}</TableCell>
                 <TableCell>{row["duration"]}</TableCell>
             </TableRow>
             <TableRow>
@@ -56,7 +56,7 @@ function Row(props) {
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box margin={1}>
                             <Typography variant="h6" gutterBottom component="div">
-                                {row["program"]}
+                                {row["id"]}
                             </Typography>
                             <Table size="small" aria-label="purchases">
                                 <TableHead>
@@ -66,7 +66,7 @@ function Row(props) {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    <TableCell component="th" scope="row">{row["program"]}</TableCell>
+                                    <TableCell component="th" scope="row">{row["id"]}</TableCell>
                                     <TableCell>{row["duration"]}</TableCell>
                                 </TableBody>
                             </Table>
@@ -84,7 +84,7 @@ export default function ProgramsListTable() {
     useEffect(() => {
         // handleAlert("Welcome Back " + user["firstName"] + ' ' + user["lastName"] + '!')
     }, [])
-    const rows = programsList.map((program) => createData(program.name, program.duration))
+    const rows = programsList.map((program) => createData(program.id, program.duration))
 
     return (
         <TableContainer component={Paper}>
