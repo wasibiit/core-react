@@ -23,8 +23,8 @@ const Signin = (props) => {
     const {email} = useSelector(getters.getEmail);
     const {password} = useSelector(getters.getPassword);
     const [open, setOpen] = useState(false);
-    const [text, setText] = useState("");
-    const [severity, setSeverity] = useState("");
+    const [text, setText] = useState();
+    const [severity, setSeverity] = useState();
     const {setEmail} = dispatchers.signInDispatcher(useDispatch())
     const {setPassword} = dispatchers.signInDispatcher(useDispatch())
     const {setCurrentUser} = dispatchers.currentUserDispatcher(useDispatch())

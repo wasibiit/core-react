@@ -18,7 +18,7 @@ import ProgramsListTable from "../../components/Tables/ProgramsListTable";
 
 const Programs = (props) => {
     const {classes} = props;
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState();
     const [alert, setAlert] = useState();
     const [text, setText] = useState("");
     const [severity, setSeverity] = useState("");

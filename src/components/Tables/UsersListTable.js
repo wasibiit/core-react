@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {makeStyles, withStyles} from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
@@ -16,18 +16,10 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {useDispatch, useSelector} from "react-redux";
 import {getters} from "../../redux/selectors/selectors";
 import {dispatchers} from "../../redux/dispatchers/dispatchers";
-import {AuthRequest, Request} from "../../data/requests";
+import {AuthRequest} from "../../data/requests";
 import {getUsersListQuery} from "../../data/queries";
 import {getCookie} from "../../utils/common";
 import UserStyles from "../../styles/users";
-
-const useRowStyles = makeStyles({
-    root: {
-        '& > *': {
-            borderBottom: 'unset',
-        },
-    },
-});
 
 function createData(firstName, lastName, dob, email, role) {
     return {
@@ -39,14 +31,12 @@ function createData(firstName, lastName, dob, email, role) {
     };
 }
 
-function Row(props) {
+export const Row = (props) => {
     const { row } = props;
     const [open, setOpen] = useState(false);
-    const classes = useRowStyles();
-
     return (
         <React.Fragment>
-            <TableRow className={classes.root} onClick={() => setOpen(!open)}>
+            <TableRow className={UserStyles.rowStyle} onClick={() => setOpen(!open)}>
                 <TableCell >
                     <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
                         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
@@ -89,10 +79,10 @@ function Row(props) {
     );
 }
 
-export default function UsersListTable() {
+export const UsersListTable = (props) => {
     const {usersList} = useSelector(getters.getUsersList);
     const {setUsersList} = dispatchers.usersListDispatcher(useDispatch())
-    const classes = UserStyles();
+    const classes = props;
     useEffect(() => {
         AuthRequest(getUsersListQuery(), setUsersList, "getUsersList", getCookie("user"))
         // handleAlert("Welcome Back " + user["firstName"] + ' ' + user["lastName"] + '!')

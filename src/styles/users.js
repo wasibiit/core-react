@@ -29,6 +29,11 @@ const UserStyles = theme => ({
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
+    },
+    rowStyle: {
+        '& > *': {
+            borderBottom: 'unset',
+        },
     }
 });
 

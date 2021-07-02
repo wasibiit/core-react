@@ -12,7 +12,7 @@ import {getCookie} from "../../utils/common";
 import {constants} from "../../utils/constants";
 import {SnackBar} from "../../components/SnackBar/SnackBar";
 import {dispatchers} from "../../redux/dispatchers/dispatchers";
-import UsersListTable from "../../components/Tables/UsersListTable";
+import {UsersListTable} from "../../components/Tables/UsersListTable";
 import {AuthRequest, AuthRequestWithFlag} from "../../data/requests";
 import {createUserQuery, getRolesQuery, getUsersListQuery} from "../../data/queries";
 

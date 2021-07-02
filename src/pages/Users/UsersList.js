@@ -12,7 +12,7 @@ import {getCookie} from "../../utils/common";
 import {constants} from "../../utils/constants";
 import {SnackBar} from "../../components/SnackBar/SnackBar";
 import {dispatchers} from "../../redux/dispatchers/dispatchers";
-import UsersListTable from "../../components/Tables/UsersListTable";
+import {UsersListTable} from "../../components/Tables/UsersListTable";
 import {AuthRequest, AuthRequestWithFlag} from "../../data/requests";
 import {createUserQuery, getRolesQuery, getUsersListQuery} from "../../data/queries";
 
@@ -20,7 +20,7 @@ const UsersList = (props) => {
     const {classes} = props;
     const [alert, setAlert] = useState();
     const [roles, setRoles] = useState([]);
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState();
     const [text, setText] = useState("");
     const [severity, setSeverity] = useState("");
     const {setUsersList} = dispatchers.usersListDispatcher(useDispatch())
@@ -49,13 +49,20 @@ const UsersList = (props) => {
     };
     return (
         <div>
+            <div className={classes.root}>
+                <SnackBar text={text}
+                          style={severity}
+                          handleClose={handleClose}
+                          open={open}
+                />
+            </div>
             <Paper elevation={4} className={classes.paper}>
                 <div>
                     <Typography variant={"h5"} component={"h5"}>
                         Create Users
                     </Typography>
                     <Formik
-                        initialValues={constants.USER}
+                         initialValues={constants.USER}
                         validate={values => {
                             const errors = {};
                             if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
