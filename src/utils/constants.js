@@ -1,8 +1,9 @@
 
-const BASEURL = `http://cbcda276e8df.ngrok.io/graphiql`;
+const BASEURL = `http://d9398c44e3c7.ngrok.io/graphiql`;
 
 const USER = {email: "", password: "", dob: "", firstName: "", lastName: "", role: ""};
 const PROGRAM = {program: "", duration: ""};
+const SEMESTER = {program: "", semester: ""};
 
 const actionSignInTypes = {EMAIL: "EMAIL", PASSWORD: "PASSWORD"};
 
@@ -21,5 +22,6 @@ export const constants = {
     BASEURL,
     actionUsersListTypes,
     PROGRAM,
+    SEMESTER,
     actionProgramsTypes
 };
