@@ -66,7 +66,8 @@ class SidebarItem extends Component {
                         <Typography variant="body1" className="flexSpacer">{capitalize(subitem.name)}</Typography>
                         {badge(subitem.badge)}
                       </ListItem>
-                    </NavLink>)
+                    </NavLink>
+                    )
                 )}
               </List>
             </Collapse>

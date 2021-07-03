@@ -20,7 +20,7 @@ function DatePickers(props) {
 
     return (
         <form className={classes.container} noValidate>
-            <TextField
+            <input type="text"
                 id="date"
                 label="Birthday"
                 type="date"

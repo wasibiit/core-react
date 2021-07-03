@@ -9,6 +9,7 @@ const SidebarStyles = theme => ({
         zIndex: theme.zIndex.drawer + 99,
         backgroundColor: "#1D2228",
         color: "#E1E2E2",
+
     },
     modal: {
         [theme.breakpoints.down('sm')]: {
@@ -20,10 +21,10 @@ const SidebarStyles = theme => ({
         zIndex: '1000'
     },
     backdrop: {
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('md')]: {
             top: '56px',
         },
-        [theme.breakpoints.up('sm')]: {
+        [theme.breakpoints.up('md')]: {
             top: '64px',
         },
         icon: {

@@ -26,25 +26,28 @@ const SidebarItemStyles = theme => ({
         marginRight: theme.spacing(2)
     },
     menuSubItem: {
+
         paddingLeft: '55px',
         paddingRight: '55px'
     },
     menuCollapsed: {
         backgroundColor:"#1D2228" ,
+        color: "#E1E2E2",
     },
     menuActive: {
         backgroundColor: "#E1E2E2"
     },
     menuClosed: {
-        backgroundColor: '#1D2228'
+
+        color: "#E1E2E2",
     },
     caret: {
+        color: "#E1E2E2",
         marginLeft: theme.spacing(2),
         marginRight: theme.spacing(2)
     },
     primary: {
-        backgroundColor:"#E1E2E2",
-        color: "#E1E2E2",
+        color: "#E1E2E2"
     },
     secondary: {
         backgroundColor: "#1D2228",

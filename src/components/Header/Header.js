@@ -11,12 +11,11 @@ import MenuIcon from '@material-ui/icons/Menu';
 import HeaderStyles from '../../styles/header';
 import ImageAvatars from "../Avatar/ImageAvatars";
 import {Person} from "@material-ui/icons";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {useDispatch, useSelector} from "react-redux";
 import HeaderMenu from "../Menu/HeaderMenu";
 import HeaderMenuItems from "../Menu/HeaderMenuItems";
 import Typography from "@material-ui/core/Typography";
-
-
 import "./header.css"
 import {Request} from "../../data/requests";
 import {getCookie} from "../../utils/common";
@@ -91,11 +90,19 @@ const Header = (props) => {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
+                  {/*profile*/}
                   <HeaderMenuItems>
                     <ListItemIcon>
                       <Person fontSize="small" />
                     </ListItemIcon>
                     <ListItemText primary="Profile" />
+                  </HeaderMenuItems>
+                  {/*Logout*/}
+                  <HeaderMenuItems>
+                  <ListItemIcon>
+                    <ExitToAppIcon fontSize="small" />
+                  </ListItemIcon>
+                  <ListItemText primary="Logout" />
                   </HeaderMenuItems>
                 </HeaderMenu>
               </div>
