@@ -9,25 +9,24 @@ import EmailIcon from "@material-ui/icons/Email";
 const Home = () => {
     return (
       <div className={"main"}>
-          <div>
 
-              <Grid style={{ padding:"20px"}} container spacing={8}>
+              <Grid style={{padding: "20px"}} container spacing={8}>
 
-                  <Grid item xs={12} sm={6} md={3}>
+                  <Grid item xl={6} sm={3}>
                       <StatCard
                           title="Tag"
                           color="#FB8122"
                           icon={<LocalOfferIcon />}
                       />
                   </Grid>
-                  <Grid item xs={12} sm={6} md={3}>
+                  <Grid item xs={6} sm={3} >
                       <StatCard
                           title="Contact"
                           icon={<PhoneIcon />}
                           color="#FB8122"
                       />
                   </Grid>
-                  <Grid item xs={12} sm={6} md={3}>
+                  <Grid item xs={6} sm={3}>
                       <StatCard
                           title="Notification"
                           icon={<NotificationsIcon />}
@@ -35,9 +34,9 @@ const Home = () => {
                       />
                   </Grid>
               </Grid>
-              <Grid style={{ padding:"20px"}} container spacing={8}>
+              <Grid style={{padding: "20px"}}  container spacing={8}>
 
-                  <Grid item xs={12} sm={6} md={3}>
+                  <Grid item xs={6} sm={3}>
                       <StatCard
                           title="LocalOffer"
                           color="#FB8122"
@@ -45,14 +44,14 @@ const Home = () => {
 
                       />
                   </Grid>
-                  <Grid item xs={12} sm={6} md={3}>
+                  <Grid item xs={6} sm={3}>
                       <StatCard
                           title="Contact"
                           icon={<EmailIcon />}
                           color="#FB8122"
                       />
                   </Grid>
-                  <Grid item xs={12} sm={6} md={3}>
+                  <Grid item xs={6} sm={3}>
                       <StatCard
                           title="People"
                           icon={<People/>}
@@ -60,10 +59,6 @@ const Home = () => {
                       />
                   </Grid>
               </Grid>
-          </div>
-          <div>
-
-          </div>
 
         </div>
 

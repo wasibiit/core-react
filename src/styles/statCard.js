@@ -5,18 +5,18 @@ const StatCardStyles = theme => ({
   content: {
 
     position: 'relative',
-    // padding: theme.spacing(2),
+    padding: theme.spacing(2),
     '&:last-child': {
       paddingBottom: theme.spacing(2),
-      width: "60px",
+      width: "150px",
       height: "100px",
-      padding: "80px",
+      padding: "60px",
       backgroundColor: "#E1E2E2"
     }
   },
   icon: {
     boxShadow: 'none',
-    color: '#E1E2E2',
+    color: '#E1E2E2'
 
   },
   title: {

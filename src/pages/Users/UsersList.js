@@ -49,13 +49,6 @@ const UsersList = (props) => {
     };
     return (
         <div>
-            <div className={classes.root}>
-                <SnackBar text={text}
-                          style={severity}
-                          handleClose={handleClose}
-                          open={open}
-                />
-            </div>
             <Paper elevation={4} className={classes.paper}>
                 <div>
                     <Typography variant={"h5"} component={"h5"}>
@@ -173,6 +166,7 @@ const UsersList = (props) => {
                                     />
                                 </div>
                                 <div className={classes.button}>
+
                                     <Button
                                         fullWidth
                                         variant="contained"
@@ -182,6 +176,7 @@ const UsersList = (props) => {
                                         size={"large"}>
                                         Save
                                     </Button>
+
                                 </div>
                             </form>
                         )}

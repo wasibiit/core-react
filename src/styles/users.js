@@ -15,7 +15,14 @@ const UserStyles = theme => ({
         display: "flex",
         justifyContent: "center",
         width: "50%",
-        marginLeft: "25%"
+        marginLeft: "25%",
+        padding: "15px",
+
+    },
+    tRow:{
+       color: "#E1E2E2",
+        backgroundColor:"#1D2228"
+
     }
 });
 
