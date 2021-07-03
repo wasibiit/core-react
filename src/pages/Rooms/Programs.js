@@ -15,7 +15,6 @@ import {dispatchers} from "../../redux/dispatchers/dispatchers";
 import {AuthRequest, AuthRequestWithFlag} from "../../data/requests";
 import {createProgramQuery, getProgramsQuery} from "../../data/queries";
 import ProgramsListTable from "../../components/Tables/ProgramsListTable";
-import classNames from "classnames";
 
 const Programs = (props) => {
     const {classes} = props;
@@ -49,6 +48,13 @@ const Programs = (props) => {
     };
     return (
         <div>
+            <div className={classes.snackbar}>
+                <SnackBar text={text}
+                          style={severity}
+                          handleClose={handleClose}
+                          open={open}
+                />
+            </div>
             <Paper elevation={4} className={classes.paper}>
                 <div>
                     <Typography variant={"h5"} component={"h5"}>

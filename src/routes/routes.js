@@ -47,7 +47,7 @@ export default {
             icon : MessageIcon,
             children: [
                 {
-                    path: '/Social',
+                    path: '/social',
                     name: 'Message',
                     component: Social,
                 },
@@ -61,12 +61,12 @@ export default {
             icon: Room,
             children: [
                 {
-                    path: '/Programs',
+                    path: '/programs',
                     name: 'Programs',
                     component: Programs
                 },
                 {
-                    path: '/Semester',
+                    path: '/semester',
                     name: 'Semester',
                     component: Semester
                 }
