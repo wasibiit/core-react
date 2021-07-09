@@ -66,13 +66,12 @@ export const AuthRequestWithFlag = (query, setData, reqestedFor, token) => {
         .then(res => res.json())
         .then(
             (result) => {
+                console.log("------------Res------------");
+                console.log(result.data[`${reqestedFor}`]);
+                console.log("----------end----------------");
                 if (result.data[`${reqestedFor}`] === null) {
                     setData(false)
                 } else {
-                    let res = result.data[`${reqestedFor}`]
-                    console.log("------------Response------------");
-                    console.log(res);
-                    console.log("----------end----------------");
                     setData(true)
                 }
             },

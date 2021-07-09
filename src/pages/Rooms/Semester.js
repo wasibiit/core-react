@@ -39,9 +39,6 @@ const UsersList = (props) => {
             AuthRequest(getSemestersQuery(), setSemestersList, "getSemestersList", getCookie("user"))
         }
     }, [alert])
-    console.log("------------start------------");
-    console.log(semestersList);
-    console.log("----------end----- -----------");
 
     const capitalizeFirstLetter = ([first, ...rest]) => first.toLocaleUpperCase() + rest.join('')
 
@@ -77,6 +74,7 @@ const UsersList = (props) => {
                         onSubmit={(values, {setSubmitting}) => {
                             setTimeout(() => {
                                 setSubmitting(false);
+                                setAlert()
                             }, 600);
                             AuthRequestWithFlag(createSemesterQuery(values), setAlert, "createSemester", getCookie("user"))
                         }}
