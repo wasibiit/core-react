@@ -88,6 +88,7 @@ const UsersList = (props) => {
                         onSubmit={(values, {setSubmitting}) => {
                             setTimeout(() => {
                                 setSubmitting(false);
+                                setAlert();
                             }, 600);
                             AuthRequestWithFlag(createUserQuery(values), setAlert, "createUser", getCookie("user"))
                         }}

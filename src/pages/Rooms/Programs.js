@@ -75,6 +75,7 @@ const Programs = (props) => {
                         onSubmit={(values, {setSubmitting}) => {
                             setTimeout(() => {
                                 setSubmitting(false);
+                                setAlert()
                             }, 600);
                             AuthRequestWithFlag(createProgramQuery(values), setAlert, "createProgram", getCookie("user"))
                         }}
