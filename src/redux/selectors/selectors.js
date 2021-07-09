@@ -5,6 +5,7 @@ const signInState = (state) => state.signInReducer;
 const currentUserState = (state) => state.currentUserReducer;
 const usersListState = (state) => state.usersListReducer;
 const programsListState = (state) => state.programsListReducer;
+const semestersListState = (state) => state.semestersListReducer;
 
 //selectors
 const selectEmail = createSelector(signInState, signInReducer => signInReducer.email)
@@ -13,6 +14,7 @@ const selectCurrentUser = createSelector(currentUserState,currentUserReducer => 
 const selectIsAuthenticated = createSelector(currentUserState,currentUserReducer => currentUserReducer.isAuthenticated)
 const selectUsersList = createSelector(usersListState, usersListReducer => usersListReducer.usersList)
 const selectProgramsList = createSelector(programsListState, programsListReducer => programsListReducer.programsList)
+const selectSemestersList = createSelector(semestersListState, semestersListReducer => semestersListReducer.semestersList)
 
 //getters
 const getEmail = createSelector(selectEmail, (email) => ({email}));
@@ -21,6 +23,7 @@ const getCurrentUser = createSelector(selectCurrentUser, (user) => ({user}));
 const getIsAuthenticated = createSelector(selectIsAuthenticated, (isAuthenticated) => ({isAuthenticated}));
 const getUsersList = createSelector(selectUsersList, (usersList) => ({usersList}));
 const getProgramsList = createSelector(selectProgramsList, (programsList) => ({programsList}));
+const getSemestersList = createSelector(selectSemestersList, (semestersList) => ({semestersList}));
 
 export const getters = {
     getEmail,
@@ -28,5 +31,6 @@ export const getters = {
     getCurrentUser,
     getIsAuthenticated,
     getUsersList,
-    getProgramsList
+    getProgramsList,
+    getSemestersList
 };

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, Fragment} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
@@ -13,12 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {getters} from "../../redux/selectors/selectors";
-import {dispatchers} from "../../redux/dispatchers/dispatchers";
-import {AuthRequest, Request} from "../../data/requests";
-import {getProgramsQuery, getUsersListQuery} from "../../data/queries";
-import {getCookie} from "../../utils/common";
 
 const useRowStyles = makeStyles({
     root: {
@@ -41,7 +37,7 @@ function Row(props) {
     const classes = useRowStyles();
 
     return (
-        <React.Fragment>
+        <>
             <TableRow className={classes.root} onClick={() => setOpen(!open)}>
                 <TableCell>
                     <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
@@ -74,16 +70,12 @@ function Row(props) {
                     </Collapse>
                 </TableCell>
             </TableRow>
-        </React.Fragment>
+        </>
     );
 }
 
 export default function ProgramsListTable() {
     const {programsList} = useSelector(getters.getProgramsList);
-
-    useEffect(() => {
-        // handleAlert("Welcome Back " + user["firstName"] + ' ' + user["lastName"] + '!')
-    }, [])
     const rows = programsList.map((program) => createData(program.id, program.duration))
 
     return (

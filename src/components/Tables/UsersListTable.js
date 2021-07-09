@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState, Fragment} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
@@ -35,7 +35,7 @@ export const Row = (props) => {
     const { row } = props;
     const [open, setOpen] = useState(false);
     return (
-        <React.Fragment>
+        <>
             <TableRow className={UserStyles.rowStyle} onClick={() => setOpen(!open)}>
                 <TableCell >
                     <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
@@ -75,7 +75,7 @@ export const Row = (props) => {
                     </Collapse>
                 </TableCell>
             </TableRow>
-        </React.Fragment>
+        </>
     );
 }
 
@@ -87,7 +87,9 @@ export const UsersListTable = (props) => {
         AuthRequest(getUsersListQuery(), setUsersList, "getUsersList", getCookie("user"))
         // handleAlert("Welcome Back " + user["firstName"] + ' ' + user["lastName"] + '!')
     }, [])
-    const rows = usersList.map((user) => createData(user.firstName, user.lastName, user.dob, user.email, user["role"]["id"]))
+    const rows = usersList.map((user) =>
+        createData(user.firstName, user.lastName, user.dob, user.email, user["role"]["id"])
+    )
     return (
         <TableContainer component={Paper}>
             <Table aria-label="collapsible table">

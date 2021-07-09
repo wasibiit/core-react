@@ -7,6 +7,7 @@ const setCurrentUser = (user) => ({type: constants.actionCurrentUserTypes.USER, 
 const setIsAuthenticated = (isAuthenticated) => ({type: constants.actionCurrentUserTypes.IS_AUTHENTICATED, payload: isAuthenticated})
 const setUsersList = (list) => ({type: constants.actionUsersListTypes.USERS_LIST, payload: list})
 const setProgramsList = (list) => ({type: constants.actionProgramsTypes.PROGRAM_LIST, payload: list})
+const setSemestersList = (list) => ({type: constants.actionSemestersTypes.SEMESTERS_LIST, payload: list})
 
 
 export const actions = {
@@ -15,5 +16,6 @@ export const actions = {
     setCurrentUser,
     setIsAuthenticated,
     setUsersList,
-    setProgramsList
+    setProgramsList,
+    setSemestersList
 };

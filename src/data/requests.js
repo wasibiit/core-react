@@ -70,6 +70,9 @@ export const AuthRequestWithFlag = (query, setData, reqestedFor, token) => {
                     setData(false)
                 } else {
                     let res = result.data[`${reqestedFor}`]
+                    console.log("------------Response------------");
+                    console.log(res);
+                    console.log("----------end----------------");
                     setData(true)
                 }
             },

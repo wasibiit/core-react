@@ -83,7 +83,7 @@ const Dashboard = (props) =>  {
 
     return (
 
-        <Fragment className={classes.Fragment}>
+        <div className={classes.Fragment}>
             <div className={classes.root}>
                 <SnackBar text={text}
                           style={severity}
@@ -106,7 +106,7 @@ const Dashboard = (props) =>  {
                     {getRoutes}
                 </Workspace>
             </div>
-        </Fragment>
+        </div>
 
     )
 }

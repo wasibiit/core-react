@@ -62,7 +62,7 @@ class SidebarItem extends Component {
               <List disablePadding>
                 {route.children.map((subitem, index) => (
                     <NavLink to={`${route.path ? route.path : ''}${subitem.path ? subitem.path : ''}`} exact className={classes.menuLink} activeClassName={classes.menuActive} key={index}>
-                      <ListItem className={classes.menuSubItem} button>
+                      <ListItem className={classes.menuSubItem} button key={index}>
                         <Typography variant="body1" className="flexSpacer">{capitalize(subitem.name)}</Typography>
                         {badge(subitem.badge)}
                       </ListItem>

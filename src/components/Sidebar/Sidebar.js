@@ -45,7 +45,7 @@ class Sidebar extends Component {
         </List>
     )
     return (
-        <Fragment>
+        <>
           <Hidden mdDown>
             <Drawer
                 variant="persistent"
@@ -88,7 +88,7 @@ class Sidebar extends Component {
                     {menu}
                 </SwipeableDrawer>
             </Hidden>
-        </Fragment>
+        </>
     )
   }
 }

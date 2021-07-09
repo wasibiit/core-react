@@ -1,40 +1,47 @@
 import {Formik} from "formik";
-import {useDispatch} from "react-redux";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import React, {useEffect, useState} from "react"
 import {withStyles} from '@material-ui/core/styles';
+import {useDispatch, useSelector} from "react-redux";
 import Typography from "@material-ui/core/Typography";
 import {FormControl, InputLabel, Select, TextField} from "@material-ui/core";
 
 import UserStyles from "../../styles/users";
 import {getCookie} from "../../utils/common";
 import {constants} from "../../utils/constants";
+import {getters} from "../../redux/selectors/selectors";
 import {SnackBar} from "../../components/SnackBar/SnackBar";
 import {dispatchers} from "../../redux/dispatchers/dispatchers";
-import {UsersListTable} from "../../components/Tables/UsersListTable";
 import {AuthRequest, AuthRequestWithFlag} from "../../data/requests";
-import {createUserQuery, getRolesQuery, getUsersListQuery} from "../../data/queries";
+import SemestersListTable from "../../components/Tables/SemstersListTable";
+import {createSemesterQuery, getProgramsQuery, getSemestersQuery} from "../../data/queries";
+import {idID} from "@material-ui/core/locale";
 
 const UsersList = (props) => {
     const {classes} = props;
     const [alert, setAlert] = useState();
-    const [roles, setRoles] = useState([]);
-    const [open, setOpen] = useState(true);
+    const [programs, setPrograms] = useState([]);
+    const [open, setOpen] = useState();
     const [text, setText] = useState("");
     const [severity, setSeverity] = useState("");
-    const {setUsersList} = dispatchers.usersListDispatcher(useDispatch())
+    const {semestersList} = useSelector(getters.getSemestersList);
+    const {setSemestersList} = dispatchers.semestersListDispatcher(useDispatch())
 
     useEffect(() => {
         if (alert) {
-            // AuthRequest(getUsersListQuery(), setUsersList, "getUsersList", getCookie("user"))
-            handleAlert("User Created Successfully!", "success")
+            AuthRequest(getSemestersQuery(), setSemestersList, "getSemestersList", getCookie("user"))
+            handleAlert("Semester Created Successfully!", "success")
         }else if(alert === false) {
             handleAlert("Already Exists!", "error")
         } else {
-            // AuthRequest(getRolesQuery(), setRoles, "getRolesList", getCookie("user"))
+            AuthRequest(getProgramsQuery(), setPrograms, "getProgramsList", getCookie("user"))
+            AuthRequest(getSemestersQuery(), setSemestersList, "getSemestersList", getCookie("user"))
         }
     }, [alert])
+    console.log("------------start------------");
+    console.log(semestersList);
+    console.log("----------end----- -----------");
 
     const capitalizeFirstLetter = ([first, ...rest]) => first.toLocaleUpperCase() + rest.join('')
 
@@ -50,26 +57,20 @@ const UsersList = (props) => {
     return (
         <div>
             <div className={classes.root}>
-                <SnackBar text={text}
-                          style={severity}
-                          handleClose={handleClose}
-                          open={open}
-                />
+                <SnackBar text={text} style={severity} handleClose={handleClose} open={open}/>
             </div>
             <Paper elevation={4} className={classes.paper}>
                 <div>
-                    <Typography variant={"h5"} component={"h5"}>
-                        Create Semester
-                    </Typography>
+                    <Typography variant={"h5"} component={"h5"}>Create Semester</Typography>
                     <Formik
                         initialValues={constants.SEMESTER}
                         validate={values => {
                             const errors = {};
                             if (values.program === "") {
-                                errors.dob = "Please Select a Program.";
+                                errors.program = "Please Select a Program.";
                             }
                             if (values.semester === "") {
-                                errors.firstName = "Fill This Field";
+                                errors.semester = "Fill This Field";
                             }
                             return errors;
                         }}
@@ -77,7 +78,7 @@ const UsersList = (props) => {
                             setTimeout(() => {
                                 setSubmitting(false);
                             }, 600);
-                            AuthRequestWithFlag(createUserQuery(values), setAlert, "createUser", getCookie("user"))
+                            AuthRequestWithFlag(createSemesterQuery(values), setAlert, "createSemester", getCookie("user"))
                         }}
                     >
                         {({
@@ -95,7 +96,7 @@ const UsersList = (props) => {
                                             native
                                             value={values.program}
                                             onChange={handleChange}
-                                            helperText={errors.program}
+                                            helpertext={errors.program}
                                             label="Programs"
                                             fullWidth
                                             inputProps={{
@@ -104,7 +105,7 @@ const UsersList = (props) => {
                                             }}
                                         >
                                             <option aria-label="None" value=""/>
-                                            {roles.map((program) => <option value={program["id"]}>
+                                            {programs.map((program) => <option value={program["id"]}>
                                                 {capitalizeFirstLetter(`${program["id"]}`)}
                                             </option>)}
                                         </Select>
@@ -117,7 +118,7 @@ const UsersList = (props) => {
                                         type={"text"}
                                         onChange={handleChange}
                                         value={values.semester}
-                                        helperText={errors.semester}
+                                        helpertext={errors.semester}
                                         variant="outlined"/>
                                 </div>
                                 <div className={classes.button}>
@@ -137,7 +138,7 @@ const UsersList = (props) => {
                 </div>
             </Paper>
             <Paper elevation={4} className={classes.paper}>
-                <UsersListTable />
+                <SemestersListTable />
             </Paper>
         </div>
     )
