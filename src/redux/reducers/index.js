@@ -3,6 +3,7 @@ import {currentUserReducer} from "./currentUserReducer";
 import {usersListReducer} from "./usersListReducer";
 import {programsListReducer} from "./programsListReducer";
 import {semestersListReducer} from "./semestersListReducer";
+import {coursesListReducer} from "./coursesListReducer";
 
 
 export const reducers = {
@@ -10,5 +11,6 @@ export const reducers = {
     currentUserReducer,
     usersListReducer,
     programsListReducer,
-    semestersListReducer
+    semestersListReducer,
+    coursesListReducer
 }

@@ -15,28 +15,36 @@ import {SnackBar} from "../../components/SnackBar/SnackBar";
 import {dispatchers} from "../../redux/dispatchers/dispatchers";
 import {AuthRequest, AuthRequestWithFlag} from "../../data/requests";
 import SemestersListTable from "../../components/Tables/SemstersListTable";
-import {createSemesterQuery, getProgramsQuery, getSemestersQuery} from "../../data/queries";
+import {
+    createCoursesQuery,
+    createSemesterQuery,
+    getCoursesQuery,
+    getProgramsQuery,
+    getSemestersQuery
+} from "../../data/queries";
 import {idID} from "@material-ui/core/locale";
 
-const UsersList = (props) => {
+const CoursesList = (props) => {
     const {classes} = props;
     const [alert, setAlert] = useState();
     const [programs, setPrograms] = useState([]);
+    const [semesters, setSemesters] = useState([]);
     const [roles, setRoles] = useState([]);
     const [open, setOpen] = useState();
     const [text, setText] = useState("");
     const [severity, setSeverity] = useState("");
-    const {semestersList} = useSelector(getters.getSemestersList);
-    const {setSemestersList} = dispatchers.semestersListDispatcher(useDispatch())
+    const {coursesList} = useSelector(getters.getCoursesList);
+    const {setCoursesList} = dispatchers.coursesListDispatcher(useDispatch())
     useEffect(() => {
         if (alert) {
-            AuthRequest(getSemestersQuery(), setSemestersList, "getSemestersList", getCookie("user"))
-            handleAlert("Semester Created Successfully!", "success")
-        }else if(alert === false) {
+            AuthRequest(getCoursesQuery(), setCoursesList, "getCoursesList", getCookie("user"))
+            handleAlert("Course Created Successfully!", "success")
+        } else if (alert === false) {
             handleAlert("Already Exists!", "error")
         } else {
             AuthRequest(getProgramsQuery(), setPrograms, "getProgramsList", getCookie("user"))
-            AuthRequest(getSemestersQuery(), setSemestersList, "getSemestersList", getCookie("user"))
+            AuthRequest(getSemestersQuery(), setSemesters, "getSemestersList", getCookie("user"))
+            AuthRequest(getCoursesQuery(), setCoursesList, "getCoursesList", getCookie("user"))
         }
     }, [alert])
 
@@ -61,11 +69,20 @@ const UsersList = (props) => {
                         initialValues={constants.SEMESTER}
                         validate={values => {
                             const errors = {};
-                            if (values.program === "") {
-                                errors.program = "Please Select a Program.";
+                            if (values.courseCode === "") {
+                                errors.courseCode = "Fill this Field";
                             }
-                            if (values.semester === "") {
-                                errors.semester = "Fill This Field";
+                            if (values.programName === "") {
+                                errors.programName = "Select a program ";
+                            }
+                            if (values.title === "") {
+                                errors.title = "Fill this Field";
+                            }
+                            if (values.semesterCode === "") {
+                                errors.semesterCode = "Select a semester ";
+                            }
+                            if (values.creditHours === "") {
+                                errors.creditHours = "Fill this Field ";
                             }
                             return errors;
                         }}
@@ -74,7 +91,7 @@ const UsersList = (props) => {
                                 setSubmitting(false);
                                 setAlert()
                             }, 600);
-                            AuthRequestWithFlag(createSemesterQuery(values), setAlert, "createSemester", getCookie("user"))
+                            AuthRequestWithFlag(createCoursesQuery(values), setAlert, "createCourses", getCookie("user"))
                         }}
                     >
                         {({
@@ -107,16 +124,65 @@ const UsersList = (props) => {
                                         </Select>
                                     </FormControl>
                                 </div>
+
+                                <div className={classes.form}>
+                                    <FormControl variant="outlined">
+                                        <InputLabel htmlFor="outlined-age-native-simple">Programs</InputLabel>
+                                        <Select
+                                            native
+                                            value={values.semesterCode}
+                                            onChange={handleChange}
+                                            helpertext={errors.semesterCode}
+                                            label="semesterCode"
+                                            fullWidth
+                                            inputProps={{
+                                                name: 'semester',
+                                                id: 'semester',
+                                            }}
+                                        >
+                                            <option aria-label="None" value=""/>
+                                            {semesters.map((data) =>
+                                                data.map((semester) => <option value={semester["code"]}>
+                                                    {capitalizeFirstLetter(`${semester["code"]}`)}
+                                                </option>)
+                                            )}
+                                        </Select>
+                                    </FormControl>
+                                </div>
+
                                 <div className={classes.form}>
                                     <TextField
-                                        id="semester"
-                                        label="Semester"
+                                        id="courseCode"
+                                        label="courseCode"
+                                        type={"text"}
+                                        onChange={handleChange}
+                                        value={values.courseCode}
+                                        helpertext={errors.courseCode}
+                                        variant="outlined"/>
+                                </div>
+
+                                <div className={classes.form}>
+                                    <TextField
+                                        id="title"
+                                        label="title"
                                         type={"text"}
                                         onChange={handleChange}
                                         value={values.semester}
-                                        helpertext={errors.semester}
+                                        helpertext={errors.title}
                                         variant="outlined"/>
                                 </div>
+
+                                <div className={classes.form}>
+                                    <TextField
+                                        id="creditHours"
+                                        label="creditHours"
+                                        type={"text"}
+                                        onChange={handleChange}
+                                        value={values.creditHours}
+                                        helpertext={errors.creditHours}
+                                        variant="outlined"/>
+                                </div>
+
                                 <div className={classes.button}>
                                     <Button
                                         fullWidth
@@ -134,10 +200,10 @@ const UsersList = (props) => {
                 </div>
             </Paper>
             <Paper elevation={4} className={classes.paper}>
-                <SemestersListTable />
+                <SemestersListTable/>
             </Paper>
         </div>
     )
 }
 
-export default withStyles(UserStyles)(UsersList);
+export default withStyles(UserStyles)(CoursesList);

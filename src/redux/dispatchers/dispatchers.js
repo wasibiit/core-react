@@ -21,6 +21,10 @@ const programsListDispatcher = (dispatch) => ({
 const semestersListDispatcher = (dispatch) => ({
     setSemestersList: (list) => dispatch(actions.setSemestersList(list))
 })
+const coursesListDispatcher = (dispatch) => ({
+    setCoursesList: (list) => dispatch(actions.setCoursesList(list))
+})
+
 
 
 
@@ -29,5 +33,6 @@ export const dispatchers = {
     signInDispatcher,
     usersListDispatcher,
     programsListDispatcher,
-    semestersListDispatcher
+    semestersListDispatcher,
+    coursesListDispatcher
 };

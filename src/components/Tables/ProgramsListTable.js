@@ -15,7 +15,6 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {useSelector} from "react-redux";
 import {getters} from "../../redux/selectors/selectors";
-
 const useRowStyles = makeStyles({
     root: {
         '& > *': {
@@ -47,21 +46,21 @@ function Row(props) {
                 <TableCell>{row["id"]}</TableCell>
                 <TableCell>{row["duration"]}</TableCell>
             </TableRow>
-            <TableRow>
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <Box margin={1}>
+            <TableRow  style={{backgroundColor:"#FB8122"}}>
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0 ,backgroundColor:"#E1E2E2"}} colSpan={6}>
+                    <Collapse style={{backgroundColor:"#E1E2E2"}} in={open} timeout="auto" unmountOnExit>
+                        <Box margin={1} >
                             <Typography variant="h6" gutterBottom component="div">
                                 {row["id"]}
                             </Typography>
                             <Table size="small" aria-label="purchases">
-                                <TableHead>
-                                    <TableRow>
+                                <TableHead style={{backgroundColor:"#E1E2E2"}}>
+                                    <TableRow  style={{backgroundColor:"#FB8122"}}>
                                         <TableCell>Program</TableCell>
                                         <TableCell>Duration</TableCell>
                                     </TableRow>
                                 </TableHead>
-                                <TableBody>
+                                <TableBody >
                                     <TableCell component="th" scope="row">{row["id"]}</TableCell>
                                     <TableCell>{row["duration"]}</TableCell>
                                 </TableBody>
@@ -82,7 +81,7 @@ export default function ProgramsListTable() {
         <TableContainer component={Paper}>
             <Table aria-label="collapsible table">
                 <TableHead>
-                    <TableRow>
+                    <TableRow >
                         <TableCell />
                         <TableCell>Program</TableCell>
                         <TableCell>Duration</TableCell>

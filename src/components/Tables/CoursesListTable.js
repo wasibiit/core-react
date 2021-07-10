@@ -26,9 +26,9 @@ const useRowStyles = makeStyles({
 
 function createMap(code, program) { return {code, program}}
 
-export default function SemestersListTable() {
-    const {semestersList} = useSelector(getters.getSemestersList);
-    const rows = semestersList.map((data) =>
+export default function CoursesListTable() {
+    const {coursesList} = useSelector(getters.getCoursesList);
+    const rows = coursesList.map((data) =>
         data.map((index) => createMap(index.code, index.program["id"]))
     )
     return (
@@ -37,6 +37,9 @@ export default function SemestersListTable() {
                 <TableHead>
                     <TableRow>
                         <TableCell />
+                        <TableCell>Course</TableCell>
+                        <TableCell>Title</TableCell>
+                        <TableCell>CreditHours</TableCell>
                         <TableCell>Semester</TableCell>
                         <TableCell>Program</TableCell>
                     </TableRow>
@@ -63,8 +66,11 @@ function Row(props) {
                         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
                 </TableCell>
-                <TableCell>{row["code"]}</TableCell>
-                <TableCell>{row["program"]}</TableCell>
+                <TableCell>{row["courseCode"]}</TableCell>
+                <TableCell>{row["title"]}</TableCell>
+                <TableCell>{row["creditHours"]}</TableCell>
+                <TableCell>{row["semesterCode"]}</TableCell>
+                <TableCell>{row["programName"]}</TableCell>
             </TableRow>
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>

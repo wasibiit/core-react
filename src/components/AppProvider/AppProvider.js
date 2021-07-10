@@ -35,7 +35,8 @@ class AppProvider extends Component {
         },
         button: {
           fontWeight: 400,
-          textTransform: 'initial'
+          textTransform: 'initial',
+          padding: "60px"
         }
       },
       shape: {

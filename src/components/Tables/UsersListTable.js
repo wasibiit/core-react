@@ -47,15 +47,15 @@ export const Row = (props) => {
                 <TableCell>{row["role"]}</TableCell>
             </TableRow>
             <TableRow >
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0 ,backgroundColor:"#E1E2E2"}} colSpan={6}>
                     <Collapse style={{backgroundColor:"#E1E2E2"}} in={open} timeout="auto" unmountOnExit >
                         <Box  margin={1}>
                             <Typography  variant="h6" gutterBottom component="div">
                                 {row["firstName"] + ' ' + row["lastName"]}
                             </Typography>
                             <Table  size="small" aria-label="purchases">
-                                <TableHead >
-                                    <TableRow  style={{backgroundColor:"#FB8122"}} >
+                                <TableHead style={{backgroundColor:"#FB8122"}}>
+                                    <TableRow>
                                         <TableCell>FirstName</TableCell>
                                         <TableCell>LastName</TableCell>
                                         <TableCell>Email</TableCell>
