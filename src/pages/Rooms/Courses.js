@@ -37,14 +37,14 @@ const CoursesList = (props) => {
     const {setCoursesList} = dispatchers.coursesListDispatcher(useDispatch())
     useEffect(() => {
         if (alert) {
-            AuthRequest(getCoursesQuery(), setCoursesList, "getCoursesList", getCookie("user"))
+            // AuthRequest(getCoursesQuery(), setCoursesList, "getCoursesList", getCookie("user"))
             handleAlert("Course Created Successfully!", "success")
         } else if (alert === false) {
             handleAlert("Already Exists!", "error")
         } else {
-            AuthRequest(getProgramsQuery(), setPrograms, "getProgramsList", getCookie("user"))
-            AuthRequest(getSemestersQuery(), setSemesters, "getSemestersList", getCookie("user"))
-            AuthRequest(getCoursesQuery(), setCoursesList, "getCoursesList", getCookie("user"))
+            // AuthRequest(getProgramsQuery(), setPrograms, "getProgramsList", getCookie("user"))
+            // AuthRequest(getSemestersQuery(), setSemesters, "getSemestersList", getCookie("user"))
+            // AuthRequest(getCoursesQuery(), setCoursesList, "getCoursesList", getCookie("user"))
         }
     }, [alert])
 
@@ -64,7 +64,7 @@ const CoursesList = (props) => {
             </div>
             <Paper elevation={4} className={classes.paper}>
                 <div>
-                    <Typography variant={"h5"} component={"h5"}>Create Semester</Typography>
+                    <Typography variant={"h5"} component={"h5"}>Create Courses</Typography>
                     <Formik
                         initialValues={constants.SEMESTER}
                         validate={values => {
@@ -127,10 +127,10 @@ const CoursesList = (props) => {
 
                                 <div className={classes.form}>
                                     <FormControl variant="outlined">
-                                        <InputLabel htmlFor="outlined-age-native-simple">Programs</InputLabel>
+                                        <InputLabel htmlFor="outlined-age-native-simple">Semester</InputLabel>
                                         <Select
                                             native
-                                            value={values.semesterCode}
+                                            value={values.semester}
                                             onChange={handleChange}
                                             helpertext={errors.semesterCode}
                                             label="semesterCode"

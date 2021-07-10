@@ -14,8 +14,10 @@ import {
     Quiz,
     Profile,
     Programs,
-    Semester
+    Semester,
+    Courses
 } from '../pages/pages';
+
 
 
 
@@ -69,6 +71,11 @@ export default {
                     path: '/semester',
                     name: 'Semester',
                     component: Semester
+                } ,
+                {
+                    path: '/course',
+                    name: 'Course',
+                    component: Courses
                 }
             ]
         },

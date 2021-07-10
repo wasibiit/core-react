@@ -9,8 +9,7 @@ import Signin from './Authentication/Signin/Signin'
 
 import Programs from './Rooms/Programs';
 import Semester from './Rooms/Semester';
-
-//Quiz
+import Courses from './Rooms/Courses';
 import Quiz from '../components/Quiz/Quiz';
 
 //Settings
@@ -33,5 +32,6 @@ export {
     BackendError,
     Dashboard,
     Programs,
-    Semester
+    Semester,
+    Courses
 }
