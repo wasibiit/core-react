@@ -107,7 +107,9 @@ const CoursesList = (props) => {
                                 <div className={classes.form}>
                                     <FormControl variant="outlined">
                                         <InputLabel htmlFor="outlined-age-native-simple">Programs</InputLabel>
-                                        <Select
+                                        <Select style={
+                                            {width:"200px"}
+                                        }
                                             native
                                             value={values.program}
                                             onChange={handleChange}
@@ -132,6 +134,9 @@ const CoursesList = (props) => {
                                     <FormControl variant="outlined">
                                         <InputLabel htmlFor="outlined-age-native-simple">Semester</InputLabel>
                                         <Select
+                                            style={
+                                                {width:"200px"}
+                                            }
                                             native
                                             value={values.semester}
                                             onChange={handleChange}

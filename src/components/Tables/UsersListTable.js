@@ -20,6 +20,7 @@ import {AuthRequest} from "../../data/requests";
 import {getUsersListQuery} from "../../data/queries";
 import {getCookie} from "../../utils/common";
 import UserStyles from "../../styles/users";
+import {Card} from "@material-ui/core";
 
 function createData(firstName, lastName, dob, email, role) {
     return {
@@ -53,24 +54,28 @@ export const Row = (props) => {
                             <Typography  variant="h6" gutterBottom component="div">
                                 {row["firstName"] + ' ' + row["lastName"]}
                             </Typography>
+                            <Paper elevation={24}>
+                            <Card style={{padding:"30px", backgroundColor:"#E1E2E2"}}>
                             <Table  size="small" aria-label="purchases">
-                                <TableHead style={{backgroundColor:"#FB8122"}}>
+                                <TableHead style={{ backgroundColor:"#1D2228"}}>
                                     <TableRow>
-                                        <TableCell>FirstName</TableCell>
-                                        <TableCell>LastName</TableCell>
-                                        <TableCell>Email</TableCell>
-                                        <TableCell>Date Of Birth</TableCell>
-                                        <TableCell>Role</TableCell>
+                                        <TableCell style={{color:"white"}}>FirstName</TableCell>
+                                        <TableCell style={{color:"white"}}>LastName</TableCell>
+                                        <TableCell style={{color:"white"}}>Email</TableCell>
+                                        <TableCell style={{color:"white"}}>Date Of Birth</TableCell>
+                                        <TableCell style={{color:"white"}}>Role</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody  >
                                     <TableCell component="th" scope="row">{row["firstName"]}</TableCell>
                                     <TableCell>{row["lastName"]}</TableCell>
-                                    <TableCell>{row["email"]}</TableCell>
+                                    <TableCell >{row["email"]}</TableCell>
                                     <TableCell>{row["dob"]}</TableCell>
                                     <TableCell>{row["role"]}</TableCell>
                                 </TableBody>
                             </Table>
+                                </Card>
+                            </Paper>
                         </Box>
                     </Collapse>
                 </TableCell>
@@ -93,12 +98,12 @@ export const UsersListTable = (props) => {
     return (
         <TableContainer component={Paper}>
             <Table aria-label="collapsible table">
-                <TableHead style={{backgroundColor:"#FB8122"}}>
+                <TableHead style={{ backgroundColor:"#1D2228"}}>
                     <TableRow>
                         <TableCell />
-                        <TableCell >Name</TableCell>
-                        <TableCell>Email</TableCell>
-                        <TableCell>Type</TableCell>
+                        <TableCell style={{color:"white"}} >Name</TableCell>
+                        <TableCell style={{color:"white"}}>Email</TableCell>
+                        <TableCell style={{color:"white"}}>Type</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

@@ -9,13 +9,15 @@ const UserStyles = theme => ({
     form: {
         display: "flex",
         flexDirection: "row",
-        margin: "20px",
+        margin: "20px"
     },
     button: {
         display: "flex",
         justifyContent: "center",
         width: "50%",
-        marginLeft: "25%"
+        marginLeft: "25%",
+        padding: "30px"
+
     },
     root: {
         width: '200%',

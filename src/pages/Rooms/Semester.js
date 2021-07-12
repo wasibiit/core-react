@@ -83,8 +83,10 @@ const Semesters = (props) => {
                             <form onSubmit={handleSubmit}>
                                 <div className={classes.form}>
                                     <FormControl variant="outlined">
-                                        <InputLabel>Programs</InputLabel>
-                                        <Select
+                                        <InputLabel htmlFor="outlined-age-native-simple">Programs</InputLabel>
+                                        <Select style={
+                                            {width:"200px"}
+                                        }
                                             native
                                             value={values.program}
                                             onChange={handleChange}

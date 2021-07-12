@@ -136,6 +136,9 @@ const UsersList = (props) => {
                                     <FormControl variant="outlined">
                                         <InputLabel htmlFor="outlined-age-native-simple">Role</InputLabel>
                                         <Select
+                                            style={
+                                                {width:"200px"}
+                                            }
                                             native
                                             value={values.role}
                                             onChange={handleChange}

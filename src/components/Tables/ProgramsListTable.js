@@ -15,6 +15,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {useSelector} from "react-redux";
 import {getters} from "../../redux/selectors/selectors";
+import {Card} from "@material-ui/core";
 const useRowStyles = makeStyles({
     root: {
         '& > *': {
@@ -46,18 +47,20 @@ function Row(props) {
                 <TableCell>{row["id"]}</TableCell>
                 <TableCell>{row["duration"]}</TableCell>
             </TableRow>
-            <TableRow  style={{backgroundColor:"#FB8122"}}>
+            <TableRow >
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 ,backgroundColor:"#E1E2E2"}} colSpan={6}>
                     <Collapse style={{backgroundColor:"#E1E2E2"}} in={open} timeout="auto" unmountOnExit>
                         <Box margin={1} >
                             <Typography variant="h6" gutterBottom component="div">
                                 {row["id"]}
                             </Typography>
+                            <Paper elevation={24}>
+                            <Card style={{padding:"30px", backgroundColor:"#E1E2E2"}}>
                             <Table size="small" aria-label="purchases">
-                                <TableHead style={{backgroundColor:"#E1E2E2"}}>
-                                    <TableRow  style={{backgroundColor:"#FB8122"}}>
-                                        <TableCell>Program</TableCell>
-                                        <TableCell>Duration</TableCell>
+                                <TableHead style={{backgroundColor:"#1D2228"}}>
+                                    <TableRow>
+                                        <TableCell style={{color:"white"}}>Program</TableCell>
+                                        <TableCell style={{color:"white"}}>Duration</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody >
@@ -65,10 +68,13 @@ function Row(props) {
                                     <TableCell>{row["duration"]}</TableCell>
                                 </TableBody>
                             </Table>
+                            </Card>
+                            </Paper>
                         </Box>
                     </Collapse>
                 </TableCell>
             </TableRow>
+
         </>
     );
 }
@@ -80,11 +86,11 @@ export default function ProgramsListTable() {
     return (
         <TableContainer component={Paper}>
             <Table aria-label="collapsible table">
-                <TableHead>
+                <TableHead style={{backgroundColor:"#1D2228"}}>
                     <TableRow >
                         <TableCell />
-                        <TableCell>Program</TableCell>
-                        <TableCell>Duration</TableCell>
+                        <TableCell style={{color:"white"}}>Program</TableCell>
+                        <TableCell style={{color:"white"}}>Duration</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
