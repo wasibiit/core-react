@@ -16,9 +16,10 @@ import {useDispatch, useSelector} from "react-redux";
 import HeaderMenu from "../Menu/HeaderMenu";
 import HeaderMenuItems from "../Menu/HeaderMenuItems";
 import Typography from "@material-ui/core/Typography";
+import {useHistory} from 'react-router-dom';
 import "./header.css"
 import {Request} from "../../data/requests";
-import {getCookie} from "../../utils/common";
+import {deleteCookie, getCookie} from "../../utils/common";
 import {getCurrentUserQuery} from "../../data/queries";
 import {getters} from "../../redux/selectors/selectors";
 import {dispatchers} from "../../redux/dispatchers/dispatchers";
@@ -28,6 +29,7 @@ const Header = (props) => {
   const { classes, logo, logoAltText } = props;
   const [auth] = useState(true);
   const {user} = useSelector(getters.getCurrentUser);
+  const history = useHistory();
   const {setCurrentUser} = dispatchers.currentUserDispatcher(useDispatch())
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -45,6 +47,11 @@ const Header = (props) => {
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const logout = () => {
+    deleteCookie("user")
+    history.replace("/signin")
   };
 
     return (
@@ -102,7 +109,7 @@ const Header = (props) => {
                   <ListItemIcon>
                     <ExitToAppIcon fontSize="small" />
                   </ListItemIcon>
-                  <ListItemText primary="Logout" />
+                  <ListItemText onClick={logout} primary="Logout" />
                   </HeaderMenuItems>
                 </HeaderMenu>
               </div>
