@@ -3,48 +3,43 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import React, {useEffect, useState} from "react"
 import {withStyles} from '@material-ui/core/styles';
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import Typography from "@material-ui/core/Typography";
 import {FormControl, InputLabel, Select, TextField} from "@material-ui/core";
 
 import UserStyles from "../../styles/users";
 import {getCookie} from "../../utils/common";
 import {constants} from "../../utils/constants";
-import {getters} from "../../redux/selectors/selectors";
 import {SnackBar} from "../../components/SnackBar/SnackBar";
 import {dispatchers} from "../../redux/dispatchers/dispatchers";
 import {AuthRequest, AuthRequestWithFlag} from "../../data/requests";
-import SemestersListTable from "../../components/Tables/SemstersListTable";
 import {
     createCoursesQuery,
-    createSemesterQuery,
     getCoursesQuery,
     getProgramsQuery,
-    getSemestersQuery
+    getSemestersByProgramQuery
 } from "../../data/queries";
-import {idID} from "@material-ui/core/locale";
+import CoursesListTable from "../../components/Tables/CoursesListTable";
 
 const CoursesList = (props) => {
     const {classes} = props;
     const [alert, setAlert] = useState();
     const [programs, setPrograms] = useState([]);
+    const [program, setProgram] = useState([]);
     const [semesters, setSemesters] = useState([]);
-    const [roles, setRoles] = useState([]);
     const [open, setOpen] = useState();
     const [text, setText] = useState("");
     const [severity, setSeverity] = useState("");
-    const {coursesList} = useSelector(getters.getCoursesList);
     const {setCoursesList} = dispatchers.coursesListDispatcher(useDispatch())
     useEffect(() => {
         if (alert) {
-            // AuthRequest(getCoursesQuery(), setCoursesList, "getCoursesList", getCookie("user"))
+            AuthRequest(getCoursesQuery(), setCoursesList, "getCoursesList", getCookie("user"))
             handleAlert("Course Created Successfully!", "success")
         } else if (alert === false) {
             handleAlert("Already Exists!", "error")
         } else {
-            // AuthRequest(getProgramsQuery(), setPrograms, "getProgramsList", getCookie("user"))
-            // AuthRequest(getSemestersQuery(), setSemesters, "getSemestersList", getCookie("user"))
-            // AuthRequest(getCoursesQuery(), setCoursesList, "getCoursesList", getCookie("user"))
+            AuthRequest(getProgramsQuery(), setPrograms, "getProgramsList", getCookie("user"))
+            AuthRequest(getCoursesQuery(), setCoursesList, "getCoursesList", getCookie("user"))
         }
     }, [alert])
 
@@ -69,12 +64,19 @@ const CoursesList = (props) => {
                         initialValues={constants.SEMESTER}
                         validate={values => {
                             const errors = {};
+                            if(values.program !== program) {
+                                setProgram(values.program)
+                            }
+                            if(values.program !== program) {
+                                AuthRequest(getSemestersByProgramQuery(values.program),
+                                    setSemesters, "getSemestersByProgram", getCookie("user"))
+                            }
                             if (values.courseCode === "") {
                                 errors.courseCode = "Fill this Field";
                             }
                             if (values.programName === "") {
                                 errors.programName = "Select a program ";
-                            }
+                            } else if(values.pr)
                             if (values.title === "") {
                                 errors.title = "Fill this Field";
                             }
@@ -91,7 +93,7 @@ const CoursesList = (props) => {
                                 setSubmitting(false);
                                 setAlert()
                             }, 600);
-                            AuthRequestWithFlag(createCoursesQuery(values), setAlert, "createCourses", getCookie("user"))
+                            AuthRequestWithFlag(createCoursesQuery(values), setAlert, "createCourse", getCookie("user"))
                         }}
                     >
                         {({
@@ -118,9 +120,10 @@ const CoursesList = (props) => {
                                             }}
                                         >
                                             <option aria-label="None" value=""/>
-                                            {programs.map((program) => <option value={program["id"]}>
-                                                {capitalizeFirstLetter(`${program["id"]}`)}
-                                            </option>)}
+                                            {programs.map((program, index) =>
+                                                <option value={program["id"]} key={index}>
+                                                    {capitalizeFirstLetter(`${program["id"]}`)}
+                                                </option>)}
                                         </Select>
                                     </FormControl>
                                 </div>
@@ -141,11 +144,13 @@ const CoursesList = (props) => {
                                             }}
                                         >
                                             <option aria-label="None" value=""/>
-                                            {semesters.map((data) =>
-                                                data.map((semester) => <option value={semester["code"]}>
-                                                    {capitalizeFirstLetter(`${semester["code"]}`)}
-                                                </option>)
-                                            )}
+                                            {
+                                                semesters.map((semester, index) => {
+                                                    return <option value={semester["code"]} key={index}>
+                                                        {capitalizeFirstLetter(`${semester["code"]}`)}
+                                                    </option>
+                                                })
+                                            }
                                         </Select>
                                     </FormControl>
                                 </div>
@@ -167,7 +172,7 @@ const CoursesList = (props) => {
                                         label="title"
                                         type={"text"}
                                         onChange={handleChange}
-                                        value={values.semester}
+                                        value={values.title}
                                         helpertext={errors.title}
                                         variant="outlined"/>
                                 </div>
@@ -200,7 +205,7 @@ const CoursesList = (props) => {
                 </div>
             </Paper>
             <Paper elevation={4} className={classes.paper}>
-                <SemestersListTable/>
+                <CoursesListTable />
             </Paper>
         </div>
     )

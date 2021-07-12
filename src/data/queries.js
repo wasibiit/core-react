@@ -83,9 +83,30 @@ export const getSemestersQuery = () => {
 export const getCoursesQuery = () => {
     return `query{
   getCoursesList{
-    code,
+    courseCode,
+    creditHours,
+    title,
+    semester {
+      code
+    },
     program {
       id
+    }
+  }
+}`
+}
+
+export const getSemestersByProgramQuery = (program) => {
+    return `mutation {
+  getSemestersByProgram(
+    input: {
+      programName: "${program}"
+    }
+  ) {
+    code,
+    program{
+      id,
+      duration
     }
   }
 }`
@@ -152,9 +173,9 @@ export const createCoursesQuery = (data) => {
   createCourse(
     input: {
       courseCode: "${data.courseCode}",	
-      programName: "${data.programName}",
+      programName: "${data.program}",
       title: "${data.title}",
-      semesterCode: "${data.semesterCode}",
+      semesterCode: "${data.semester}",
       creditHours: ${data.creditHours}
     }
   )		

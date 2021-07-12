@@ -24,12 +24,14 @@ const useRowStyles = makeStyles({
     },
 });
 
-function createMap(code, program) { return {code, program}}
+function createMap(courseCode, programName, semesterCode, title, creditHours) {
+    return {courseCode, programName, semesterCode, title, creditHours}
+}
 
 export default function CoursesListTable() {
     const {coursesList} = useSelector(getters.getCoursesList);
     const rows = coursesList.map((data) =>
-        data.map((index) => createMap(index.code, index.program["id"]))
+        data.map((index) => createMap(index.courseCode, index.program["id"], index.semester["code"], index.title, index.creditHours))
     )
     return (
         <TableContainer component={Paper}>

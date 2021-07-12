@@ -59,6 +59,7 @@ export const AuthRequest = (query, setData, reqestedFor, token) => {
                 console.log("----------end----------------");
             }
         )
+    return null;
 };
 
 export const AuthRequestWithFlag = (query, setData, reqestedFor, token) => {
