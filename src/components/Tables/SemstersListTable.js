@@ -15,6 +15,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {useSelector} from "react-redux";
 import {getters} from "../../redux/selectors/selectors";
+import {Card} from "@material-ui/core";
 
 const useRowStyles = makeStyles({
     root: {
@@ -34,11 +35,11 @@ export default function SemestersListTable() {
     return (
         <TableContainer component={Paper}>
             <Table aria-label="collapsible table">
-                <TableHead>
+                <TableHead style={{ backgroundColor:"#1D2228"}}>
                     <TableRow>
                         <TableCell />
-                        <TableCell>Semester</TableCell>
-                        <TableCell>Program</TableCell>
+                        <TableCell style={{color:"white"}}>Semester</TableCell>
+                        <TableCell style={{color:"white"}}>Program</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -57,8 +58,8 @@ function Row(props) {
     const classes = useRowStyles();
     return (
         <>
-            <TableRow className={classes.root} onClick={() => setOpen(!open)}>
-                <TableCell>
+            <TableRow  className={classes.root} onClick={() => setOpen(!open)}>
+                <TableCell >
                     <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
                         {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                     </IconButton>
@@ -66,25 +67,29 @@ function Row(props) {
                 <TableCell>{row["code"]}</TableCell>
                 <TableCell>{row["program"]}</TableCell>
             </TableRow>
-            <TableRow>
-                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+            <TableRow >
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0 ,backgroundColor:"#E1E2E2" }} colSpan={6}>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                         <Box margin={1}>
                             <Typography variant="h6" gutterBottom component="div">
                                 {row["program"]}
                             </Typography>
+                            <Paper elevation={24}>
+                            <Card style={{padding:"30px", backgroundColor:"#E1E2E2"}}>
                             <Table size="small" aria-label="purchases">
-                                <TableHead style={{backgroundColor:"#FB8122"}}>
-                                    <TableRow>
-                                        <TableCell>Code</TableCell>
-                                        <TableCell>Program</TableCell>
+                                <TableHead style={{backgroundColor:"#1D2228"}}>
+                                    <TableRow >
+                                        <TableCell style={{color:"white"}} > Course Code</TableCell>
+                                        <TableCell style={{color:"white"}}>Program</TableCell>
                                     </TableRow>
                                 </TableHead >
                                 <TableBody>
-                                    <TableCell component="th" scope="row">{row["code"]}</TableCell>
+                                    <TableCell  component="th" scope="row">{row["code"]}</TableCell>
                                     <TableCell>{row["program"]}</TableCell>
                                 </TableBody>
                             </Table>
+                            </Card>
+                            </Paper>
                         </Box>
                     </Collapse>
                 </TableCell>

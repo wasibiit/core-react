@@ -88,7 +88,9 @@ const UsersList = (props) => {
                                 <div className={classes.form}>
                                     <FormControl variant="outlined">
                                         <InputLabel htmlFor="outlined-age-native-simple">Programs</InputLabel>
-                                        <Select
+                                        <Select style={
+                                            {width:"200px"}
+                                        }
                                             native
                                             value={values.program}
                                             onChange={handleChange}
