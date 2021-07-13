@@ -1,6 +1,5 @@
 export function getCookie(key) {
-   localStorage.getItem(key)
-    return null;
+    return localStorage.getItem(key);
 }
 
 export function setCookie(key, value) {
