@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import {FormControl, InputLabel, Select, TextField} from "@material-ui/core";
 
 import UserStyles from "../../styles/users";
-import {checkCookie, getCookie} from "../../utils/common";
+import {getCookie} from "../../utils/common";
 import {constants} from "../../utils/constants";
 import {SnackBar} from "../../components/SnackBar/SnackBar";
 import {dispatchers} from "../../redux/dispatchers/dispatchers";
@@ -20,7 +20,6 @@ import {
     getSemestersByProgramQuery
 } from "../../data/queries";
 import CoursesListTable from "../../components/Tables/CoursesListTable";
-import {Redirect} from "react-router-dom";
 
 const CoursesList = (props) => {
     const {classes} = props;
