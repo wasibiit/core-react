@@ -104,12 +104,11 @@ const Header = (props) => {
                     </ListItemIcon>
                     <ListItemText primary="Profile" />
                   </HeaderMenuItems>
-                  {/*Logout*/}
-                  <HeaderMenuItems>
+                  <HeaderMenuItems onClick={logout}>
                   <ListItemIcon>
                     <ExitToAppIcon fontSize="small" />
                   </ListItemIcon>
-                  <ListItemText onClick={logout} primary="Logout" />
+                  <ListItemText primary="Logout" />
                   </HeaderMenuItems>
                 </HeaderMenu>
               </div>

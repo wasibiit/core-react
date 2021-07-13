@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {Route, Switch, Redirect} from 'react-router-dom';
@@ -6,12 +6,11 @@ import {withStyles} from '@material-ui/core/styles';
 import {Workspace, Header, Sidebar} from '../../components/index';
 import DashboardStyles from '../../styles/dashboard';
 import routes from '../../routes/routes';
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {getters} from "../../redux/selectors/selectors";
-import {checkCookie, getCookie} from "../../utils/common";
+import {checkCookie} from "../../utils/common";
 // import {getCurrentUserQuery} from "../../data/queries";
 import {SnackBar} from "../../components/SnackBar/SnackBar";
-import {dispatchers} from "../../redux/dispatchers/dispatchers";
 // import {Request} from "../../data/requests";
 
 function resizeDispatch() {
@@ -30,8 +29,6 @@ const Dashboard = (props) =>  {
     const [openBar, setOpenBar] = useState(false);
     const [text, setText] = useState("");
     const [severity, setSeverity] = useState("");
-    const {setCurrentUser} = dispatchers.currentUserDispatcher(useDispatch())
-    let check = checkCookie("user")
     const {isAuthenticated} = useSelector(getters.getIsAuthenticated);
     const {user} = useSelector(getters.getCurrentUser);
 
@@ -45,14 +42,7 @@ const Dashboard = (props) =>  {
         }
     }, [])
 
-    console.log("------------start------------");
-    console.log("isAuthenticated=" + isAuthenticated);
-    console.log("cookie=" + check);
-    console.log("----------end----------------");
-
-    if (!check) {
-        return <Redirect to={"/signin"}/>
-    }
+    if (!checkCookie("user")) {return <Redirect to={"/signin"}/>}
 
     const handleAlert = (text, type) => {
         setText(text)
@@ -71,7 +61,9 @@ const Dashboard = (props) =>  {
 
     const getRoutes = (
         <Switch>
-            { routes.items.map((item, index) => (
+            {
+                !checkCookie("user") ? <Redirect to={"/signin"}/> :
+                routes.items.map((item, index) => (
                 item.type === 'external' ? <Route exact path={item.path} component={item.component} name={item.name} key={index} />:
                     item.type === 'submenu' ? item.children.map(subItem => <Route exact path={`${item.path}${subItem.path}`} component={subItem.component} name={subItem.name} />):
                         <Route exact path={item.path} component={item.component} name={item.name} key={index} />

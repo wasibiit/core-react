@@ -14,6 +14,6 @@ export function deleteCookie(key) {
 }
 
 export function checkCookie(key) {
-    let cookie =localStorage.getItem(key)
-    return cookie !== "";
+    let cookie = localStorage.getItem(key)
+    return cookie !== null;
 }
