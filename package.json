@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/runtime": "7.14.6",
+    "@craco/craco": "^6.2.0",
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "4.0.0-alpha.58",
@@ -39,9 +40,9 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -63,11 +64,14 @@
     ]
   },
   "devDependencies": {
+    "autoprefixer": "^9.8.6",
     "connected-react-router": "^6.9.1",
     "formik": "^2.2.9",
     "material-ui-password-field": "^2.1.2",
+    "postcss": "^7.0.36",
     "prop-types": "^15.7.2",
     "redux-promise-middleware": "^6.1.2",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.4"
   }
 }
