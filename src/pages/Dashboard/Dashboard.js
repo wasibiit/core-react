@@ -5,13 +5,11 @@ import {Route, Switch, Redirect} from 'react-router-dom';
 import {withStyles} from '@material-ui/core/styles';
 import {Workspace, Header, Sidebar} from '../../components/index';
 import DashboardStyles from '../../styles/dashboard';
-import routes from '../../routes/routes';
+import {getRoutesBy} from '../../routes/routes';
 import {useSelector} from "react-redux";
 import {getters} from "../../redux/selectors/selectors";
-import {checkCookie} from "../../utils/common";
-// import {getCurrentUserQuery} from "../../data/queries";
+import {checkCookie, getRole} from "../../utils/common";
 import {SnackBar} from "../../components/SnackBar/SnackBar";
-// import {Request} from "../../data/requests";
 
 function resizeDispatch() {
     if (typeof (Event) === 'function') {
@@ -25,19 +23,18 @@ function resizeDispatch() {
 
 const Dashboard = (props) =>  {
     const {classes} = props;
-    const [opened, setOpened] = useState(true);
-    const [openBar, setOpenBar] = useState(false);
     const [text, setText] = useState("");
-    const [severity, setSeverity] = useState("");
-    const {isAuthenticated} = useSelector(getters.getIsAuthenticated);
     const {user} = useSelector(getters.getCurrentUser);
+    const [opened, setOpened] = useState(true);
+    const [severity, setSeverity] = useState("");
+    const [openBar, setOpenBar] = useState(false);
+    const {isAuthenticated} = useSelector(getters.getIsAuthenticated);
 
     useEffect(() => {
         // function handleStatusChange(status) {
         //   setIsOnline(status.isOnline);
         // }
         if(isAuthenticated) {
-            // Request(getCurrentUserQuery(getCookie("uer")), setCurrentUser, "getUserFromJwt")
             handleAlert("Welcome Back " + user["firstName"] + ' ' + user["lastName"] + '!')
         }
     }, [])
@@ -63,13 +60,14 @@ const Dashboard = (props) =>  {
         <Switch>
             {
                 !checkCookie("user") ? <Redirect to={"/signin"}/> :
-                routes.items.map((item, index) => (
-                item.type === 'external' ? <Route exact path={item.path} component={item.component} name={item.name} key={index} />:
-                    item.type === 'submenu' ? item.children.map(subItem => <Route exact path={`${item.path}${subItem.path}`} component={subItem.component} name={subItem.name} />):
-                        <Route exact path={item.path} component={item.component} name={item.name} key={index} />
-            ))
+                    getRoutesBy(getRole("user")).items.map((item, index) => (item.type === 'external' ?
+                            <Route exact path={item.path} component={item.component} name={item.name} key={index}/> :
+                            item.type === 'submenu' ? item.children.map(subItem =>
+                                    <Route exact path={`${item.path}${subItem.path}`} component={subItem.component} name={subItem.name}/>) :
+                                <Route exact path={item.path} component={item.component} name={item.name} key={index}/>
+                    ))
             }
-            <Redirect to="/404" />
+            <Redirect to="/404"/>
         </Switch>
     )
 
@@ -90,7 +88,7 @@ const Dashboard = (props) =>  {
             />
             <div className={classNames(classes.panel, 'theme-dark')} >
                 <Sidebar
-                    routes={routes.items}
+                    routes={getRoutesBy(getRole("user"))}
                     opened={opened}
                     toggleDrawer={handleDrawerToggle}
                 />

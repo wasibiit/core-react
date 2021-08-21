@@ -18,10 +18,7 @@ import {
     Courses
 } from '../pages/pages';
 
-
-
-
-export default {
+let adminRoutes =  {
     items: [
         {
             path: '/',
@@ -37,7 +34,7 @@ export default {
             children: [
                 {
                     path: '/userslist',
-                    name: 'Users List',
+                    name: 'UsersList',
                     component: UsersList
                 }
             ]
@@ -57,8 +54,8 @@ export default {
             ]
         },
         {
-            path: '/rooms',
-            name: 'Rooms',
+            path: '/controller',
+            name: 'Controller',
             type: 'submenu',
             icon: Room,
             children: [
@@ -100,3 +97,9 @@ export default {
         }
     ]
 };
+
+let teacherRoutes = {}
+
+let studentRoutes = {}
+
+export const getRoutesBy = (role) => {return role === "admin" ? adminRoutes : role === "teacher" ? teacherRoutes : studentRoutes;}

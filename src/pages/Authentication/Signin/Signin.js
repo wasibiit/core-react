@@ -81,7 +81,7 @@ const Signin = (props) => {
                                                 if (result.data.userSignin === null) {
                                                     handleAlert("Invalid Credentials", "warning")
                                                 } else {
-                                                    setCookie("user", result.data.userSignin.token)
+                                                    setCookie("user", result.data.userSignin.token + ":" + result.data.userSignin.role["id"])
                                                     setCurrentUser(result.data.userSignin)
                                                     setIsAuthenticated(true)
                                                     history.push("/");

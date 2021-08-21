@@ -29,7 +29,7 @@ class Sidebar extends Component {
     const { activeRoute } = this.state;
     const menu = (
         <List component="div">
-          { routes.map((route, index) => {
+          { routes.items.map((route, index) => {
             const isCurrentPath = location.pathname.indexOf(route.path) > -1;
             return (
                 <SidebarItem

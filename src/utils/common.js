@@ -1,5 +1,7 @@
 export function getCookie(key) {
-    return localStorage.getItem(key);
+    let cookie = localStorage.getItem(key);
+    cookie.split(":")
+    return cookie.split(":")[0];
 }
 
 export function setCookie(key, value) {
@@ -15,4 +17,11 @@ export function deleteCookie(key) {
 export function checkCookie(key) {
     let cookie = localStorage.getItem(key)
     return cookie !== null;
+}
+
+export function getRole(key) {
+    let cookie = localStorage.getItem(key)
+    let arr = cookie.split(":");
+    arr = arr.reverse();
+    return arr[0]
 }
