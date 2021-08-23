@@ -54,13 +54,7 @@ class Sidebar extends Component {
                 ModalProps={{
                   keepMounted: false,
                   className: classes.modal,
-                  BackdropProps: {
-                    className: classes.backdrop,
-                  },
-                  onBackdropClick: toggleDrawer,
-                    Icon: {
-                      className: classes.icon
-                    }
+                  BackdropProps: {className: classes.backdrop}, onBackdropClick: toggleDrawer, Icon: {className: classes.icon}
                 }}
             >
               {menu}
@@ -69,9 +63,7 @@ class Sidebar extends Component {
             <Hidden mdUp>
                 <SwipeableDrawer
                     variant="temporary"
-                    classes={{
-                        paper: classes.drawerPaper,
-                    }}
+                    classes={{paper: classes.drawerPaper,}}
                     open={opened}
                     onClose={toggleDrawer}
                     onOpen={toggleDrawer}
@@ -79,9 +71,7 @@ class Sidebar extends Component {
                     ModalProps={{
                         keepMounted: false,
                         className: classes.modal,
-                        BackdropProps: {
-                            className: classes.backdrop,
-                        },
+                        BackdropProps: {className: classes.backdrop,},
                         onBackdropClick: toggleDrawer
                     }}
                 >

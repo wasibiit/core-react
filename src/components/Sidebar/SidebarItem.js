@@ -36,7 +36,7 @@ class SidebarItem extends Component {
           <a href={route.path} target="_blank" key={index} className={classes.menuLink}>
             <ListItem className={classes.menuItem} button>
               <ListItemIcon>
-                <route.icon className={classes.menuIcon} />
+                <route.icon className={activeRoute === index ? classes.activeMenuIcon : classes.menuIcon} />
               </ListItemIcon>
               <Typography variant="body1" className="flexSpacer">{capitalize(route.name)}</Typography>
               {badge(route.badge)}
@@ -50,7 +50,7 @@ class SidebarItem extends Component {
           <div className={activeRoute === index ? classes.menuCollapsed : classes.menuClosed}>
             <ListItem className={classes.menuItem} button key={index} onClick={() => toggleMenu(index)}>
               <ListItemIcon>
-                <route.icon className={classes.menuIcon} />
+                <route.icon className={activeRoute === index ? classes.activeMenuIcon : classes.menuIcon} />
               </ListItemIcon>
               <Typography variant="body1" className="flexSpacer">{capitalize(route.name)}</Typography>
               {badge(route.badge)}
@@ -79,7 +79,7 @@ class SidebarItem extends Component {
         <NavLink to={route.path} exact className={classes.menuLink} activeClassName={classes.menuActive} key={index}>
           <ListItem className={classes.menuItem} button onClick={() => toggleMenu(index)}>
             <ListItemIcon>
-              <route.icon className={classes.menuIcon} />
+              <route.icon className={activeRoute === index ? classes.activeMenuIcon : classes.menuIcon} />
             </ListItemIcon>
             <Typography variant="body1" className="flexSpacer">{capitalize(route.name)}</Typography>
             {badge(route.badge)}
