@@ -50,7 +50,7 @@ class SidebarItem extends Component {
           <div className={activeRoute === index ? classes.menuCollapsed : classes.menuClosed}>
             <ListItem className={classes.menuItem} button key={index} onClick={() => toggleMenu(index)}>
               <ListItemIcon>
-                <route.icon className={activeRoute === index ? classes.activeMenuIcon : classes.menuIcon} />
+                <route.icon className={classes.menuIcon} />
               </ListItemIcon>
               <Typography variant="body1" className="flexSpacer">{capitalize(route.name)}</Typography>
               {badge(route.badge)}
